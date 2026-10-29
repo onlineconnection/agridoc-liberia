@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#174b35">
+    <title>Field Officer | AgriDoc Liberia</title>
+    <style>
+        :root {
+            --green: #174b35;
+            --green-hover: #103b29;
+            --gold: #d9ad3c;
+            --text: #202923;
+            --muted: #68736c;
+            --border: #e1e6e2;
+            --background: #f6f7f5;
+            --white: #fff;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            background: var(--background);
+            color: var(--text);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+                         Roboto, Arial, sans-serif;
+            font-size: 15px;
+            line-height: 1.5;
+        }
+
+        a { text-decoration: none; }
+
+        .header {
+            background: var(--green);
+            border-bottom: 3px solid var(--gold);
+            color: var(--white);
+        }
+
+        .header-inner {
+            max-width: 1100px;
+            min-height: 64px;
+            margin: 0 auto;
+            padding: 0 28px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .brand {
+            color: var(--white);
+            font-size: 18px;
+            font-weight: 750;
+            letter-spacing: -.4px;
+        }
+
+        .brand span {
+            font-weight: 400;
+            color: #d4e2d8;
+        }
+
+        .logout {
+            color: var(--white);
+            border: 1px solid rgba(255,255,255,.35);
+            border-radius: 6px;
+            padding: 8px 13px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .logout:hover { background: rgba(255,255,255,.08); }
+
+        main {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 38px 28px 70px;
+        }
+
+        .page-heading {
+            margin-bottom: 30px;
+        }
+
+        .breadcrumb {
+            color: var(--muted);
+            font-size: 12px;
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: -.7px;
+            margin: 0;
+        }
+
+        .subtitle {
+            color: var(--muted);
+            margin: 7px 0 0;
+            font-size: 14px;
+        }
+
+        .section-heading {
+            margin: 0 0 12px;
+            font-size: 15px;
+            font-weight: 700;
+        }
+
+        .workspace {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 9px;
+            padding: 24px;
+        }
+
+        .workspace-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .workspace-title {
+            font-size: 16px;
+            font-weight: 650;
+            margin: 0 0 4px;
+        }
+
+        .workspace-description {
+            margin: 0;
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .register-button {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 44px;
+            padding: 11px 17px;
+            border-radius: 6px;
+            background: var(--green);
+            color: var(--white);
+            font-size: 14px;
+            font-weight: 650;
+            white-space: nowrap;
+            transition: background .15s;
+        }
+
+        .register-button:hover { background: var(--green-hover); }
+
+        .register-button:focus-visible,
+        .logout:focus-visible {
+            outline: 3px solid var(--gold);
+            outline-offset: 3px;
+        }
+
+        footer {
+            border-top: 1px solid var(--border);
+            color: var(--muted);
+            font-size: 12px;
+            padding: 18px 28px;
+            text-align: center;
+        }
+
+        @media (max-width: 600px) {
+            .header-inner {
+                min-height: 60px;
+                padding: 0 16px;
+            }
+
+            .brand { font-size: 16px; }
+
+            main { padding: 27px 16px 45px; }
+
+            .page-heading { margin-bottom: 23px; }
+
+            h1 { font-size: 25px; }
+
+            .workspace { padding: 19px; }
+
+            .workspace-row {
+                align-items: stretch;
+                flex-direction: column;
+                gap: 17px;
+            }
+
+            .register-button {
+                width: 100%;
+                min-height: 48px;
+            }
+
+            footer { padding: 18px 16px; }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-inner">
+            <a class="brand" href="{{ url_for('field_officer_dashboard') }}">
+                AgriDoc <span>Liberia</span>
+            </a>
+
+            {% if user %}
+                <a class="logout" href="{{ url_for('logout') }}">Logout</a>
+            {% else %}
+                <a class="logout" href="{{ url_for('login') }}">Login</a>
+            {% endif %}
+        </div>
+    </header>
+
+    <main>
+        <div class="page-heading">
+            <div class="breadcrumb">AgriDoc Liberia / Field Operations</div>
+            <h1>Field Officer Dashboard</h1>
+            <p class="subtitle">Farmer registration</p>
+        </div>
+
+        <section aria-labelledby="actions-heading">
+            <h2 class="section-heading" id="actions-heading">Actions</h2>
+
+            <div class="workspace">
+                <div class="workspace-row">
+                    <div>
+                        <h3 class="workspace-title">Register a farmer</h3>
+                        <p class="workspace-description">
+                            Create a new farmer record in the registry.
+                        </p>
+                    </div>
+
+                    {% if user and user.get('can_register_farmers') %}
+                        <a class="register-button"
+                           href="{{ url_for('register_farmer') }}">
+                            + Register Farmer
+                        </a>
+                    {% else %}
+                        <span class="workspace-description">
+                            Registration access is not enabled for your account.
+                        </span>
+                    {% endif %}
+                </div>
+            </div>
+        </section>
+        
+        <section aria-labelledby="farmers-heading" style="margin-top: 30px;">
+            <h2 class="section-heading" id="farmers-heading">Registered Farmers</h2>
+
+            {% if farmer_error %}
+                <div class="workspace" role="alert">
+                    {{ farmer_error }}
+                </div>
+            {% elif farmers %}
+                <div class="workspace" style="padding: 0; overflow-x: auto;">
+                    <table style="width: 100%; border-collapse: collapse; text-align: left;">
+                        <thead>
+                            <tr style="background: #f6f7f5;">
+                                <th style="padding: 12px;">Farmer ID</th>
+                                <th style="padding: 12px;">Name</th>
+                                <th style="padding: 12px;">Location</th>
+                                <th style="padding: 12px;">Registered</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for farmer in farmers %}
+                                <tr>
+                                    <td style="padding: 12px; border-top: 1px solid var(--border); white-space: nowrap;">
+                                        {{ farmer.get('farmer_id') or 'Pending ID' }}
+                                    </td>
+                                    <td style="padding: 12px; border-top: 1px solid var(--border);">
+                                        {{ farmer.get('full_name') or 'Unnamed' }}
+                                    </td>
+                                    <td style="padding: 12px; border-top: 1px solid var(--border);">
+                                        {{ farmer.get('community') or '' }}{% if farmer.get('district') %}, {{ farmer.get('district') }}{% endif %}{% if farmer.get('county') %}, {{ farmer.get('county') }}{% endif %}
+                                    </td>
+                                    <td style="padding: 12px; border-top: 1px solid var(--border); white-space: nowrap;">
+                                        {% if farmer.get('created_at') %}
+                                            {{ farmer.get('created_at')[:10] }}
+                                        {% else %}
+                                            —
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            {% else %}
+                <div class="workspace">
+                    <p class="workspace-description">You haven't registered any farmers yet.</p>
+                </div>
+            {% endif %}
+        </section>
+    </main>
+
+    <footer>
+        AgriDoc Liberia &copy; 2026
+    </footer>
+</body>
+</html>

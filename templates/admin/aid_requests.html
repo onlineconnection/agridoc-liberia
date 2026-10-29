@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Aid Requests | AgriDoc Liberia</title>
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            padding: 32px 20px;
+            font-family: Arial, sans-serif;
+            background: #f4f7f5;
+            color: #24332b;
+        }
+        main {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            gap: 16px;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 32px;
+        }
+        a { color: #176b48; }
+        .panel {
+            background: white;
+            border: 1px solid #dce5df;
+            border-radius: 12px;
+            padding: 28px;
+        }
+        .status {
+            display: inline-block;
+            padding: 6px 10px;
+            border-radius: 20px;
+            background: #fff0cc;
+            color: #775300;
+            font-size: 13px;
+            font-weight: bold;
+        }
+        h1 { margin-top: 16px; }
+        p { line-height: 1.6; }
+    </style>
+</head>
+<body>
+    <main>
+        <header>
+            <strong>AgriDoc Liberia</strong>
+            <nav>
+                <a href="{{ url_for('admin_dashboard') }}">Back to Dashboard</a>
+                &nbsp; · &nbsp;
+                <a href="{{ url_for('logout') }}">Log out</a>
+            </nav>
+        </header>
+
+        <section class="panel">
+            <span class="status">Planned module</span>
+            <h1>Aid Approval Requests</h1>
+            <p>
+                This page will support reviewing farmer assistance requests,
+                recording approval decisions, and tracking aid distribution.
+            </p>
+            <p>
+                The request management workflow is not active yet.
+                No requests or approval decisions are being displayed here.
+            </p>
+        </section>
+    </main>
+</body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - AgriDoc Liberia</title>
+    <style>
+        :root{
+            --pg:#2d5a27;
+            --lg:#4a7c59;
+            --lb:#e8f5e9;
+            --td:#333;
+            --tl:#666;
+            --ac:#d4af3c;
+        }
+        *{box-sizing:border-box;margin:0;padding:0}
+        body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;line-height:1.6;color:var(--td);background:#f5f5f5}
+        a{text-decoration:none;color:inherit}
+        ul{list-style:none}
+        .container{max-width:1200px;margin:0 auto;padding:0 20px}
+
+        /* Desktopwidth-first dashboard layout */
+        header{background:var(--pg);padding:1.5rem 0;position:fixed;width:100%;top:0;z-index:100}
+        .dashboard-header{background:var(--pg);padding:1.5rem 0;margin-top:80px}
+        .header-container{display:flex;justify-content:space-between;align-items:center;max-width:1200px;margin:0 auto;padding:0 20px}
+        .logo{color:white;font-size:1.6rem;font-weight:bold;letter-spacing:1px}
+        
+        /* Desktopwidth-first sidebar navigation */
+        .sidebar{width:250px;background:var(--pg);min-height:100vh;position:fixed;top:80px;left:0;bottom:0;padding:1.5rem 0;z-index:90}
+        .sidebar-header{color:white;padding:0 1rem 1rem;margin-bottom:1rem;border-bottom:1px solid rgba(255,255,255,0.2)}
+        .sidebar-header h2{font-size:1.2rem;font-weight:600;margin-bottom:0}
+        .nav-links-sidebar{display:flex;flex-direction:column;gap:0.5rem;margin-top:1rem}
+        .nav-links-sidebar a{color:rgba(255,255,255,0.8);font-size:0.85rem;padding:0.5rem 1rem;border-radius:4px;transition:all 0.3s}
+        .nav-links-sidebar a:hover{background:rgba(255,255,255,0.15);color:white}
+        .nav-links-sidebar .active{background:var(--ac);color:var(--pg)}
+        
+        /* Main content area */
+        .content-area{margin-left:250px;padding:2rem 0;max-width:calc(100% - 250px)}
+        @media(max-width:768px){.content-area{margin-left:0;margin-top:140px;padding:1rem}}
+        
+        /* Dashboard sections */
+        .section{margin-bottom:2rem;padding:1rem;border:1px solid #eee;border-radius:4px;background:white}
+        .section h2{color:var(--pg);border-bottom:2px solid var(--lg);padding-bottom:0.5rem;margin-bottom:1rem;font-size:1.4rem}
+        .section p{color:var(--tl);line-height:1.8}
+        .card{padding:1.5rem;text-align:center;color:var(--tl)}
+        .card h3{color:var(--pg);margin-bottom:1rem}
+
+        /* Two-column desktop layout for sections */
+        @media(min-width:900px){
+            .dashboard-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+            .section{padding:1.5rem;border:none;margin-bottom:1.5rem}}
+        
+        /* Buttons - touch-friendly */
+        .btn{display:inline-block;padding:0.8rem 1.5rem;background:var(--pg);color:white;border:none;border-radius:4px;font-weight:bold;text-transform:uppercase;letter-spacing:1px;transition:background 0.3s;min-height:44px;line-height:normal}
+        .btn:hover{background:#2c5a27}
+        .btn-secondary{display:inline-block;padding:0.8rem 1.5rem;background:var(--lg);color:var(--pg);border:none;border-radius:4px;font-weight:bold;min-height:44px;line-height:normal;text-transform:uppercase;letter-spacing:1px;transition:background 0.3s}
+        .btn-secondary:hover{background:#c8e6c9}
+
+        /* Responsive adjustments */
+        @media(max-width:768px){
+            .sidebar{position:relative;width:100%;min-height:auto;background:var(--pg);padding:1rem 0}
+            .sidebar-header{display:none}
+            .nav-links-sidebar{flex-direction:row;overflow-x:auto;white-space:nowrap;padding-bottom:1rem}
+            .nav-links-sidebar a{margin-right:0.5rem;min-width:auto}
+            .content-area{margin-left:0;padding-top:1rem}
+        }
+    </style>
+</head>
+<body>
+    
+<header>
+    <div class="header-container">
+        <div class="logo">AgriDoc Liberia</div>
+        <nav>
+            <ul class="nav-links">
+                {% if 'user' in login_session %}
+                    <li><a href="{{ url_for('index') }}">Home</a></li>
+                    <li><a href="{{ url_for('admin_dashboard') }}">Admin</a></li>
+                    <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                {% else %}
+                    <li><a href="{{ url_for('login') }}">Login</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <div class="dashboard-header">
+        <div class="header-container">
+            <h1>Admin Dashboard</h1>
+            <p>AgriDoc Liberia - Ministry of Agriculture</p>
+        </div>
+    </div>
+
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h2>Navigation</h2>
+        </div>
+        <div class="nav-links-sidebar">
+            <a href="#" class="active">Manage Field Officers</a>
+            <a href="#">Farmer Registrations</a>
+        </div>
+    </div>
+
+    <div class="content-area">
+        <div class="wrapper">
+            <div class="dashboard-grid">
+                
+                <div class="section">
+                    <h2>Manage Field Officers</h2>
+                    <p>View and manage field officer accounts and permissions.</p>
+                    <div class="card">
+                        <h3>No field officers found</h3>
+                        <p>Add or manage field officer accounts here.</p>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2>Farmer Registrations</h2>
+                    <p>View and manage farmer registry records.</p>
+                    <div class="card">
+                        <h3>No farmer registrations found</h3>
+                        <p>View and manage farmer records here.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer>
+    <div class="container">
+        <p class="footer-text">&copy; 2026 AgriDoc Liberia. All rights reserved.</p>
+    </div>
+</footer>
+
+</body>
+</html>

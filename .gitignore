@@ -1,0 +1,26 @@
+.env
+.venv/
+__pycache__/
+# Python temporary files
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Virtual environments
+.venv/
+venv/
+
+# Local secrets
+.env
+.env.*
+
+# Local backups and temporary files
+*.bak
+*.before-*
+/0
+/requests
+/sys
+
+# Editor and template backups
+*.backup
+*.photo-backup

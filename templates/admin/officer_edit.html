@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Edit Field Officer | AgriDoc Liberia</title>
+  <style>
+    :root {
+      --green: #245b37;
+      --green-dark: #19452a;
+      --green-light: #eaf4ec;
+      --gold: #d9b44a;
+      --ink: #203027;
+      --muted: #6b786f;
+      --line: #e0e7e1;
+      --page: #f5f7f4;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--page);
+      color: var(--ink);
+      font-family: Inter, system-ui, sans-serif;
+    }
+    header {
+      background: var(--green-dark);
+      color: white;
+      padding: 18px 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .brand { font-size: 18px; font-weight: 750; }
+    .brand span { color: #b7d6bd; font-weight: 500; }
+    header a { color: white; text-decoration: none; margin-left: 18px; font-size: 14px; }
+    main { max-width: 850px; margin: 36px auto; padding: 0 18px 40px; }
+    .back { color: var(--green); text-decoration: none; font-size: 14px; font-weight: 650; }
+    .heading { margin: 22px 0; }
+    h1 { font-size: clamp(25px, 4vw, 34px); margin: 0 0 8px; letter-spacing: -.7px; }
+    .sub { color: var(--muted); margin: 0; line-height: 1.6; }
+    .card {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: clamp(20px, 4vw, 32px);
+      box-shadow: 0 8px 28px rgba(30, 60, 40, .05);
+    }
+    .section-title { font-size: 17px; margin: 0 0 6px; }
+    .section-note { font-size: 13px; color: var(--muted); margin: 0 0 24px; }
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .field label { display: block; font-size: 13px; font-weight: 700; margin-bottom: 8px; }
+    .field input {
+      width: 100%; padding: 13px 14px; border: 1px solid #ccd7ce;
+      border-radius: 9px; font-size: 15px; color: var(--ink); background: #fff;
+    }
+    .field input:focus { outline: 3px solid #dceee0; border-color: var(--green); }
+    .permission {
+      margin-top: 24px; padding: 16px; background: #f7faf7;
+      border: 1px solid var(--line); border-radius: 11px;
+      display: flex; align-items: flex-start; gap: 12px;
+    }
+    .permission input { margin-top: 4px; accent-color: var(--green); }
+    .permission strong { display: block; font-size: 14px; }
+    .permission small { display: block; color: var(--muted); margin-top: 4px; line-height: 1.5; }
+    .actions { display: flex; gap: 12px; margin-top: 28px; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex; justify-content: center; align-items: center;
+      padding: 12px 18px; border-radius: 9px; font-size: 14px;
+      font-weight: 700; text-decoration: none; cursor: pointer; border: 0;
+    }
+    .primary { background: var(--green); color: white; }
+    .primary:hover { background: var(--green-dark); }
+    .secondary { background: white; border: 1px solid var(--line); color: var(--ink); }
+    .message { padding: 12px 15px; border-radius: 9px; margin-bottom: 16px; font-size: 14px; }
+    .error { background: #fff0ee; color: #a52c20; }
+    .ok { background: var(--green-light); color: var(--green-dark); }
+    @media (max-width: 600px) {
+      .grid { grid-template-columns: 1fr; gap: 16px; }
+      main { margin-top: 24px; }
+    }
+  </style>
+</head>
+<body>
+<header>
+  <div class="brand">AgriDoc <span>Liberia · Administration</span></div>
+  <nav>
+    <a href="{{ url_for('admin_dashboard') }}">Dashboard</a>
+    <a href="{{ url_for('logout') }}">Logout</a>
+  </nav>
+</header>
+
+<main>
+  <a class="back" href="{{ url_for('admin_officers') }}">← Back to field officers</a>
+  <div class="heading">
+    <h1>Edit field officer</h1>
+    <p class="sub">Correct staff details and update registration permissions.</p>
+  </div>
+
+  {% for category, message in get_flashed_messages(with_categories=true) %}
+    <div class="message {{ category }}">{{ message }}</div>
+  {% endfor %}
+
+  <section class="card">
+    <h2 class="section-title">Officer information</h2>
+    <p class="section-note">Changes apply to this existing account; no new account will be created.</p>
+
+    <form method="post">
+      <input type="hidden" name="_csrf_token" value="{{ csrf_token() }}">
+
+      <div class="grid">
+        <div class="field">
+          <label for="full_name">Full name</label>
+          <input id="full_name" name="full_name" type="text" maxlength="150"
+                 value="{{ officer.full_name or '' }}" required>
+        </div>
+        <div class="field">
+          <label for="phone_number">Phone number</label>
+          <input id="phone_number" name="phone_number" type="tel" maxlength="30"
+                 value="{{ officer.phone_number or '' }}" required>
+        </div>
+        <div class="field" style="grid-column: 1 / -1">
+          <label for="email">Email / login</label>
+          <input id="email" name="email" type="email"
+                 value="{{ officer.email or '' }}" required>
+        </div>
+      </div>
+
+      <label class="permission">
+        <input type="checkbox" name="can_register"
+               {% if officer.can_register_farmers %}checked{% endif %}>
+        <span>
+          <strong>Allow farmer registration</strong>
+          <small>When disabled, this officer must not be allowed to register farmers.</small>
+        </span>
+      </label>
+
+      <div class="actions">
+        <button class="btn primary" type="submit">Save changes</button>
+        <a class="btn secondary" href="{{ url_for('admin_officers') }}">Cancel</a>
+      </div>
+    </form>
+  </section>
+</main>
+</body>
+</html>

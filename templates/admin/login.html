@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AgriDoc Liberia - Admin Login</title>
+<style>
+  :root { --pg:#2d5a27; --lg:#4a7c59; --lb:#e8f5e9; --td:#333; --ac:#d4af3c; }
+  * { box-sizing: border-box; }
+  body { margin:0; min-height:100vh; display:flex; align-items:center; justify-content:center;
+         background:var(--lb); font-family:system-ui,sans-serif; color:var(--td); padding:16px; }
+  .card { background:#fff; width:100%; max-width:420px; padding:32px; border-radius:12px;
+          border-top:5px solid var(--ac); box-shadow:0 8px 30px rgba(0,0,0,.12); }
+  h1 { margin:0 0 4px; color:var(--pg); text-align:center; }
+  p.sub { margin:0 0 24px; text-align:center; color:#666; }
+  label { display:block; margin:14px 0 6px; font-size:14px; }
+  input { width:100%; padding:12px; border:1px solid #ccc; border-radius:8px; font-size:16px; }
+  input:focus { outline:2px solid var(--lg); border-color:var(--lg); }
+  button { width:100%; margin-top:22px; padding:14px; background:var(--pg); color:#fff;
+           border:0; border-radius:8px; font-size:16px; font-weight:600; cursor:pointer; }
+  button:hover { background:var(--lg); }
+  .error { background:#fdecea; color:#b3261e; padding:10px 12px; border-radius:8px; margin-bottom:8px; font-size:14px; }
+  .links { margin-top:18px; text-align:center; font-size:14px; }
+  .links a { color:var(--pg); }
+</style>
+</head>
+<body>
+  <div class="card">
+    <h1>Admin Login</h1>
+    <p class="sub">AgriDoc Liberia &middot; Ministry of Agriculture</p>
+    {% if error %}<div class="error">{{ error }}</div>{% endif %}
+    <form method="post" action="{{ url_for('admin_login') }}">
+      <input type="hidden" name="_csrf_token" value="{{ csrf_token() }}">
+      <label for="email">Email address</label>
+      <input id="email" name="email" type="email" required autofocus>
+      <label for="password">Password</label>
+      <input id="password" name="password" type="password" required>
+      <button type="submit">SIGN IN AS ADMIN</button>
+    </form>
+    <div class="links"><a href="{{ url_for('login') }}">Staff login</a> &middot; <a href="{{ url_for('index') }}">Public portal</a></div>
+  </div>
+</body>
+</html>

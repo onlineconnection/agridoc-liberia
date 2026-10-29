@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Register Farmer | AgriDoc Liberia</title>
+    <style>
+        :root {
+            --green: #245b3c;
+            --green-dark: #19442d;
+            --gold: #d6ae48;
+            --text: #202b24;
+            --muted: #69756d;
+            --border: #dce4de;
+            --background: #f3f6f3;
+        }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            color: var(--text);
+            background: var(--background);
+        }
+        header {
+            background: var(--green-dark);
+            color: white;
+            border-bottom: 4px solid var(--gold);
+        }
+        .nav {
+            max-width: 920px;
+            margin: auto;
+            padding: 18px 22px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+        .brand { font-size: 19px; font-weight: 700; }
+        .nav a { color: white; font-size: 14px; }
+        main { max-width: 760px; margin: 32px auto; padding: 0 16px; }
+        .page-heading { margin-bottom: 20px; }
+        .eyebrow {
+            color: var(--green);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        h1 { font-size: 27px; margin: 7px 0; }
+        .subtitle { color: var(--muted); font-size: 14px; margin: 0; }
+        .form-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 26px;
+            box-shadow: 0 4px 18px rgba(25, 68, 45, .04);
+        }
+        .photo-section {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            padding-bottom: 24px;
+            margin-bottom: 24px;
+            border-bottom: 1px solid var(--border);
+        }
+        .photo-frame {
+            width: 104px;
+            height: 132px;
+            flex: 0 0 104px;
+            border: 1px dashed #9eafa2;
+            border-radius: 6px;
+            background: #f4f7f4;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--muted);
+            text-align: center;
+            font-size: 12px;
+        }
+        .photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: none;
+        }
+        .photo-copy h2 { font-size: 16px; margin: 0 0 6px; }
+        .photo-copy p { color: var(--muted); font-size: 13px; margin: 0 0 12px; }
+        .photo-button {
+            display: inline-block;
+            padding: 9px 13px;
+            border: 1px solid var(--green);
+            border-radius: 6px;
+            color: var(--green);
+            font-weight: 700;
+            font-size: 13px;
+            cursor: pointer;
+        }
+        .photo-button:hover { background: #edf5ef; }
+        .photo-note { display: block; margin-top: 8px; color: var(--muted); font-size: 11px; }
+        .section-title {
+            font-size: 16px;
+            margin: 0 0 17px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border);
+        }
+        .fields {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+        .field { min-width: 0; }
+        .field.full { grid-column: 1 / -1; }
+        label { display: block; font-size: 13px; font-weight: 700; margin-bottom: 7px; }
+        input {
+            width: 100%;
+            min-height: 44px;
+            padding: 10px 12px;
+            border: 1px solid #cbd6ce;
+            border-radius: 6px;
+            background: white;
+            color: var(--text);
+            font: inherit;
+            font-size: 14px;
+        }
+        input:focus {
+            outline: 2px solid #b9d8c3;
+            border-color: var(--green);
+        }
+        .optional { color: var(--muted); font-weight: 400; }
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 26px;
+            padding-top: 22px;
+            border-top: 1px solid var(--border);
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 44px;
+            padding: 11px 17px;
+            border-radius: 6px;
+            border: 1px solid var(--green);
+            font-weight: 700;
+            font-size: 14px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .btn-primary { background: var(--green); color: white; }
+        .btn-primary:hover { background: var(--green-dark); }
+        .btn-secondary { color: var(--green); background: white; }
+        .messages { margin-bottom: 18px; }
+        .message {
+            padding: 11px 13px;
+            margin-bottom: 8px;
+            border-radius: 6px;
+            background: #fff3e7;
+            color: #7d3c12;
+            font-size: 14px;
+        }
+        @media (max-width: 560px) {
+            main { margin: 23px auto; padding: 0 12px; }
+            .form-card { padding: 18px 15px; }
+            h1 { font-size: 23px; }
+            .fields { grid-template-columns: 1fr; gap: 15px; }
+            .field.full { grid-column: auto; }
+            .photo-section { align-items: flex-start; gap: 13px; }
+            .photo-frame { width: 88px; height: 112px; flex-basis: 88px; }
+            .photo-copy h2 { font-size: 15px; }
+            .actions { flex-direction: column; }
+            .btn { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class="nav">
+        <div class="brand">AgriDoc Liberia</div>
+        <a href="{{ url_for('field_officer_dashboard') }}">Back to dashboard</a>
+    </div>
+</header>
+
+<main>
+    <div class="page-heading">
+        <div class="eyebrow">Field Operations / Farmer Registry</div>
+        <h1>Register a farmer</h1>
+        <p class="subtitle">Ministry of Agriculture · Enter the farmer's details below.</p>
+    </div>
+
+    <div class="messages">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% for category, message in messages %}
+                <div class="message">{{ message }}</div>
+            {% endfor %}
+        {% endwith %}
+    </div>
+
+    <div class="form-card">
+        <form method="POST"
+              action="{{ url_for('register_farmer') }}"
+              enctype="multipart/form-data">
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token() }}">
+
+            <section class="photo-section">
+                <div class="photo-frame">
+                    <span id="photo-placeholder">Passport<br>photo</span>
+                    <img id="photo-preview" alt="Selected farmer photo preview">
+                </div>
+                <div class="photo-copy">
+                    <h2>Farmer photo <span class="optional">(optional)</span></h2>
+                    <p>Use a clear, front-facing portrait.</p>
+                    <label class="photo-button" for="photo">Take photo / Choose file</label>
+                    <input
+                        type="file"
+                        id="photo"
+                        name="photo"
+                        accept="image/*"
+                        capture="user"
+                        hidden>
+                    <span class="photo-note" id="photo-status">JPG, PNG or another supported image format · Max 2 MB</span>
+                </div>
+            </section>
+
+            <h2 class="section-title">Farmer information</h2>
+            <div class="fields">
+                <div class="field full">
+                    <label for="full_name">Full name *</label>
+                    <input type="text" id="full_name" name="full_name"
+                           autocomplete="name" required>
+                </div>
+                <div class="field">
+                    <label for="phone">Phone number *</label>
+                    <input type="tel" id="phone" name="phone"
+                           autocomplete="tel" required>
+                </div>
+                <div class="field">
+                    <label for="age">Age <span class="optional">(optional)</span></label>
+                    <input type="number" id="age" name="age" min="0" max="120" step="1">
+                </div>
+                <div class="field">
+                    <label for="county">County *</label>
+                    <input type="text" id="county" name="county" required>
+                </div>
+                <div class="field">
+                    <label for="district">District *</label>
+                    <input type="text" id="district" name="district" required>
+                </div>
+                <div class="field">
+                    <label for="community">Community *</label>
+                    <input type="text" id="community" name="community" required>
+                </div>
+                <div class="field">
+                    <label for="tribe">Tribe <span class="optional">(optional)</span></label>
+                    <input type="text" id="tribe" name="tribe">
+                </div>
+            </div>
+
+            <div class="actions">
+                <button type="submit" class="btn btn-primary">Register farmer</button>
+                <a class="btn btn-secondary"
+                   href="{{ url_for('field_officer_dashboard') }}">Cancel</a>
+            </div>
+        </form>
+    </div>
+</main>
+
+<script>
+    const photoInput = document.getElementById("photo");
+    const photoPreview = document.getElementById("photo-preview");
+    const photoPlaceholder = document.getElementById("photo-placeholder");
+    const photoStatus = document.getElementById("photo-status");
+    const submitButton = document.querySelector('button[type="submit"]');
+    let previewUrl = null;
+    let processing = false;
+
+    function loadImage(file) {
+        return new Promise((resolve, reject) => {
+            const url = URL.createObjectURL(file);
+            const image = new Image();
+            image.onload = () => {
+                URL.revokeObjectURL(url);
+                resolve(image);
+            };
+            image.onerror = () => {
+                URL.revokeObjectURL(url);
+                reject(new Error("This image could not be opened."));
+            };
+            image.src = url;
+        });
+    }
+
+    function canvasBlob(canvas, quality) {
+        return new Promise((resolve, reject) => {
+            canvas.toBlob(blob => {
+                if (blob) resolve(blob);
+                else reject(new Error("Image compression failed."));
+            }, "image/jpeg", quality);
+        });
+    }
+
+    photoInput.addEventListener("change", async function () {
+        const original = this.files && this.files[0];
+        if (!original) return;
+
+        if (original.size > 2 * 1024 * 1024) {
+            alert("The original photo must be 2 MB or smaller.");
+            this.value = "";
+            return;
+        }
+
+        processing = true;
+        submitButton.disabled = true;
+        photoStatus.textContent = "Compressing photo…";
+
+        try {
+            if (!original.type.startsWith("image/")) {
+                throw new Error("Please select a valid image file.");
+            }
+
+            const image = await loadImage(original);
+            const maxWidth = 320;
+            const maxHeight = 400;
+            const scale = Math.min(
+                maxWidth / image.naturalWidth,
+                maxHeight / image.naturalHeight,
+                1
+            );
+
+            const canvas = document.createElement("canvas");
+            canvas.width = Math.max(1, Math.round(image.naturalWidth * scale));
+            canvas.height = Math.max(1, Math.round(image.naturalHeight * scale));
+
+            const context = canvas.getContext("2d");
+            context.drawImage(image, 0, 0, canvas.width, canvas.height);
+
+            let blob;
+            for (let quality = 0.82; quality >= 0.40; quality -= 0.08) {
+                blob = await canvasBlob(canvas, quality);
+                if (blob.size <= 100 * 1024) break;
+            }
+
+            const compressed = new File(
+                [blob],
+                "farmer-photo.jpg",
+                { type: "image/jpeg", lastModified: Date.now() }
+            );
+
+            const transfer = new DataTransfer();
+            transfer.items.add(compressed);
+            photoInput.files = transfer.files;
+
+            if (previewUrl) URL.revokeObjectURL(previewUrl);
+            previewUrl = URL.createObjectURL(compressed);
+            photoPreview.src = previewUrl;
+            photoPreview.style.display = "block";
+            photoPlaceholder.style.display = "none";
+
+            const kb = (compressed.size / 1024).toFixed(1);
+            photoStatus.textContent = `Compressed photo: ${kb} KB`;
+            if (compressed.size > 100 * 1024) {
+                photoStatus.textContent += " (larger than 100 KB)";
+            }
+        } catch (error) {
+            this.value = "";
+            photoStatus.textContent = "No photo selected.";
+            alert(error.message || "Could not process this photo.");
+        } finally {
+            processing = false;
+            submitButton.disabled = false;
+        }
+    });
+
+    photoInput.form.addEventListener("submit", function (event) {
+        if (processing) {
+            event.preventDefault();
+            alert("Please wait for photo compression to finish.");
+        }
+    });
+</script>
+</body>
+</html>

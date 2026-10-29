@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Field Officer Dashboard - AgriDoc Liberia</title>
+    <style>
+        :root{
+            --pg:#2d5a27;
+            --lg:#4a7c59;
+            --lb:#e8f5e9;
+            --td:#333;
+            --tl:#666;
+            --ac:#d4af3c;
+        }
+        *{box-sizing:border-box;margin:0;padding:0}
+        body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;line-height:1.6;color:var(--td);background:#f5f5f5}
+        a{text-decoration:none;color:inherit}
+        ul{list-style:none}
+        .container{max-width:1200px;margin:0 auto;padding:0 20px}
+
+        /* Mobile-first header */
+        header{background:var(--pg);padding:1rem 0;position:fixed;width:100%;top:0;z-index:100}
+        .header-container{display:flex;justify-content:space-between;align-items:center;max-width:1200px;margin:0 auto;padding:0 20px}
+        .logo{color:white;font-size:1.6rem-weight:bold;letter-spacing:1px}
+        
+        /* Mobile nav - hidden by default, shown via hamburger */
+        .nav-links{display:none;flex-direction:column;gap:1rem;background:var(--pg);position:absolute;top:100%;left:0;right:0;padding:1rem;z-index:99}
+        .nav-links.active{display:flex}
+        .nav-links a{color:white;font-size:0.9rem;transition:color 0.3s}
+        .nav-links a:hover{color:#c8e6c9}
+        .menu-toggle{display:block;width:3rem;height:3rem;background:none;color:white;border:none;cursor:pointer;padding:0.5rem}
+        .menu-toggle:hover{color:#c8e6c9}
+
+        /* Tablet nav - show horizontal */
+        @media(min-width:769px){
+            .nav-links{display:flex;background:none;padding:0;position:relative}
+            .nav-links a{color:white}
+            .menu-toggle{display:none}
+        }
+
+        main{margin-top:80px;padding:2rem 0}
+        .wrapper{max-width:100%;background:white;padding:2rem;margin:0 auto;max-width:1200px}
+        .section{margin-bottom:2rem;padding-top:1rem;border-top:1px solid #eee}
+        .section h2{color:var(--pg);border-bottom:2px solid var(--lg);padding-bottom:0.5rem;margin-bottom:1rem;font-weight:600}
+        .section p{color:var(--tl);line-height:1.8}
+        .empty-state{text-align:center;padding:2rem 1rem;color:var(--tl)}
+        .empty-state h3{color:var(--pg);margin-bottom:0.5rem}
+
+        /* Buttons - touch-friendly */
+        .btn{display:inline-block;padding:0.8rem 1.5rem;background:var(--pg);color:white;border:none;border-radius:4px;font-weight:bold;text-transform:uppercase;letter-spacing:1px;transition:background 0.3s;min-height:44px;line-height:normal}
+        .btn:hover{background:#2c5a27}
+        .btn-secondary{display:inline-block;padding:0.8rem 1.5rem;background:var(--lg);color:var(--pg);border:none;border-radius:4px;min-height:44px;line-height:normal;font-weight:bold;text-transform:uppercase;letter-spacing:1px;transition:background 0.3s}
+        .btn-secondary:hover{background:#c8e6c9}
+
+        /* Responsive adjustments */
+        @media(max-width:768px){
+            .wrapper{padding:1rem}
+            .section{margin-bottom:1rem;padding:0.5rem}
+            .section h2{font-size:1.2rem;padding-bottom:0.3rem}
+        }
+    </style>
+</head>
+<body>
+    
+<header>
+    <div class="header-container">
+        <div class="logo">AgriDoc Liberia</div>
+        <nav>
+            <ul class="nav-links">
+                {% if 'user' in login_session %}
+                    <li><a href="{{ url_for('index') }}">Home</a></li>
+                    <li><a href="{{ url_for('field_officer_dashboard') }}">Dashboard</a></li>
+                    <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                {% else %}
+                    <li><a href="{{ url_for('login') }}">Login</a></li>
+                {% endif %}
+            </ul>
+            <button class="menu-toggle" aria-label="Toggle navigation" onclick="toggleNav()">☰</button>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <div class="wrapper">
+        <div class="section">
+            <h2>Field Officer Dashboard</h2>
+            <p>AgriDoc Liberia - Ministry of Agriculture</p>
+        </div>
+
+        <div class="section" style="text-align: center; margin: 1rem 0;">
+            <a href="#" class="btn-secondary">Register New Farmer</a>
+        </div>
+
+        <div class="section">
+            <div class="empty-state">
+                <h3>No farmers registered yet.</h3>
+                <p>As a field officer, you can register farmers using the registration feature.</p>
+            </div>
+        </div>
+    </div>
+</main>
+
+<script>
+    function toggleNav() {
+        const nav = document.querySelector('.nav-links');
+        nav.classList.toggle('active');
+    }
+</script>
+
+<footer>
+    <div class="container">
+        <p class="footer-text">&copy; 2026 AgriDoc Liberia. All rights reserved.</p>
+    </div>
+</footer>
+
+</body>
+</html>

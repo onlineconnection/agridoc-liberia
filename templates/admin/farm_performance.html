@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Farm Performance | AgriDoc Liberia</title>
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            padding: 24px;
+            font-family: Arial, sans-serif;
+            color: #1f2937;
+            background: #f3f6f4;
+        }
+        .container { max-width: 1200px; margin: 0 auto; }
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-bottom: 24px;
+        }
+        .topbar a { color: #176b45; text-decoration: none; }
+        .panel {
+            background: white;
+            border: 1px solid #e1e8e3;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 20px;
+        }
+        h1 { margin: 0 0 8px; font-size: 28px; }
+        h2 { margin-top: 0; }
+        .muted { color: #64748b; line-height: 1.5; }
+        .table-wrap { overflow-x: auto; }
+        table { width: 100%; border-collapse: collapse; min-width: 650px; }
+        th, td {
+            padding: 14px 12px;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        th { background: #f8faf9; font-size: 13px; }
+        .bar-track {
+            width: 100%;
+            min-width: 100px;
+            height: 10px;
+            overflow: hidden;
+            border-radius: 8px;
+            background: #e5e7eb;
+        }
+        .bar {
+            height: 100%;
+            border-radius: 8px;
+            background: #21865b;
+        }
+        .notice {
+            padding: 14px;
+            border-radius: 8px;
+            background: #f0f7f2;
+            color: #315b43;
+            line-height: 1.5;
+        }
+        @media (max-width: 600px) {
+            body { padding: 14px; }
+            .panel { padding: 16px; }
+            h1 { font-size: 23px; }
+        }
+    </style>
+</head>
+<body>
+    <main class="container">
+        <header class="topbar">
+            <strong>AgriDoc Liberia · Ministry of Agriculture</strong>
+            <nav>
+                <a href="{{ url_for('admin_dashboard') }}">← Admin Dashboard</a>
+                &nbsp; | &nbsp;
+                <a href="{{ url_for('logout') }}">Logout</a>
+            </nav>
+        </header>
+
+        <section class="panel">
+            <h1>Farm Performance by County</h1>
+            <p class="muted">
+                Compare farmer registration coverage across Liberia's 15 counties.
+            </p>
+        </section>
+
+        <section class="panel">
+            <h2>County Performance Table</h2>
+
+            {% if county_stats is not none %}
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th scope="col">County</th>
+                            <th scope="col">Registered Farmers</th>
+                            <th scope="col">Share of Total</th>
+                            <th scope="col">Performance</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in county_stats %}
+                        <tr>
+                            <td>{{ item.county }}</td>
+                            <td>{{ item.farmer_count }}</td>
+                            <td>{{ item.percentage }}%</td>
+                            <td>
+                                <div class="bar-track"
+                                     role="img"
+                                     aria-label="{{ item.percentage }} percent of registered farmers">
+                                    <div class="bar"
+                                         style="width: {{ item.percentage }}%;"></div>
+                                </div>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+            <p class="muted">
+                County statistics are currently unavailable. Please try again later.
+            </p>
+            {% endif %}
+        </section>
+
+        <section class="panel">
+            <h2>About Performance Data</h2>
+            <p class="notice">
+                Registration counts measure farmer registry coverage, not crop
+                productivity. Crop yield, harvest totals, and production comparisons
+                can be added when verified agricultural reports become available.
+            </p>
+        </section>
+    </main>
+</body>
+</html>

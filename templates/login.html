@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgriDoc Liberia - Login</title>
+    <style>
+        :root{
+            --pg: #1b3a22;
+            --lg: #2d5a27;
+            --ac: #d4af3c;
+            --lb: #e8f5e9;
+            --td: #333;
+            --tl: #555;
+            --muted: #888;
+        }
+        *{box-sizing:border-box;margin:0;padding:0}
+        body{
+            font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
+            line-height:1.6;
+            color:var(--td);
+            background:#f5f0eb;
+            min-height:100vh
+        }
+        a{text-decoration:none;color:inherit}
+        ul{list-style:none}
+        h1,h2,h3{margin:0 0 0.5rem;font-weight:600;letter-spacing:0.5px}
+        p{margin:0 0 1rem}
+
+        /* Layout */
+        .login-wrapper{max-width:1200px;margin:0 auto;padding:2rem 1rem}
+        .login-row{display:flex;gap:2rem;flex-wrap:wrap;align-items:stretch}
+        @media(max-width:900px){.login-row{flex-direction:column}}
+
+        /* Left: Welcome panel */
+        .welcome-panel{
+            flex:1;
+            min-height:420px;
+            background:linear-gradient(135deg,var(--pg),#2d5a27);
+            color:white;
+            border-radius:12px 0 0 12px;
+            padding:3rem 2.5rem;
+            position:relative;
+            overflow:hidden
+        }
+        .welcome-panel::before{
+            content:'';
+            position:absolute;
+            top:0;
+            right:0;
+            width:400px;
+            height:400px;
+            background:radial-gradient(circle at 30% 20%,rgba(255,255,255,0.15),transparent 50%);
+            pointer-events:none
+        }
+        .welcome-panel h1{
+            font-size:2.5rem;
+            line-height:1.2;
+            letter-spacing:1px;
+            margin-bottom:1rem
+        }
+        .welcome-panel .tagline{
+            font-size:1.2rem;
+            color:#c8e0c9;
+            margin-bottom:2rem;
+            line-height:1.6
+        }
+        .welcome-panel .desc{
+            font-size:1rem;
+            color:rgba(255,255,255,0.85);
+            line-height:1.8;
+            max-width:85%
+        }
+
+        /* Right: Login form panel */
+        .form-panel{
+            flex:1;
+            background:white;
+            border-radius:0 12px 12px 0;
+            padding:3rem 2.5rem;
+            max-width:480px;
+            box-shadow:0 10px 30px rgba(0,0,0,0.15);
+            margin:auto
+        }
+        @media(max-width:900px){.form-panel{margin-top:2rem;border-radius:12px}}
+
+        /* Form card */
+        .form-card{
+            background:#fff;
+            border:1px solid #e0e0e0;
+            border-radius:8px;
+            padding:2rem 2rem 1.5rem;
+            max-width:380px;
+            margin:0 auto
+        }
+        .form-card h2{
+            text-align:center;
+            color:var(--pg);
+            font-size:1.9rem;
+            margin-bottom:0.5rem
+        }
+        .form-card .subtitle{
+            text-align:center;
+            color:var(--tl);
+            font-size:0.95rem;
+            margin-bottom:1.8rem;
+            display:block
+        }
+
+        /* Form groups */
+        .form-group{margin-bottom:1.4rem}
+        .form-group label{
+            display:block;
+            margin-bottom:0.5rem;
+            font-size:0.87rem;
+            font-weight:500;
+            color:var(--td)
+        }
+        .form-group input{
+            width:100%;
+            padding:0.9rem 1rem;
+            border:1px solid #d1d9e1;
+            border-radius:6px;
+            font-size:1rem;
+            color:var(--td);
+            background:#fafafa;
+            transition:border-color 0.2s,box-shadow 0.2s
+        }
+        .form-group input:focus{
+            outline:none;
+            border-color:var(--lg);
+            box-shadow:0 0 0 3px rgba(43,135,97,0.12)
+        }
+        .form-group input::placeholder{
+            color:#aaa
+        }
+
+        /* Error */
+        .error{
+            background:#fee2e2;
+            color:#e74c3c;
+            padding:0.9rem 1rem;
+            border-radius:6x;
+            margin-bottom:1.4rem;
+            text-align:center;
+            font-size:0.87rem;
+            border:1px solid #e0a8a8
+        }
+
+        /* Sign in button */
+        .btn-signin{
+            width:100%;
+            padding:1rem 1.5rem;
+            background:var(--pg);
+            color:white;
+            border:none;
+            border-radius:6px;
+            font-size:1rem;
+            font-weight:600;
+            text-transform:uppercase;
+            letter-spacing:0.5px;
+            cursor:pointer;
+            margin-top:1rem;
+            transition:background 0.2s,transform 0.1s
+        }
+        .btn-signin:hover{background:#18361f}
+        .btn-signin:active{transform:scale(0.99)}
+
+        /* Password toggle */
+        .pass-toggle{
+            position:relative;
+            padding-bottom:1.2rem;
+        }
+        .pass-toggle input{
+            padding-right:3rem
+        }
+        .pass-toggle .toggle-btn{
+            position:absolute;
+            right:1rem;
+            top:50%;
+            transform:translateY(-50%);
+            background:transparent;
+            border:none;
+            color:var(--muted);
+            cursor:pointer;
+            font-size:0.85rem;
+            padding:0;
+            line-height:1
+        }
+        .pass-toggle .toggle-btn:hover{color:var(--td)}
+
+        /* Links */
+        .login-links{
+            margin-top:1.5rem;
+            text-align:center;
+            font-size:0.87rem;
+            color:var(--muted)
+        }
+        .login-links a{
+            color:var(--pg);
+            font-weight:500;
+            text-decoration:underline;
+            font-size:0.87rem
+        }
+        .login-links a:hover{color:var(--lg)}
+
+        /* Footer */
+        .page-footer{
+            margin-top:2rem;
+            padding-top:1.5rem;
+            border-top:1px solid #e0e0e0;
+            text-align:center;
+            color:var(--muted);
+            font-size:0.78rem;
+            width:100%
+        }
+
+        /* Ambient accent */
+        .accent-bar{
+            position:absolute;
+            top:0;
+            right:0;
+            width:100px;
+            height:4px;
+            background:var(--ac);
+            border-radius:0 8px 0 0
+        }
+    </style>
+</head>
+<body>
+
+<div class="login-wrapper">
+    <div class="login-row">
+
+        <!-- Left: Welcome panel -->
+        <div class="welcome-panel">
+            <div class="accent-bar"></div>
+            <h1>AgriDoc Liberia</h1>
+            <p class="tagline">Empowering Agriculture Through Digital Innovation</p>
+            <p class="desc">
+                Secure access for authorized Ministry of Agriculture personnel. Manage field operations, register farmers, and track crop health from any device.
+            </p>
+        </div>
+
+        <!-- Right: Login form panel -->
+        <div class="form-panel">
+            <div class="form-card">
+                <h2>Welcome Back</h2>
+                <p class="subtitle">Sign in to your staff account</p>
+
+                {% if error %}
+                    <div class="error">{{ error }}</div>
+{% endif %}
+
+                <form method="POST" action="{{ url_for('login') }}">
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token() }}">
+                    <div class="form-group">
+                        <label for="email">Email address</label>
+                        <input type="email" id="email" name="email" required autocomplete="email">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <div class="pass-toggle">
+                            <input type="password" id="password" name="password" required autocomplete="current-password">
+                            <button type="button" class="toggle-btn" onclick="togglePassword('password')">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:middle">
+                                    <path d="M1 12s4-8 12-8 12 8 12 8-4 8-12 8-12-8-12-8z"/>
+                                    <path d="M14.5 3c-.83 0-1.5.67-1.5 1.5v1c0 .83.67 1.5 1.5 1.5h2c.83 0 1.5-.67 1.5-1.5v-1c0-.83-.67-1.5-1.5-1.5h-2z"/>
+                                    <path d="M21 12c0 5.523-4.477 10-10 10S11 17.523 11 12 15.477 2 2 2zM12 4c1.657 0 3 .73 3.5 1.82l.85 1.847-.003.12A13.966 13.966 0 0 0 12 4z"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-signin">Sign In</button>
+
+                    
+                    <div class="login-links">
+                        <a href="{{ url_for('forgot_password') }}">Forgot password?</a>
+                    </div>
+    
+                        Not a staff member? <a href="{{ url_for('index') }}">Go to public portal</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    function togglePassword(fieldId){
+        const input = document.getElementById(fieldId);
+        const type = input.getAttribute('type') === 'password' ? 'text' : 'password';
+        input.setAttribute('type', type);
+        const icon = input.nextElementSibling?.querySelector('svg');
+        if(icon){
+            icon.style.transform = type === 'password' ? 'rotate(180deg)' : 'rotate(0deg)';
+        }
+    }
+</script>
+
+<footer>
+    <div class="container">
+        <p class="footer-text">AgriDoc Liberia &copy; 2026. All rights reserved.</p>
+    </div>
+</footer>
+
+</body>
+</html>
