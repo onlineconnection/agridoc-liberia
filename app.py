@@ -3,7 +3,7 @@ from functools import wraps
 
 import requests
 from dotenv import load_dotenv
-from flask import Flask, flash, get_flashed_messages, redirect, render_template, request, session, url_for
+from flask import Flask, flash, get_flashed_messages, redirect, render_template, request, session, url_for, send_from_directory
 from flask_seasurf import SeaSurf
 
 load_dotenv()
@@ -108,6 +108,14 @@ def role_required(*roles, login_endpoint="login"):
             return f(*args, **kwargs)
         return wrapper
     return decorator
+
+
+@app.route("/service-worker.js")
+def service_worker():
+    response = send_from_directory("static", "service-worker.js")
+    response.headers["Service-Worker-Allowed"] = "/"
+    response.headers["Cache-Control"] = "no-cache"
+    return response
 
 
 @app.route("/")

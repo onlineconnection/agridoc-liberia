@@ -114,6 +114,42 @@
             line-height: 1.8;
         }
 
+        .login-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .login-btn {
+            display: inline-block;
+            padding: 0.9rem 1.6rem;
+            border: 2px solid white;
+            border-radius: 6px;
+            font-weight: bold;
+            transition: background 0.2s ease, color 0.2s ease;
+        }
+
+        .admin-btn {
+            background: white;
+            color: var(--primary-green);
+        }
+
+        .staff-btn {
+            background: transparent;
+            color: white;
+        }
+
+        .admin-btn:hover {
+            background: #c8e6c9;
+        }
+
+        .staff-btn:hover {
+            background: white;
+            color: var(--primary-green);
+        }
+
         .status-badge {
             background: white;
             color: var(--primary-green);
@@ -264,7 +300,10 @@
         <div class="container">
             <h1>AgriDoc Liberia</h1>
             <p>A digital agriculture management system for Liberia's Ministry of Agriculture. Empowering farmers with modern tools for crop management, documentation, and sustainable farming practices.</p>
-            <div class="status-badge">System Setup In Progress</div>
+            <div class="login-buttons">
+                <a href="/admin/login" class="login-btn admin-btn">Admin Login</a>
+                <a href="/login" class="login-btn staff-btn">Field Officer Login</a>
+            </div>
         </div>
     </section>
 
