@@ -259,6 +259,7 @@
                                 <th style="padding: 12px;">Name</th>
                                 <th style="padding: 12px;">Location</th>
                                 <th style="padding: 12px;">Registered</th>
+                                <th style="padding: 12px;">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -276,6 +277,16 @@
                                     <td style="padding: 12px; border-top: 1px solid var(--border); white-space: nowrap;">
                                         {% if farmer.get('created_at') %}
                                             {{ farmer.get('created_at')[:10] }}
+                                        {% else %}
+                                            —
+                                        {% endif %}
+                                    </td>
+                                    <td style="padding: 12px; border-top: 1px solid var(--border);">
+                                        {% if user and user.get('can_register_farmers') %}
+                                            <a href="{{ url_for('edit_farmer', farmer_uuid=farmer.get('id')) }}"
+                                               style="display:inline-block;padding:7px 12px;border-radius:5px;background:var(--green);color:white;font-size:13px;font-weight:600;">
+                                                Edit
+                                            </a>
                                         {% else %}
                                             —
                                         {% endif %}

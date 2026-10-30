@@ -220,6 +220,44 @@ def admin_dashboard():
 
 
 
+@app.route("/admin/archived-farmers")
+@role_required("admin", login_endpoint="admin_login")
+def admin_archived_farmers():
+    search_term = request.args.get("search", "").strip()
+
+    try:
+        page = max(1, int(request.args.get("page", 1)))
+    except (TypeError, ValueError):
+        page = 1
+
+    per_page = 20
+    total_count = count_farmers_search(
+        search_term or None,
+        include_archived=True,
+    )
+    total_pages = max(1, (total_count + per_page - 1) // per_page)
+    page = min(page, total_pages)
+
+    farmers, error = fetch_farmer_records(
+        page=page,
+        search_term=search_term or None,
+        per_page=per_page,
+        include_error=True,
+        include_archived=True,
+    )
+
+    return render_template(
+        "admin/archived_farmers.html",
+        user=session.get("user"),
+        farmers=farmers,
+        search_term=search_term,
+        page=page,
+        total_pages=total_pages,
+        total_count=total_count,
+        error=error,
+    )
+
+
 @app.route("/admin/farm-performance")
 @role_required("admin", login_endpoint="admin_login")
 def admin_farm_performance():
@@ -376,6 +414,163 @@ def register_farmer():
     return render_template("field_officer/register_farmer.html", user=user)
 
 
+
+@app.route("/field-officer/farmers/<farmer_uuid>/edit", methods=["GET", "POST"])
+@role_required("field_officer")
+def edit_farmer(farmer_uuid):
+    user = session.get("user")
+    if not user:
+        return redirect(url_for("login"))
+
+    h = service_headers()
+    if not h:
+        flash("Server configuration error.", "error")
+        return redirect(url_for("field_officer_dashboard"))
+
+    try:
+        profile_resp = requests.get(
+            f"{SUPABASE_URL}/rest/v1/profiles",
+            headers=h,
+            params={
+                "id": f"eq.{user['id']}",
+                "select": "id,role,is_active,can_register_farmers",
+            },
+            timeout=10,
+        )
+
+        if profile_resp.status_code != 200:
+            flash("Could not verify your account.", "error")
+            return redirect(url_for("field_officer_dashboard"))
+
+        profiles = profile_resp.json()
+        if not profiles:
+            flash("Profile not found.", "error")
+            return redirect(url_for("field_officer_dashboard"))
+
+        profile = profiles[0]
+        if (
+            profile.get("role") != "field_officer"
+            or not profile.get("is_active")
+            or not profile.get("can_register_farmers")
+        ):
+            flash("You are not permitted to edit farmer records.", "error")
+            return redirect(url_for("field_officer_dashboard"))
+
+        officer_id = profile["id"]
+
+        farmer_resp = requests.get(
+            f"{SUPABASE_URL}/rest/v1/farmers",
+            headers=h,
+            params={
+                "id": f"eq.{farmer_uuid}",
+                "registered_by": f"eq.{officer_id}",
+                "select": "id,farmer_id,full_name,phone_number,age,county,district,community,tribe",
+            },
+            timeout=10,
+        )
+
+        if farmer_resp.status_code != 200:
+            flash("Could not load farmer record.", "error")
+            return redirect(url_for("field_officer_dashboard"))
+
+        rows = farmer_resp.json()
+        if not rows:
+            flash("Farmer not found or you cannot edit this record.", "error")
+            return redirect(url_for("field_officer_dashboard"))
+
+        farmer = rows[0]
+
+    except requests.exceptions.RequestException:
+        flash("Could not reach the server.", "error")
+        return redirect(url_for("field_officer_dashboard"))
+
+    if request.method == "POST":
+        full_name = (request.form.get("full_name") or "").strip()
+        phone = (request.form.get("phone") or "").strip()
+        county = (request.form.get("county") or "").strip()
+        district = (request.form.get("district") or "").strip()
+        community = (request.form.get("community") or "").strip()
+        age = (request.form.get("age") or "").strip()
+        tribe = (request.form.get("tribe") or "").strip()
+
+        errors = []
+        for value, message in [
+            (full_name, "Full name is required."),
+            (phone, "Phone number is required."),
+            (county, "County is required."),
+            (district, "District is required."),
+            (community, "Community is required."),
+        ]:
+            if not value:
+                errors.append(message)
+
+        age_value = None
+        if age:
+            try:
+                age_value = int(age)
+                if not 0 <= age_value <= 120:
+                    errors.append("Age must be between 0 and 120.")
+            except ValueError:
+                errors.append("Age must be a valid integer.")
+
+        if errors:
+            for error in errors:
+                flash(error, "error")
+            farmer.update({
+                "full_name": full_name,
+                "phone_number": phone,
+                "age": age,
+                "county": county,
+                "district": district,
+                "community": community,
+                "tribe": tribe,
+            })
+            return render_template(
+                "field_officer/edit_farmer.html",
+                user=user,
+                farmer=farmer,
+            )
+
+        try:
+            update = requests.patch(
+                f"{SUPABASE_URL}/rest/v1/farmers",
+                headers={**h, "Prefer": "return=representation"},
+                params={
+                    "id": f"eq.{farmer_uuid}",
+                    "registered_by": f"eq.{officer_id}",
+                    "select": "id",
+                },
+                json={
+                    "full_name": full_name,
+                    "phone_number": phone,
+                    "age": age_value,
+                    "county": county,
+                    "district": district,
+                    "community": community,
+                    "tribe": tribe,
+                },
+                timeout=15,
+            )
+
+            if update.status_code in (200, 204) and (
+                update.status_code == 204 or update.json()
+            ):
+                flash("Farmer record updated successfully.", "ok")
+            else:
+                flash("Could not update farmer. Please try again.", "error")
+
+        except requests.exceptions.RequestException:
+            flash("Could not reach the server.", "error")
+
+        return redirect(url_for("field_officer_dashboard"))
+
+    return render_template(
+        "field_officer/edit_farmer.html",
+        user=user,
+        farmer=farmer,
+    )
+
+
 def service_headers():
     key = os.getenv("SUPABASE_SERVICE_KEY")
     if not key:
@@ -477,8 +672,9 @@ def fetch_farmer_records(
     per_page=20,
     registered_by=None,
     include_error=False,
+    include_archived=False,
 ):
-    """Fetch farmer records, optionally filtered by registering officer."""
+    """Fetch active or archived farmer records."""
     h = service_headers()
     if not h:
         result = ([], "Database service key is not configured.")
@@ -486,6 +682,7 @@ def fetch_farmer_records(
 
     params = {
         "select": "id,farmer_id,full_name,county,district,community,registered_by,created_at",
+        "is_archived": f"eq.{str(bool(include_archived)).lower()}",
         "order": "created_at.desc",
         "limit": per_page,
         "offset": (page - 1) * per_page,
@@ -509,7 +706,6 @@ def fetch_farmer_records(
         if resp.status_code == 200:
             farmers = resp.json()
 
-            # Look up the real names of the registering field officers.
             officer_ids = sorted({
                 farmer["registered_by"]
                 for farmer in farmers
@@ -561,31 +757,39 @@ def fetch_farmer_records(
     return result if include_error else result[0]
 
 
-def count_farmers_search(search_term=None):
-    """Count farmers matching optional search term."""
+def count_farmers_search(search_term=None, include_archived=False):
+    """Count active or archived farmers matching an optional search term."""
     h = service_headers()
     if not h:
         return 0
-    
-    search_filter = None
+
+    params = {
+        "select": "id",
+        "is_archived": f"eq.{str(bool(include_archived)).lower()}",
+    }
+
     if search_term:
-        search_filter = f"or=farmer_id.ilike.%{search_term}%,full_name.ilike.%{search_term}%"
-    
+        term = search_term.replace(",", "").replace("(", "").replace(")", "")
+        params["or"] = f"(farmer_id.ilike.*{term}*,full_name.ilike.*{term}*)"
+
     try:
-        params = {"select": "id", "count": "true"}
-        if search_filter:
-            params["or"] = search_filter
-        
         resp = requests.get(
             f"{SUPABASE_URL}/rest/v1/farmers",
-            headers=h,
+            headers={**h, "Prefer": "count=exact"},
             params=params,
             timeout=10,
         )
         if resp.status_code == 200:
-            return resp.json().get("count", 0)
+            content_range = resp.headers.get("Content-Range", "")
+            if "/" in content_range:
+                total = content_range.rsplit("/", 1)[1]
+                if total.isdigit():
+                    return int(total)
+
+            return len(resp.json())
     except requests.exceptions.RequestException:
-        pass
+        app.logger.exception("Could not count farmer records.")
+
     return 0
 
 

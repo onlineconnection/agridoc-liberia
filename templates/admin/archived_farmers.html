@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Archived Farmers | AgriDoc Liberia</title>
+    <style>
+        :root {
+            --green: #194b35;
+            --green-dark: #103625;
+            --page: #f5f7f4;
+            --text: #24342b;
+            --muted: #758078;
+            --border: #e3e9e3;
+        }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            padding: 30px 20px;
+            font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+            background: var(--page);
+            color: var(--text);
+        }
+        main { max-width: 1150px; margin: 0 auto; }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 30px;
+        }
+        .brand { color: var(--green); font-weight: 750; }
+        nav { display: flex; gap: 18px; flex-wrap: wrap; }
+        a { color: var(--green); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .eyebrow {
+            color: var(--green);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: .09em;
+            text-transform: uppercase;
+        }
+        h1 { margin: 8px 0; font-size: clamp(26px, 4vw, 34px); }
+        .intro p { color: var(--muted); line-height: 1.6; margin: 0; }
+        .panel {
+            margin-top: 24px;
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 22px;
+            box-shadow: 0 3px 14px rgba(24, 60, 40, .05);
+        }
+        .toolbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 14px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+        .search { display: flex; gap: 8px; flex: 1; max-width: 480px; }
+        input {
+            min-width: 0;
+            flex: 1;
+            padding: 11px 13px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font: inherit;
+        }
+        button {
+            padding: 11px 16px;
+            border: 0;
+            border-radius: 8px;
+            background: var(--green);
+            color: white;
+            font: inherit;
+            font-weight: 650;
+            cursor: pointer;
+        }
+        .count { color: var(--muted); font-size: 13px; }
+        .table-wrap { overflow-x: auto; }
+        table { width: 100%; border-collapse: collapse; min-width: 720px; }
+        th, td {
+            padding: 13px 12px;
+            border-bottom: 1px solid var(--border);
+            text-align: left;
+            font-size: 13px;
+        }
+        th {
+            color: var(--muted);
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: .05em;
+        }
+        td strong { color: var(--green-dark); }
+        .empty { text-align: center; padding: 42px 12px; color: var(--muted); }
+        .error {
+            padding: 13px 15px;
+            border-radius: 8px;
+            background: #fff1f0;
+            color: #8a2e26;
+            margin-bottom: 18px;
+        }
+        .pagination {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        .pagination a {
+            display: inline-block;
+            padding: 9px 13px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+        }
+        .pagination .disabled { color: #a5ada7; pointer-events: none; }
+        @media (max-width: 600px) {
+            body { padding: 22px 14px; }
+            .panel { padding: 17px 12px; }
+            .search { max-width: none; width: 100%; }
+        }
+    </style>
+</head>
+<body>
+<main>
+    <header>
+        <a class="brand" href="{{ url_for('admin_dashboard') }}">AgriDoc Liberia</a>
+        <nav aria-label="Page navigation">
+            <a href="{{ url_for('admin_dashboard') }}">Dashboard</a>
+            <a href="{{ url_for('admin_officers') }}">Field Agents</a>
+            <a href="{{ url_for('logout') }}">Logout</a>
+        </nav>
+    </header>
+
+    <section class="intro">
+        <div class="eyebrow">Ministry of Agriculture · Liberia</div>
+        <h1>Archived Farmers</h1>
+        <p>Review farmer records removed from the active registry.</p>
+    </section>
+
+    <section class="panel">
+        {% if error %}
+            <div class="error">{{ error }}</div>
+        {% endif %}
+
+        <div class="toolbar">
+            <form class="search" method="get" action="{{ url_for('admin_archived_farmers') }}">
+                <input
+                    type="search"
+                    name="search"
+                    value="{{ search_term }}"
+                    placeholder="Search by Farmer ID or name"
+                    aria-label="Search archived farmers"
+                >
+                <button type="submit">Search</button>
+            </form>
+            <div class="count">{{ total_count }} archived record(s)</div>
+        </div>
+
+        {% if farmers %}
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Farmer ID</th>
+                            <th>Farmer Name</th>
+                            <th>County</th>
+                            <th>District</th>
+                            <th>Community</th>
+                            <th>Registered By</th>
+                            <th>Registration Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for farmer in farmers %}
+                        <tr>
+                            <td><strong>{{ farmer.farmer_id }}</strong></td>
+                            <td>{{ farmer.full_name }}</td>
+                            <td>{{ farmer.county or "—" }}</td>
+                            <td>{{ farmer.district or "—" }}</td>
+                            <td>{{ farmer.community or "—" }}</td>
+                            <td>{{ farmer.registered_by_name }}</td>
+                            <td>{{ farmer.created_at[:10] if farmer.created_at else "—" }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="pagination">
+                <span class="count">Page {{ page }} of {{ total_pages }}</span>
+                <div>
+                    {% if page > 1 %}
+                        <a href="{{ url_for('admin_archived_farmers', page=page-1, search=search_term) }}">Previous</a>
+                    {% else %}
+                        <span class="pagination disabled">Previous</span>
+                    {% endif %}
+                    {% if page < total_pages %}
+                        <a href="{{ url_for('admin_archived_farmers', page=page+1, search=search_term) }}">Next</a>
+                    {% else %}
+                        <span class="pagination disabled">Next</span>
+                    {% endif %}
+                </div>
+            </div>
+        {% else %}
+            <div class="empty">
+                <h2>No archived farmers found</h2>
+                <p>Archived farmer records will appear here when an authorized user archives a record.</p>
+            </div>
+        {% endif %}
+    </section>
+</main>
+</body>
+</html>

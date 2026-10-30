@@ -52,6 +52,11 @@ The initial workflow focuses on three main responsibilities.
 - Store farmer records in Supabase PostgreSQL.
 - Generate unique farmer identifiers in the intended `AGL-000001` format.
 - Record which field officer registered each farmer.
+- Allow field officers to edit farmer records they registered, without changing the Farmer ID.
+- Allow the Admin portal to view archived farmer records in a separate, searchable, paginated page.
+- Keep active and archived farmer records separate in the Admin registry.
+
+The archive listing is connected to the database. Archive and restore actions are not yet implemented.
 
 The database design documents additional modules, but those modules are not automatically considered implemented simply because they appear in the design.
 
@@ -200,6 +205,13 @@ The project includes migration files intended to establish database objects, inc
 - `profiles`: application user roles, account status, and farmer-registration permission.
 - `farmers`: farmer records and generated farmer identifiers.
 - `farmer_id_seq`: sequence used by the farmer identifier generation logic.
+- `farmers.is_archived`: marks a farmer record as active (`false`) or archived (`true`).
+- `farmers.archived_at`: timestamp associated with archiving a farmer.
+- `farmers.archived_by`: profile UUID associated with the user who archived a farmer.
+
+The archive fields were added to the existing `farmers` table. Existing records default to `is_archived = false`. Archiving is intended to preserve the original farmer record and Farmer ID rather than physically deleting it.
+
+The Admin Archived Farmers page reads archived records separately from the active registry. Archive and restore actions are not yet available.
 
 The broader database design documents additional planned modules, including land holdings, assistance programs, crop reporting, complaints, audit logs, USSD, notifications, imports, exports, and reporting.
 
@@ -296,7 +308,7 @@ git diff --check
 
 These checks are useful but do not replace functional testing.
 
-Manually test the affected workflows, including login and logout, password visibility, the mobile navigation menu, farmer form validation, and photo preview/compression.
+Manually test the affected workflows, including login and logout, password visibility, the mobile navigation menu, farmer registration, farmer editing, the active farmer registry, and the Admin Archived Farmers page. Verify that an officer cannot edit another officer's farmer record. Archive and restore actions are not implemented yet.
 
 Test authorization with accounts that should and should not have permission to register farmers. Do not assume a feature is secure merely because its page renders correctly.
 
@@ -336,9 +348,11 @@ Only stage files that belong to the intended change.
 
 ## Current Development Status
 
-The current development effort has focused on the initial Flask application, Supabase integration, login/session handling, farmer registration, and maintainable frontend structure.
+The current development effort includes the Flask application, Supabase integration, login/session handling, farmer registration, responsive public and login pages, field officer farmer-record editing, and the Admin archived-farmer listing.
 
-The following JavaScript refactoring was committed and pushed to the `main` branch:
+The farmer edit route restricts an officer to editing records they registered. The Admin archive listing uses the `is_archived` field to separate archived records from the active registry.
+
+The following JavaScript refactoring was previously committed and pushed to the `main` branch:
 
 - Commit: `7adf067`
 - Message: `Extract inline JavaScript into static files`

@@ -1,304 +1,552 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="manifest" href="{{ url_for('static', filename='manifest.webmanifest') }}">
-    <meta name="theme-color" content="#2d5a27">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AgriDoc Liberia - Login</title>
+    <meta name="theme-color" content="#2d5a27">
+    <link rel="manifest" href="{{ url_for('static', filename='manifest.webmanifest') }}">
+    <title>Field Officer Login | AgriDoc Liberia</title>
+
     <style>
-        :root{
-            --pg: #1b3a22;
-            --lg: #2d5a27;
-            --ac: #d4af3c;
-            --lb: #e8f5e9;
-            --td: #333;
-            --tl: #555;
-            --muted: #888;
-        }
-        *{box-sizing:border-box;margin:0;padding:0}
-        body{
-            font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
-            line-height:1.6;
-            color:var(--td);
-            background:#f5f0eb;
-            min-height:100vh
-        }
-        a{text-decoration:none;color:inherit}
-        ul{list-style:none}
-        h1,h2,h3{margin:0 0 0.5rem;font-weight:600;letter-spacing:0.5px}
-        p{margin:0 0 1rem}
-
-        /* Layout */
-        .login-wrapper{max-width:1200px;margin:0 auto;padding:2rem 1rem}
-        .login-row{display:flex;gap:2rem;flex-wrap:wrap;align-items:stretch}
-        @media(max-width:900px){.login-row{flex-direction:column}}
-
-        /* Left: Welcome panel */
-        .welcome-panel{
-            flex:1;
-            min-height:420px;
-            background:linear-gradient(135deg,var(--pg),#2d5a27);
-            color:white;
-            border-radius:12px 0 0 12px;
-            padding:3rem 2.5rem;
-            position:relative;
-            overflow:hidden
-        }
-        .welcome-panel::before{
-            content:'';
-            position:absolute;
-            top:0;
-            right:0;
-            width:400px;
-            height:400px;
-            background:radial-gradient(circle at 30% 20%,rgba(255,255,255,0.15),transparent 50%);
-            pointer-events:none
-        }
-        .welcome-panel h1{
-            font-size:2.5rem;
-            line-height:1.2;
-            letter-spacing:1px;
-            margin-bottom:1rem
-        }
-        .welcome-panel .tagline{
-            font-size:1.2rem;
-            color:#c8e0c9;
-            margin-bottom:2rem;
-            line-height:1.6
-        }
-        .welcome-panel .desc{
-            font-size:1rem;
-            color:rgba(255,255,255,0.85);
-            line-height:1.8;
-            max-width:85%
+        :root {
+            --green: #2d5a27;
+            --deep-green: #193d22;
+            --gold: #c6a45a;
+            --cream: #f7f6ef;
+            --text: #243128;
+            --muted: #68746b;
+            --border: #dfe6dc;
         }
 
-        /* Right: Login form panel */
-        .form-panel{
-            flex:1;
-            background:white;
-            border-radius:0 12px 12px 0;
-            padding:3rem 2.5rem;
-            max-width:480px;
-            box-shadow:0 10px 30px rgba(0,0,0,0.15);
-            margin:auto
-        }
-        @media(max-width:900px){.form-panel{margin-top:2rem;border-radius:12px}}
-
-        /* Form card */
-        .form-card{
-            background:#fff;
-            border:1px solid #e0e0e0;
-            border-radius:8px;
-            padding:2rem 2rem 1.5rem;
-            max-width:380px;
-            margin:0 auto
-        }
-        .form-card h2{
-            text-align:center;
-            color:var(--pg);
-            font-size:1.9rem;
-            margin-bottom:0.5rem
-        }
-        .form-card .subtitle{
-            text-align:center;
-            color:var(--tl);
-            font-size:0.95rem;
-            margin-bottom:1.8rem;
-            display:block
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
 
-        /* Form groups */
-        .form-group{margin-bottom:1.4rem}
-        .form-group label{
-            display:block;
-            margin-bottom:0.5rem;
-            font-size:0.87rem;
-            font-weight:500;
-            color:var(--td)
-        }
-        .form-group input{
-            width:100%;
-            padding:0.9rem 1rem;
-            border:1px solid #d1d9e1;
-            border-radius:6px;
-            font-size:1rem;
-            color:var(--td);
-            background:#fafafa;
-            transition:border-color 0.2s,box-shadow 0.2s
-        }
-        .form-group input:focus{
-            outline:none;
-            border-color:var(--lg);
-            box-shadow:0 0 0 3px rgba(43,135,97,0.12)
-        }
-        .form-group input::placeholder{
-            color:#aaa
+        body {
+            min-height: 100vh;
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: var(--cream);
+            color: var(--text);
+            display: flex;
+            flex-direction: column;
         }
 
-        /* Error */
-        .error{
-            background:#fee2e2;
-            color:#e74c3c;
-            padding:0.9rem 1rem;
-            border-radius:6x;
-            margin-bottom:1.4rem;
-            text-align:center;
-            font-size:0.87rem;
-            border:1px solid #e0a8a8
+        a {
+            color: inherit;
+            text-decoration: none;
         }
 
-        /* Sign in button */
-        .btn-signin{
-            width:100%;
-            padding:1rem 1.5rem;
-            background:var(--pg);
-            color:white;
-            border:none;
-            border-radius:6px;
-            font-size:1rem;
-            font-weight:600;
-            text-transform:uppercase;
-            letter-spacing:0.5px;
-            cursor:pointer;
-            margin-top:1rem;
-            transition:background 0.2s,transform 0.1s
-        }
-        .btn-signin:hover{background:#18361f}
-        .btn-signin:active{transform:scale(0.99)}
-
-        /* Password toggle */
-        .pass-toggle{
-            position:relative;
-            padding-bottom:1.2rem;
-        }
-        .pass-toggle input{
-            padding-right:3rem
-        }
-        .pass-toggle .toggle-btn{
-            position:absolute;
-            right:1rem;
-            top:50%;
-            transform:translateY(-50%);
-            background:transparent;
-            border:none;
-            color:var(--muted);
-            cursor:pointer;
-            font-size:0.85rem;
-            padding:0;
-            line-height:1
-        }
-        .pass-toggle .toggle-btn:hover{color:var(--td)}
-
-        /* Links */
-        .login-links{
-            margin-top:1.5rem;
-            text-align:center;
-            font-size:0.87rem;
-            color:var(--muted)
-        }
-        .login-links a{
-            color:var(--pg);
-            font-weight:500;
-            text-decoration:underline;
-            font-size:0.87rem
-        }
-        .login-links a:hover{color:var(--lg)}
-
-        /* Footer */
-        .page-footer{
-            margin-top:2rem;
-            padding-top:1.5rem;
-            border-top:1px solid #e0e0e0;
-            text-align:center;
-            color:var(--muted);
-            font-size:0.78rem;
-            width:100%
+        .topbar {
+            min-height: 34px;
+            padding: 8px 5%;
+            background: var(--deep-green);
+            color: #fff;
+            font-size: 0.72rem;
+            letter-spacing: 1.1px;
+            text-transform: uppercase;
         }
 
-        /* Ambient accent */
-        .accent-bar{
-            position:absolute;
-            top:0;
-            right:0;
-            width:100px;
-            height:4px;
-            background:var(--ac);
-            border-radius:0 8px 0 0
+        .topbar-inner {
+            max-width: 1180px;
+            margin: auto;
+        }
+
+        .header {
+            background: #fff;
+            border-bottom: 1px solid #e8ebe5;
+        }
+
+        .header-inner {
+            max-width: 1180px;
+            margin: auto;
+            padding: 17px 5%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .brand-mark {
+            width: 43px;
+            height: 43px;
+            border-radius: 5px;
+            display: grid;
+            place-items: center;
+            background: var(--green);
+            color: white;
+            font-size: 1.35rem;
+            font-weight: 700;
+        }
+
+        .brand-name {
+            color: var(--deep-green);
+            font-size: 1.12rem;
+            font-weight: 750;
+        }
+
+        .brand-subtitle {
+            color: var(--muted);
+            font-size: 0.76rem;
+            margin-top: 2px;
+        }
+
+        .header-link {
+            color: var(--green);
+            font-size: 0.88rem;
+            font-weight: 650;
+        }
+
+        main {
+            flex: 1;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 48px 20px;
+        }
+
+        .login-layout {
+            width: 100%;
+            max-width: 1000px;
+            display: grid;
+            grid-template-columns: 0.95fr 1.05fr;
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 16px 45px rgba(25, 61, 34, 0.10);
+            border: 1px solid #e8ebe5;
+        }
+
+        .welcome-panel {
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(145deg, var(--deep-green), var(--green));
+            color: white;
+            padding: 58px 42px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .welcome-panel::after {
+            content: "";
+            position: absolute;
+            width: 260px;
+            height: 260px;
+            right: -110px;
+            bottom: -110px;
+            border: 1px solid rgba(255,255,255,0.13);
+            border-radius: 50%;
+            box-shadow: 0 0 0 35px rgba(255,255,255,0.035),
+                        0 0 0 70px rgba(255,255,255,0.025);
+        }
+
+        .welcome-label {
+            color: #e5d09d;
+            font-size: 0.73rem;
+            font-weight: 700;
+            letter-spacing: 1.8px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .welcome-panel h1 {
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            line-height: 1.16;
+            margin-bottom: 19px;
+            letter-spacing: -0.7px;
+        }
+
+        .welcome-panel p {
+            color: #e0e9df;
+            line-height: 1.8;
+            font-size: 0.98rem;
+            max-width: 390px;
+        }
+
+        .welcome-divider {
+            width: 52px;
+            height: 3px;
+            background: var(--gold);
+            margin: 28px 0;
+        }
+
+        .welcome-note {
+            font-size: 0.82rem !important;
+            color: #d0ddcf !important;
+        }
+
+        .form-panel {
+            padding: 55px 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .form-content {
+            width: 100%;
+            max-width: 390px;
+        }
+
+        .form-heading {
+            margin-bottom: 30px;
+        }
+
+        .form-heading .eyebrow {
+            color: var(--green);
+            font-size: 0.73rem;
+            font-weight: 750;
+            letter-spacing: 1.4px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .form-heading h2 {
+            color: var(--deep-green);
+            font-size: 2rem;
+            line-height: 1.2;
+            margin-bottom: 9px;
+        }
+
+        .form-heading p {
+            color: var(--muted);
+            font-size: 0.94rem;
+            line-height: 1.6;
+        }
+
+        .error {
+            padding: 13px 14px;
+            margin-bottom: 20px;
+            border: 1px solid #f0b9b9;
+            border-radius: 7px;
+            background: #fff1f1;
+            color: #a52b2b;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .form-group {
+            margin-bottom: 21px;
+        }
+
+        .form-group label {
+            display: block;
+            color: #344438;
+            font-size: 0.9rem;
+            font-weight: 650;
+            margin-bottom: 9px;
+        }
+
+        .form-group input {
+            width: 100%;
+            min-height: 53px;
+            padding: 13px 15px;
+            border: 1px solid #d5ded3;
+            border-radius: 7px;
+            background: #fbfcfa;
+            color: var(--text);
+            font-family: inherit;
+            font-size: 16px;
+            outline: none;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .form-group input:focus {
+            border-color: var(--green);
+            box-shadow: 0 0 0 3px rgba(45, 90, 39, 0.12);
+            background: #fff;
+        }
+
+        .form-group input::placeholder {
+            color: #9aa49a;
+        }
+
+        .pass-toggle {
+            position: relative;
+        }
+
+        .pass-toggle input {
+            padding-right: 54px;
+        }
+
+        .pass-toggle .toggle-btn {
+            position: absolute;
+            right: 13px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 34px;
+            height: 34px;
+            display: grid;
+            place-items: center;
+            border: 0;
+            background: transparent;
+            color: #68746b;
+            cursor: pointer;
+        }
+
+        .pass-toggle .toggle-btn svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .btn-signin {
+            width: 100%;
+            min-height: 54px;
+            margin-top: 7px;
+            padding: 14px 20px;
+            border: none;
+            border-radius: 7px;
+            background: var(--green);
+            color: white;
+            font-size: 0.94rem;
+            font-weight: 750;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.2s;
+        }
+
+        .btn-signin:hover {
+            background: var(--deep-green);
+        }
+
+        .btn-signin:active {
+            transform: scale(0.99);
+        }
+
+        .login-links {
+            margin-top: 23px;
+            text-align: center;
+            font-size: 0.88rem;
+            line-height: 1.9;
+            color: var(--muted);
+        }
+
+        .login-links a {
+            color: var(--green);
+            font-weight: 650;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+
+        .login-links a:hover {
+            color: var(--deep-green);
+        }
+
+        footer {
+            padding: 18px 20px;
+            text-align: center;
+            color: #758075;
+            font-size: 0.78rem;
+        }
+
+        @media (max-width: 760px) {
+            main {
+                padding: 25px 15px 35px;
+                align-items: flex-start;
+            }
+
+            .login-layout {
+                max-width: 470px;
+                grid-template-columns: 1fr;
+                border-radius: 10px;
+            }
+
+            .welcome-panel {
+                padding: 27px 25px;
+            }
+
+            .welcome-label {
+                margin-bottom: 10px;
+                font-size: 0.68rem;
+            }
+
+            .welcome-panel h1 {
+                font-size: 1.75rem;
+                margin-bottom: 9px;
+            }
+
+            .welcome-panel p {
+                font-size: 0.88rem;
+                line-height: 1.6;
+            }
+
+            .welcome-divider,
+            .welcome-note {
+                display: none;
+            }
+
+            .form-panel {
+                padding: 31px 24px 34px;
+            }
+
+            .form-heading {
+                margin-bottom: 25px;
+            }
+
+            .form-heading h2 {
+                font-size: 1.75rem;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .topbar {
+                font-size: 0.64rem;
+            }
+
+            .header-inner {
+                padding: 14px 16px;
+            }
+
+            .brand-name {
+                font-size: 1rem;
+            }
+
+            .brand-subtitle {
+                font-size: 0.69rem;
+            }
+
+            .brand-mark {
+                width: 38px;
+                height: 38px;
+            }
+
+            .header-link {
+                font-size: 0.78rem;
+            }
+
+            main {
+                padding: 18px 10px 28px;
+            }
+
+            .welcome-panel {
+                padding: 23px 20px;
+            }
+
+            .form-panel {
+                padding: 27px 19px 30px;
+            }
         }
     </style>
 </head>
+
 <body>
+    <div class="topbar">
+        <div class="topbar-inner">Republic of Liberia &nbsp; | &nbsp; Agricultural Management Platform</div>
+    </div>
 
-<div class="login-wrapper">
-    <div class="login-row">
-
-        <!-- Left: Welcome panel -->
-        <div class="welcome-panel">
-            <div class="accent-bar"></div>
-            <h1>AgriDoc Liberia</h1>
-            <p class="tagline">Empowering Agriculture Through Digital Innovation</p>
-            <p class="desc">
-                Secure access for authorized Ministry of Agriculture personnel. Manage field operations, register farmers, and track crop health from any device.
-            </p>
+    <header class="header">
+        <div class="header-inner">
+            <a class="brand" href="{{ url_for('index') }}">
+                <div class="brand-mark">A</div>
+                <div>
+                    <div class="brand-name">AgriDoc Liberia</div>
+                    <div class="brand-subtitle">Agricultural Management</div>
+                </div>
+            </a>
+            <a class="header-link" href="{{ url_for('index') }}">Public Portal</a>
         </div>
+    </header>
 
-        <!-- Right: Login form panel -->
-        <div class="form-panel">
-            <div class="form-card">
-                <h2>Welcome Back</h2>
-                <p class="subtitle">Sign in to your staff account</p>
+    <main>
+        <div class="login-layout">
+            <section class="welcome-panel">
+                <div class="welcome-label">Field Officer Portal</div>
+                <h1>Welcome to AgriDoc Liberia</h1>
+                <p>
+                    A secure digital platform for authorized field personnel
+                    to register farmers and support agricultural data collection.
+                </p>
+                <div class="welcome-divider"></div>
+                <p class="welcome-note">
+                    Authorized access only. Please use the account credentials
+                    provided to you by your administrator.
+                </p>
+            </section>
 
-                {% if error %}
-                    <div class="error">{{ error }}</div>
-{% endif %}
-
-                <form method="POST" action="{{ url_for('login') }}">
-                    <input type="hidden" name="_csrf_token" value="{{ csrf_token() }}">
-                    <div class="form-group">
-                        <label for="email">Email address</label>
-                        <input type="email" id="email" name="email" required autocomplete="email">
+            <section class="form-panel">
+                <div class="form-content">
+                    <div class="form-heading">
+                        <div class="eyebrow">Staff Access</div>
+                        <h2>Sign in</h2>
+                        <p>Enter your staff account details to continue.</p>
                     </div>
 
-                    <div class="form-group">
-                        <label for="password">Password</label>
-                        <div class="pass-toggle">
-                            <input type="password" id="password" name="password" required autocomplete="current-password">
-                            <button type="button" class="toggle-btn" onclick="togglePassword('password')">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:middle">
-                                    <path d="M1 12s4-8 12-8 12 8 12 8-4 8-12 8-12-8-12-8z"/>
-                                    <path d="M14.5 3c-.83 0-1.5.67-1.5 1.5v1c0 .83.67 1.5 1.5 1.5h2c.83 0 1.5-.67 1.5-1.5v-1c0-.83-.67-1.5-1.5-1.5h-2z"/>
-                                    <path d="M21 12c0 5.523-4.477 10-10 10S11 17.523 11 12 15.477 2 2 2zM12 4c1.657 0 3 .73 3.5 1.82l.85 1.847-.003.12A13.966 13.966 0 0 0 12 4z"/>
-                                </svg>
-                            </button>
+                    {% if error %}
+                        <div class="error" role="alert">{{ error }}</div>
+                    {% endif %}
+
+                    <form method="POST" action="{{ url_for('login') }}">
+                        <input type="hidden" name="_csrf_token" value="{{ csrf_token() }}">
+
+                        <div class="form-group">
+                            <label for="email">Email address</label>
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                placeholder="Enter your email address"
+                                required
+                                autocomplete="email"
+                            >
                         </div>
-                    </div>
 
-                    <button type="submit" class="btn-signin">Sign In</button>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <div class="pass-toggle">
+                                <input
+                                    type="password"
+                                    id="password"
+                                    name="password"
+                                    placeholder="Enter your password"
+                                    required
+                                    autocomplete="current-password"
+                                >
+                                <button
+                                    type="button"
+                                    class="toggle-btn"
+                                    onclick="togglePassword('password')"
+                                    aria-label="Show or hide password"
+                                >
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                         stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7z"/>
+                                        <circle cx="12" cy="12" r="3"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
 
-                    
-                    <div class="login-links">
-                        <a href="{{ url_for('forgot_password') }}">Forgot password?</a>
-                    </div>
-    
-                        Not a staff member? <a href="{{ url_for('index') }}">Go to public portal</a>
-                    </div>
-                </form>
-            </div>
+                        <button type="submit" class="btn-signin">Sign In Securely</button>
+
+                        <div class="login-links">
+                            <div>
+                                <a href="{{ url_for('forgot_password') }}">Forgot password?</a>
+                            </div>
+                            <div>
+                                Not a staff member?
+                                <a href="{{ url_for('index') }}">Visit the public portal</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </section>
         </div>
+    </main>
 
-    </div>
-</div>
+    <footer>
+        AgriDoc Liberia &copy; 2026. All rights reserved.
+    </footer>
 
-<script src="{{ url_for('static', filename='js/login.js') }}" defer></script>
-
-<footer>
-    <div class="container">
-        <p class="footer-text">AgriDoc Liberia &copy; 2026. All rights reserved.</p>
-    </div>
-</footer>
-
+    <script src="{{ url_for('static', filename='js/login.js') }}" defer></script>
     <script src="{{ url_for('static', filename='js/register-service-worker.js') }}" defer></script>
 </body>
 </html>

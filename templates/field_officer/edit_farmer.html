@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#174b35">
+<title>Edit Farmer | AgriDoc Liberia</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#f6f7f5;color:#202923;font-family:Arial,sans-serif}
+header{background:#174b35;border-bottom:3px solid #d9ad3c;padding:18px 5%;display:flex;justify-content:space-between}
+header a{color:white;text-decoration:none}
+main{max-width:800px;margin:35px auto;padding:0 18px}
+a.back{color:#174b35;text-decoration:none;font-weight:bold}
+.card{background:white;border:1px solid #e1e6e2;border-radius:9px;padding:25px;margin-top:20px}
+.id{padding:12px;background:#f6f7f5;margin-bottom:20px;border-radius:6px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:17px}
+.full{grid-column:1/-1}
+label{display:block;font-size:13px;font-weight:bold;margin-bottom:6px}
+input{width:100%;min-height:45px;padding:10px;border:1px solid #d7ded8;border-radius:6px;font-size:15px}
+.actions{display:flex;gap:12px;margin-top:24px}
+button,.cancel{padding:12px 18px;border:0;border-radius:6px;font-weight:bold;text-decoration:none;cursor:pointer}
+button{background:#174b35;color:white}
+.cancel{background:#eef1ee;color:#202923}
+.flash{background:#fff0ed;color:#8b2920;padding:10px;margin-bottom:12px;border-radius:6px}
+@media(max-width:600px){main{margin-top:22px}.card{padding:18px}.grid{grid-template-columns:1fr}.full{grid-column:auto}.actions{flex-direction:column}button,.cancel{text-align:center}}
+</style>
+</head>
+<body>
+<header>
+<a href="{{ url_for('field_officer_dashboard') }}"><strong>AgriDoc Liberia</strong></a>
+<a href="{{ url_for('logout') }}">Logout</a>
+</header>
+<main>
+<a class="back" href="{{ url_for('field_officer_dashboard') }}">&#8592; Dashboard</a>
+<h1>Edit Farmer</h1>
+<p>Update this farmer's registration details.</p>
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% for category, message in messages %}
+<div class="flash" role="alert">{{ message }}</div>
+{% endfor %}
+{% endwith %}
+<section class="card">
+<div class="id">Farmer ID: <strong>{{ farmer.get('farmer_id') or 'Pending ID' }}</strong></div>
+<form method="POST">
+<input type="hidden" name="_csrf_token" value="{{ csrf_token() }}">
+<div class="grid">
+<div class="full"><label for="full_name">Full Name</label><input id="full_name" name="full_name" required value="{{ farmer.get('full_name') or '' }}"></div>
+<div><label for="phone">Phone Number</label><input id="phone" name="phone" type="tel" required value="{{ farmer.get('phone_number') or '' }}"></div>
+<div><label for="age">Age</label><input id="age" name="age" type="number" min="0" max="120" value="{{ farmer.get('age') if farmer.get('age') is not none else '' }}"></div>
+<div><label for="county">County</label><input id="county" name="county" required value="{{ farmer.get('county') or '' }}"></div>
+<div><label for="district">District</label><input id="district" name="district" required value="{{ farmer.get('district') or '' }}"></div>
+<div><label for="community">Community</label><input id="community" name="community" required value="{{ farmer.get('community') or '' }}"></div>
+<div><label for="tribe">Tribe</label><input id="tribe" name="tribe" value="{{ farmer.get('tribe') or '' }}"></div>
+</div>
+<div class="actions">
+<button type="submit">Save Changes</button>
+<a class="cancel" href="{{ url_for('field_officer_dashboard') }}">Cancel</a>
+</div>
+</form>
+</section>
+</main>
+</body>
+</html>
