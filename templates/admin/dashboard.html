@@ -839,6 +839,13 @@
 
             <section class="panel" id="farmer-registry"
                      aria-labelledby="farmer-heading">
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% for category, message in messages %}
+                        <div role="alert" style="margin-bottom:14px;padding:12px 15px;border-radius:8px;background:{% if category == 'error' %}#fff1f0{% else %}#eaf3ed{% endif %};color:{% if category == 'error' %}#8a2e26{% else %}#194b35{% endif %};">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endwith %}
                 <div class="panel-header">
                     <div>
                         <h2 id="farmer-heading">Farmer Registry</h2>
@@ -866,6 +873,7 @@
                                 <th>Community</th>
                                 <th>Registered By</th>
                                 <th>Date Registered</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -893,10 +901,21 @@
         —
     {% endif %}
 </td>
+                                <td>
+                                    <form method="post"
+                                          action="{{ url_for('admin_archive_farmer', farmer_uuid=farmer.id) }}"
+                                          onsubmit="return confirm('Archive this farmer record?');">
+                                        <input type="hidden" name="_csrf_token" value="{{ csrf_token() }}">
+                                        <button type="submit"
+                                                style="padding:8px 12px;border:0;border-radius:6px;background:#8a4b16;color:white;cursor:pointer;">
+                                            Archive
+                                        </button>
+                                    </form>
+                                </td>
                             </tr>
                             {% else %}
                             <tr>
-                                <td class="empty-state" colspan="6">
+                                <td class="empty-state" colspan="7">
                                     <strong>No farmer records found</strong>
                                     <span>
                                         {% if search_term %}

@@ -1,4 +1,5 @@
 import os
+from datetime import datetime, timezone
 from functools import wraps
 
 import requests
@@ -256,6 +257,92 @@ def admin_archived_farmers():
         total_count=total_count,
         error=error,
     )
+
+
+@app.route("/admin/farmers/<farmer_uuid>/archive", methods=["POST"])
+@role_required("admin", login_endpoint="admin_login")
+def admin_archive_farmer(farmer_uuid):
+    h = service_headers()
+    if not h:
+        flash("Database service key is not configured.", "error")
+        return redirect(url_for("admin_dashboard"))
+
+    try:
+        resp = requests.patch(
+            f"{SUPABASE_URL}/rest/v1/farmers",
+            headers={**h, "Prefer": "return=representation"},
+            params={
+                "id": f"eq.{farmer_uuid}",
+                "is_archived": "eq.false",
+            },
+            json={
+                "is_archived": True,
+                "archived_at": datetime.now(timezone.utc).isoformat(),
+                "archived_by": session["user"]["id"],
+            },
+            timeout=10,
+        )
+
+        if resp.status_code == 200 and resp.json():
+            flash("Farmer record archived successfully.", "ok")
+        elif resp.status_code == 200:
+            flash("Farmer record was not found or is already archived.", "error")
+        else:
+            app.logger.error(
+                "Farmer archive failed: HTTP %s - %s",
+                resp.status_code,
+                resp.text[:500],
+            )
+            flash("Could not archive this farmer. Please try again.", "error")
+
+    except requests.exceptions.RequestException:
+        app.logger.exception("Could not connect to Supabase while archiving farmer.")
+        flash("Could not reach the database. Please try again.", "error")
+
+    return redirect(url_for("admin_dashboard"))
+
+
+@app.route("/admin/farmers/<farmer_uuid>/restore", methods=["POST"])
+@role_required("admin", login_endpoint="admin_login")
+def admin_restore_farmer(farmer_uuid):
+    h = service_headers()
+    if not h:
+        flash("Database service key is not configured.", "error")
+        return redirect(url_for("admin_archived_farmers"))
+
+    try:
+        resp = requests.patch(
+            f"{SUPABASE_URL}/rest/v1/farmers",
+            headers={**h, "Prefer": "return=representation"},
+            params={
+                "id": f"eq.{farmer_uuid}",
+                "is_archived": "eq.true",
+            },
+            json={
+                "is_archived": False,
+                "archived_at": None,
+                "archived_by": None,
+            },
+            timeout=10,
+        )
+
+        if resp.status_code == 200 and resp.json():
+            flash("Farmer record restored to the active registry.", "ok")
+        elif resp.status_code == 200:
+            flash("Farmer record was not found or is already active.", "error")
+        else:
+            app.logger.error(
+                "Farmer restore failed: HTTP %s - %s",
+                resp.status_code,
+                resp.text[:500],
+            )
+            flash("Could not restore this farmer. Please try again.", "error")
+
+    except requests.exceptions.RequestException:
+        app.logger.exception("Could not connect to Supabase while restoring farmer.")
+        flash("Could not reach the database. Please try again.", "error")
+
+    return redirect(url_for("admin_archived_farmers"))
 
 
 @app.route("/admin/farm-performance")

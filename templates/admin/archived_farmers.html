@@ -146,6 +146,15 @@
             <div class="error">{{ error }}</div>
         {% endif %}
 
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% for category, message in messages %}
+                <div role="alert"
+                     style="padding:13px 15px;border-radius:8px;margin-bottom:18px;background:{% if category == 'error' %}#fff1f0{% else %}#eaf3ed{% endif %};color:{% if category == 'error' %}#8a2e26{% else %}#194b35{% endif %};">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endwith %}
+
         <div class="toolbar">
             <form class="search" method="get" action="{{ url_for('admin_archived_farmers') }}">
                 <input
@@ -172,6 +181,7 @@
                             <th>Community</th>
                             <th>Registered By</th>
                             <th>Registration Date</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -184,6 +194,14 @@
                             <td>{{ farmer.community or "—" }}</td>
                             <td>{{ farmer.registered_by_name }}</td>
                             <td>{{ farmer.created_at[:10] if farmer.created_at else "—" }}</td>
+                            <td>
+                                <form method="post"
+                                      action="{{ url_for('admin_restore_farmer', farmer_uuid=farmer.id) }}"
+                                      onsubmit="return confirm('Restore this farmer to the active registry?');">
+                                    <input type="hidden" name="_csrf_token" value="{{ csrf_token() }}">
+                                    <button type="submit">Restore</button>
+                                </form>
+                            </td>
                         </tr>
                     {% endfor %}
                     </tbody>
