@@ -729,6 +729,9 @@ def fetch_county_farmer_stats():
             records = resp.json()
             for record in records:
                 value = (record.get("county") or "").strip().casefold()
+                if value == "rivercess":
+                    value = "river cess"
+
                 for county in LIBERIA_COUNTIES:
                     if value == county.casefold():
                         counts[county] += 1
