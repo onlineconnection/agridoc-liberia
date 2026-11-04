@@ -84,6 +84,8 @@
         ])
     );
 
+    let currentMapMode = "standard";
+
     const maxFarmers = Math.max(
         1,
         ...countyStats.map(item => Number(item.farmer_count) || 0)
@@ -113,9 +115,64 @@
         scrollWheelZoom: false
     });
 
+    const mapViewport = document.getElementById("map-viewport");
+    const fullscreenButton = document.getElementById("map-fullscreen");
+    const modeButtons = document.querySelectorAll("[data-map-mode]");
+
     let selectedLayer = null;
     let countyLayer = null;
     let districtDataPromise = null;
+
+    document.getElementById("map-zoom-in").addEventListener("click", () => {
+        map.zoomIn();
+    });
+
+    document.getElementById("map-zoom-out").addEventListener("click", () => {
+        map.zoomOut();
+    });
+
+    fullscreenButton.addEventListener("click", () => {
+        if (!document.fullscreenElement) {
+            mapViewport.requestFullscreen().catch(error => {
+                console.error("Could not enter map fullscreen:", error);
+            });
+        } else {
+            document.exitFullscreen();
+        }
+    });
+
+    document.addEventListener("fullscreenchange", () => {
+        const isFullscreen = Boolean(document.fullscreenElement);
+        fullscreenButton.textContent = isFullscreen ? "Exit Fullscreen" : "Fullscreen";
+        map.invalidateSize();
+    });
+
+    function updateMapMode(mode) {
+        currentMapMode = mode;
+
+        modeButtons.forEach(button => {
+            const active = button.dataset.mapMode === mode;
+            button.classList.toggle("active", active);
+            button.setAttribute("aria-pressed", String(active));
+        });
+
+        if (countyLayer) {
+            countyLayer.setStyle(feature => {
+                const stats = getCountyStats(feature.properties.name);
+                return {
+                    fillColor: mode === "density"
+                        ? getCountyColor(Number(stats.farmer_count) || 0)
+                        : "#c5d8ca"
+                };
+            });
+        }
+    }
+
+    modeButtons.forEach(button => {
+        button.addEventListener("click", () => {
+            updateMapMode(button.dataset.mapMode);
+        });
+    });
 
     const districtLayer = L.layerGroup().addTo(map);
 
@@ -228,6 +285,92 @@
             });
     }
 
+    function selectCounty(countyName, targetLayer = null) {
+        if (!targetLayer && countyLayer) {
+            countyLayer.eachLayer(layer => {
+                if (normalizeName(layer.feature.properties.name) ===
+                    normalizeName(countyName)) {
+                    targetLayer = layer;
+                }
+            });
+        }
+
+        if (!targetLayer) return;
+
+        if (selectedLayer) {
+            countyLayer.resetStyle(selectedLayer);
+        }
+
+        selectedLayer = targetLayer;
+        selectedLayer.setStyle({
+            weight: 3,
+            color: "#d6b343",
+            fillOpacity: 1
+        });
+
+        document.querySelectorAll("#county-list button").forEach(button => {
+            const active = normalizeName(button.dataset.county) ===
+                normalizeName(countyName);
+            button.classList.toggle("active", active);
+            button.setAttribute("aria-pressed", String(active));
+        });
+
+        map.fitBounds(targetLayer.getBounds(), {
+            padding: [35, 35],
+            maxZoom: 8
+        });
+
+        loadDistrictsForCounty(countyName);
+    }
+
+    function renderCountyDirectory(features) {
+        const list = document.getElementById("county-list");
+        const search = document.getElementById("county-search");
+
+        if (!list || !search) return;
+
+        list.replaceChildren();
+
+        features
+            .slice()
+            .sort((a, b) =>
+                a.properties.name.localeCompare(b.properties.name)
+            )
+            .forEach(feature => {
+                const countyName = feature.properties.name;
+                const stats = getCountyStats(countyName);
+
+                const button = document.createElement("button");
+                button.type = "button";
+                button.dataset.county = countyName;
+                button.setAttribute("aria-pressed", "false");
+
+                const name = document.createElement("span");
+                name.textContent = countyName;
+
+                const count = document.createElement("span");
+                count.className = "county-count";
+                count.textContent =
+                    Number(stats.farmer_count).toLocaleString();
+
+                button.append(name, count);
+                button.addEventListener("click", () => {
+                    selectCounty(countyName);
+                });
+
+                list.appendChild(button);
+            });
+
+        search.addEventListener("input", () => {
+            const query = normalizeName(search.value);
+
+            list.querySelectorAll("button").forEach(button => {
+                button.hidden = !normalizeName(button.dataset.county)
+                    .includes(query);
+            });
+        });
+    }
+
     fetch("/static/data/liberia-counties.geojson")
         .then(response => {
             if (!response.ok) {
@@ -244,9 +387,9 @@
                     return {
                         color: "#ffffff",
                         weight: 1.5,
-                        fillColor: getCountyColor(
-                            Number(stats.farmer_count) || 0
-                        ),
+                        fillColor: currentMapMode === "density"
+                            ? getCountyColor(Number(stats.farmer_count) || 0)
+                            : "#c5d8ca",
                         fillOpacity: 0.85
                     };
                 },
@@ -281,25 +424,19 @@
                         },
 
                         click: event => {
-                            if (selectedLayer) {
-                                countyLayer.resetStyle(selectedLayer);
-                            }
-
-                            selectedLayer = event.target;
-
-                            selectedLayer.setStyle({
-                                weight: 3,
-                                color: "#d6b343",
-                                fillOpacity: 1
-                            });
-
-                            loadDistrictsForCounty(countyName);
+                            selectCounty(countyName, event.target);
                         }
                     });
                 }
             }).addTo(map);
 
+            renderCountyDirectory(geojson.features || []);
+
             const liberiaBounds = countyLayer.getBounds();
+
+            document.getElementById("map-fit-liberia").addEventListener("click", () => {
+                map.fitBounds(liberiaBounds, { padding: [20, 20] });
+            });
 
             map.fitBounds(liberiaBounds, {
                 padding: [20, 20]

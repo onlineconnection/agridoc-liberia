@@ -229,46 +229,62 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 20px;
-            margin-bottom: 27px;
+            gap: 24px;
+            margin-bottom: 32px;
+            padding: 8px 0 22px;
+            border-bottom: 1px solid #e2e9e3;
         }
 
         .eyebrow {
-            margin-bottom: 8px;
-            color: #9a7b20;
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            margin-bottom: 11px;
+            color: #96751d;
             font-size: 10px;
-            font-weight: 800;
-            letter-spacing: 1.8px;
+            font-weight: 850;
+            letter-spacing: 2px;
             text-transform: uppercase;
+        }
+
+        .eyebrow::before {
+            content: "";
+            width: 24px;
+            height: 2px;
+            border-radius: 2px;
+            background: #d6b343;
         }
 
         .welcome h1 {
             margin: 0;
-            color: var(--green-dark);
-            font-size: clamp(25px, 3vw, 32px);
-            line-height: 1.25;
-            letter-spacing: -.8px;
+            color: #103625;
+            font-size: clamp(28px, 3.2vw, 36px);
+            font-weight: 850;
+            line-height: 1.2;
+            letter-spacing: -1.1px;
         }
 
         .welcome p {
-            margin: 9px 0 0;
-            color: var(--muted);
+            max-width: 620px;
+            margin: 11px 0 0;
+            color: #718078;
             font-size: 13px;
-            line-height: 1.6;
+            line-height: 1.7;
         }
 
         .date-label {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            padding: 11px 14px;
-            border: 1px solid var(--border);
-            border-radius: 9px;
-            background: var(--white);
-            color: var(--green);
+            gap: 10px;
+            padding: 13px 17px;
+            border: 1px solid #dce7de;
+            border-radius: 10px;
+            background: #ffffff;
+            color: #194b35;
             white-space: nowrap;
             font-size: 12px;
-            font-weight: 650;
+            font-weight: 800;
+            box-shadow: 0 4px 14px rgba(24, 55, 38, .05);
         }
 
         .section-heading {
@@ -711,6 +727,221 @@
                 flex-direction: column;
             }
         }
+
+        /* Premium Agricultural Intelligence Map */
+
+        .map-toolbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin: 20px 0 14px;
+        }
+
+        .map-display-options,
+        .map-navigation-options {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .map-control {
+            min-height: 42px;
+            padding: 10px 16px;
+            border: 1px solid #dce5de;
+            border-radius: 9px;
+            background: #ffffff;
+            color: #194b35;
+            font-size: 12px;
+            font-weight: 750;
+            letter-spacing: .15px;
+            cursor: pointer;
+            transition: all .2s ease;
+        }
+
+        .map-control:hover:not(:disabled) {
+            border-color: #194b35;
+            background: #edf5ef;
+            transform: translateY(-1px);
+        }
+
+        .map-control.active {
+            border-color: #194b35;
+            background: #194b35;
+            color: #ffffff;
+            box-shadow: 0 3px 8px rgba(16, 54, 37, .18);
+        }
+
+        .map-control:disabled {
+            opacity: .55;
+            cursor: not-allowed;
+            background: #f0f2f0;
+            color: #78847c;
+            border-style: dashed;
+        }
+
+        .map-viewport {
+            width: 100%;
+            overflow: hidden;
+            border: 1px solid #dce5de;
+            border-radius: 15px;
+            background: #edf5ef;
+            box-shadow: 0 8px 24px rgba(24, 55, 38, .08);
+        }
+
+        .map-viewport:fullscreen {
+            padding: 16px;
+            background: #f4f7f4;
+        }
+
+        .map-viewport:fullscreen #liberia-farmer-map {
+            height: calc(100vh - 32px) !important;
+        }
+
+        .map-portal-layout {
+            display: grid;
+            grid-template-columns: 260px minmax(0, 1fr);
+            gap: 22px;
+            align-items: start;
+        }
+
+        .county-directory {
+            min-width: 0;
+            padding: 21px;
+            background: #ffffff;
+            border: 1px solid #e0e8e2;
+            border-radius: 14px;
+            box-shadow: 0 6px 20px rgba(24, 55, 38, .06);
+        }
+
+        .directory-heading h3 {
+            margin: 0 0 7px;
+            color: #103625;
+            font-size: 17px;
+            font-weight: 800;
+            letter-spacing: -.3px;
+        }
+
+        .directory-heading p {
+            margin: 0 0 17px;
+            color: #738078;
+            font-size: 12px;
+            line-height: 1.6;
+        }
+
+        .county-search {
+            box-sizing: border-box;
+            width: 100%;
+            min-height: 43px;
+            margin-bottom: 14px;
+            padding: 10px 13px;
+            border: 1px solid #dce5de;
+            border-radius: 9px;
+            background: #f8faf8;
+            color: #24342b;
+            font-size: 13px;
+            outline: none;
+            transition: border-color .2s, box-shadow .2s;
+        }
+
+        .county-search:focus {
+            border-color: #194b35;
+            box-shadow: 0 0 0 3px rgba(25, 75, 53, .10);
+        }
+
+        .county-list {
+            display: grid;
+            gap: 7px;
+            max-height: 490px;
+            overflow-y: auto;
+            padding-right: 3px;
+        }
+
+        .county-list button {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            width: 100%;
+            min-height: 42px;
+            padding: 10px 12px;
+            border: 1px solid transparent;
+            border-radius: 9px;
+            background: #f6f8f6;
+            color: #35463b;
+            font-size: 12px;
+            font-weight: 650;
+            text-align: left;
+            cursor: pointer;
+            transition: all .18s ease;
+        }
+
+        .county-list button:hover,
+        .county-list button.active {
+            border-color: #b8d1bf;
+            background: #eaf3ed;
+            color: #103625;
+        }
+
+        .county-list button.active {
+            border-left: 4px solid #d6b343;
+            padding-left: 9px;
+            font-weight: 800;
+        }
+
+        .county-count {
+            flex-shrink: 0;
+            min-width: 25px;
+            padding: 3px 7px;
+            border-radius: 20px;
+            background: #e8eee9;
+            color: #526459;
+            font-size: 10px;
+            font-weight: 800;
+            text-align: center;
+        }
+
+        .county-list button.active .county-count {
+            background: #dceadf;
+            color: #194b35;
+        }
+
+        .map-workspace {
+            min-width: 0;
+        }
+
+        @media (max-width: 900px) {
+            .map-portal-layout {
+                grid-template-columns: 210px minmax(0, 1fr);
+                gap: 14px;
+            }
+        }
+
+        @media (max-width: 700px) {
+            .map-portal-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .county-list {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                max-height: 240px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .map-toolbar,
+            .map-display-options,
+            .map-navigation-options {
+                width: 100%;
+            }
+
+            .map-control {
+                flex: 1;
+            }
+        }
+
     </style>
     <link rel="stylesheet"
           href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
@@ -811,15 +1042,76 @@
             <section class="panel" aria-labelledby="map-heading">
                 <div class="section-heading">
                     <div>
-                        <h2 id="map-heading">Farmer Distribution Across Liberia</h2>
-                        <p>Choose a county to view its districts and farmer registration counts.</p>
+                        <h2 id="map-heading">Agricultural Intelligence Map</h2>
+                        <p>Explore farmer registrations and agricultural data across Liberia.</p>
                     </div>
                 </div>
 
-                <div id="liberia-farmer-map"
-                     role="region"
-                     aria-label="Interactive map of Liberia showing farmer registrations"
-                     style="width:100%; min-height:460px; border-radius:12px; background:#eaf3ed;">
+                <div class="map-portal-layout">
+                    <aside class="county-directory" aria-label="Liberia county directory">
+                        <div class="directory-heading">
+                            <h3>County Directory</h3>
+                            <p>Select a county to explore its districts.</p>
+                        </div>
+                        <input type="search"
+                               id="county-search"
+                               class="county-search"
+                               placeholder="Search counties..."
+                               aria-label="Search counties">
+                        <div id="county-list" class="county-list">
+                            <p class="directory-loading">Loading counties...</p>
+                        </div>
+                    </aside>
+
+                    <div class="map-workspace">
+                        <div class="map-viewport" id="map-viewport">
+                            <div id="liberia-farmer-map"
+                                 role="region"
+                                 aria-label="Interactive map of Liberia showing farmer registrations"
+                                 style="width:100%; height:460px; border-radius:12px; background:#eaf3ed;">
+                            </div>
+                        </div>
+
+                        <div class="map-toolbar" aria-label="Map display controls">
+                    <div class="map-display-options" aria-label="Map display mode">
+                        <button type="button" class="map-control active"
+                                data-map-mode="standard" aria-pressed="true">
+                            Standard Map
+                        </button>
+                        <button type="button" class="map-control"
+                                data-map-mode="density" aria-pressed="false">
+                            Farmer Density
+                        </button>
+                        <button type="button" class="map-control"
+                                disabled title="Available when crop data is integrated">
+                            Crop Distribution
+                        </button>
+                        <button type="button" class="map-control"
+                                disabled title="Available when agricultural problem reports are integrated">
+                            Agricultural Problems
+                        </button>
+                        <button type="button" class="map-control"
+                                disabled title="Available when assistance request data is integrated">
+                            Assistance Requests
+                        </button>
+                        <button type="button" class="map-control"
+                                disabled title="Available when verification data is integrated">
+                            Verification Status
+                        </button>
+                    </div>
+
+                    <div class="map-navigation-options">
+                        <button type="button" class="map-control"
+                                id="map-fit-liberia">Fit Liberia</button>
+                        <button type="button" class="map-control"
+                                id="map-zoom-in" aria-label="Zoom in">+</button>
+                        <button type="button" class="map-control"
+                                id="map-zoom-out" aria-label="Zoom out">−</button>
+                        <button type="button" class="map-control map-fullscreen"
+                                id="map-fullscreen">Fullscreen</button>
+                    </div>
+                        </div>
+                    </div>
                 </div>
 
                 <div id="county-details" aria-live="polite" style="margin-top:16px;">
