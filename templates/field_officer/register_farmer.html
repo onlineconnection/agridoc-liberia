@@ -243,11 +243,15 @@
                 </div>
                 <div class="field">
                     <label for="county">County *</label>
-                    <input type="text" id="county" name="county" required>
+                    <select id="county" name="county" required>
+                        <option value="">Select county</option>
+                    </select>
                 </div>
                 <div class="field">
                     <label for="district">District *</label>
-                    <input type="text" id="district" name="district" required>
+                    <select id="district" name="district" required disabled>
+                        <option value="">Select a county first</option>
+                    </select>
                 </div>
                 <div class="field">
                     <label for="community">Community *</label>

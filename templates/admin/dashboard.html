@@ -1022,6 +1022,9 @@
     <script id="county-stats-data" type="application/json">
         {{ county_stats | tojson }}
     </script>
+    <script id="district-stats-data" type="application/json">
+        {{ district_stats | tojson }}
+    </script>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
             crossorigin=""></script>
     <script src="{{ url_for('static', filename='js/admin-dashboard.js') }}" defer></script>

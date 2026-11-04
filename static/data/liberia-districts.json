@@ -1,0 +1,6122 @@
+[
+  {
+    "id": "LR0601",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "B'hai",
+      "en": "B'hai",
+      "slug": "bhai-lr0601"
+    },
+    "code": {
+      "id": "LR0601",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR06",
+      "level": 1,
+      "name": {
+        "local": "Grand Gedeh",
+        "en": "Grand Gedeh",
+        "slug": "grand-gedeh-lr06"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR06",
+        "level": 1,
+        "name": {
+          "local": "Grand Gedeh",
+          "en": "Grand Gedeh",
+          "slug": "grand-gedeh-lr06"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "6.353",
+      "lon": "-8.527"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR0701",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Barclayville",
+      "en": "Barclayville",
+      "slug": "barclayville-lr0701"
+    },
+    "code": {
+      "id": "LR0701",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR07",
+      "level": 1,
+      "name": {
+        "local": "Grand Kru",
+        "en": "Grand Kru",
+        "slug": "grand-kru-lr07"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR07",
+        "level": 1,
+        "name": {
+          "local": "Grand Kru",
+          "en": "Grand Kru",
+          "slug": "grand-kru-lr07"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "4.713",
+      "lon": "-8.201"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR1401",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Beawor",
+      "en": "Beawor",
+      "slug": "beawor-lr1401"
+    },
+    "code": {
+      "id": "LR1401",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR14",
+      "level": 1,
+      "name": {
+        "local": "Rivercess",
+        "en": "Rivercess",
+        "slug": "rivercess-lr14"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR14",
+        "level": 1,
+        "name": {
+          "local": "Rivercess",
+          "en": "Rivercess",
+          "slug": "rivercess-lr14"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "5.601",
+      "lon": "-9.266"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR0301",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Belleh",
+      "en": "Belleh",
+      "slug": "belleh-lr0301"
+    },
+    "code": {
+      "id": "LR0301",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR03",
+      "level": 1,
+      "name": {
+        "local": "Gbarpolu",
+        "en": "Gbarpolu",
+        "slug": "gbarpolu-lr03"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR03",
+        "level": 1,
+        "name": {
+          "local": "Gbarpolu",
+          "en": "Gbarpolu",
+          "slug": "gbarpolu-lr03"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "7.53",
+      "lon": "-9.958"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR0702",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Bleebo",
+      "en": "Bleebo",
+      "slug": "bleebo-lr0702"
+    },
+    "code": {
+      "id": "LR0702",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR07",
+      "level": 1,
+      "name": {
+        "local": "Grand Kru",
+        "en": "Grand Kru",
+        "slug": "grand-kru-lr07"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR07",
+        "level": 1,
+        "name": {
+          "local": "Grand Kru",
+          "en": "Grand Kru",
+          "slug": "grand-kru-lr07"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "4.745",
+      "lon": "-7.954"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR1501",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Bodae",
+      "en": "Bodae",
+      "slug": "bodae-lr1501"
+    },
+    "code": {
+      "id": "LR1501",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR15",
+      "level": 1,
+      "name": {
+        "local": "Sinoe",
+        "en": "Sinoe",
+        "slug": "sinoe-lr15"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR15",
+        "level": 1,
+        "name": {
+          "local": "Sinoe",
+          "en": "Sinoe",
+          "slug": "sinoe-lr15"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "5.14",
+      "lon": "-8.34"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR1201",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Boe & Quilla",
+      "en": "Boe & Quilla",
+      "slug": "boe-quilla-lr1201"
+    },
+    "code": {
+      "id": "LR1201",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR12",
+      "level": 1,
+      "name": {
+        "local": "Nimba",
+        "en": "Nimba",
+        "slug": "nimba-lr12"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR12",
+        "level": 1,
+        "name": {
+          "local": "Nimba",
+          "en": "Nimba",
+          "slug": "nimba-lr12"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "6.78",
+      "lon": "-8.627"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR0201",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Boinsen",
+      "en": "Boinsen",
+      "slug": "boinsen-lr0201"
+    },
+    "code": {
+      "id": "LR0201",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR02",
+      "level": 1,
+      "name": {
+        "local": "Bong",
+        "en": "Bong",
+        "slug": "bong-lr02"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR02",
+        "level": 1,
+        "name": {
+          "local": "Bong",
+          "en": "Bong",
+          "slug": "bong-lr02"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "6.691",
+      "lon": "-9.227"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR0302",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Bokomu",
+      "en": "Bokomu",
+      "slug": "bokomu-lr0302"
+    },
+    "code": {
+      "id": "LR0302",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR03",
+      "level": 1,
+      "name": {
+        "local": "Gbarpolu",
+        "en": "Gbarpolu",
+        "slug": "gbarpolu-lr03"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR03",
+        "level": 1,
+        "name": {
+          "local": "Gbarpolu",
+          "en": "Gbarpolu",
+          "slug": "gbarpolu-lr03"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "7.227",
+      "lon": "-10.192"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR1502",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Bokon",
+      "en": "Bokon",
+      "slug": "bokon-lr1502"
+    },
+    "code": {
+      "id": "LR1502",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR15",
+      "level": 1,
+      "name": {
+        "local": "Sinoe",
+        "en": "Sinoe",
+        "slug": "sinoe-lr15"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR15",
+        "level": 1,
+        "name": {
+          "local": "Sinoe",
+          "en": "Sinoe",
+          "slug": "sinoe-lr15"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "5.036",
+      "lon": "-8.452"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR0703",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Bolloh",
+      "en": "Bolloh",
+      "slug": "bolloh-lr0703"
+    },
+    "code": {
+      "id": "LR0703",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR07",
+      "level": 1,
+      "name": {
+        "local": "Grand Kru",
+        "en": "Grand Kru",
+        "slug": "grand-kru-lr07"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR07",
+        "level": 1,
+        "name": {
+          "local": "Grand Kru",
+          "en": "Grand Kru",
+          "slug": "grand-kru-lr07"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "4.96",
+      "lon": "-8.413"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR0303",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Bopolu",
+      "en": "Bopolu",
+      "slug": "bopolu-lr0303"
+    },
+    "code": {
+      "id": "LR0303",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR03",
+      "level": 1,
+      "name": {
+        "local": "Gbarpolu",
+        "en": "Gbarpolu",
+        "slug": "gbarpolu-lr03"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR03",
+        "level": 1,
+        "name": {
+          "local": "Gbarpolu",
+          "en": "Gbarpolu",
+          "slug": "gbarpolu-lr03"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "7.211",
+      "lon": "-10.435"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR0704",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Buah",
+      "en": "Buah",
+      "slug": "buah-lr0704"
+    },
+    "code": {
+      "id": "LR0704",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR07",
+      "level": 1,
+      "name": {
+        "local": "Grand Kru",
+        "en": "Grand Kru",
+        "slug": "grand-kru-lr07"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR07",
+        "level": 1,
+        "name": {
+          "local": "Grand Kru",
+          "en": "Grand Kru",
+          "slug": "grand-kru-lr07"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "4.859",
+      "lon": "-8.173"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR1503",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Butaw",
+      "en": "Butaw",
+      "slug": "butaw-lr1503"
+    },
+    "code": {
+      "id": "LR1503",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR15",
+      "level": 1,
+      "name": {
+        "local": "Sinoe",
+        "en": "Sinoe",
+        "slug": "sinoe-lr15"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR15",
+        "level": 1,
+        "name": {
+          "local": "Sinoe",
+          "en": "Sinoe",
+          "slug": "sinoe-lr15"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "5.133",
+      "lon": "-9.072"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR1202",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Buu-Yao",
+      "en": "Buu-Yao",
+      "slug": "buu-yao-lr1202"
+    },
+    "code": {
+      "id": "LR1202",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR12",
+      "level": 1,
+      "name": {
+        "local": "Nimba",
+        "en": "Nimba",
+        "slug": "nimba-lr12"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR12",
+        "level": 1,
+        "name": {
+          "local": "Nimba",
+          "en": "Nimba",
+          "slug": "nimba-lr12"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "6.86",
+      "lon": "-8.411"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR1101",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Careysburg",
+      "en": "Careysburg",
+      "slug": "careysburg-lr1101"
+    },
+    "code": {
+      "id": "LR1101",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR11",
+      "level": 1,
+      "name": {
+        "local": "Montserrado",
+        "en": "Montserrado",
+        "slug": "montserrado-lr11"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR11",
+        "level": 1,
+        "name": {
+          "local": "Montserrado",
+          "en": "Montserrado",
+          "slug": "montserrado-lr11"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "6.442",
+      "lon": "-10.565"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR0602",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Cavala",
+      "en": "Cavala",
+      "slug": "cavala-lr0602"
+    },
+    "code": {
+      "id": "LR0602",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR06",
+      "level": 1,
+      "name": {
+        "local": "Grand Gedeh",
+        "en": "Grand Gedeh",
+        "slug": "grand-gedeh-lr06"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR06",
+        "level": 1,
+        "name": {
+          "local": "Grand Gedeh",
+          "en": "Grand Gedeh",
+          "slug": "grand-gedeh-lr06"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "6.011",
+      "lon": "-8.268"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR1402",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Central Rivercess",
+      "en": "Central Rivercess",
+      "slug": "central-rivercess-lr1402"
+    },
+    "code": {
+      "id": "LR1402",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR14",
+      "level": 1,
+      "name": {
+        "local": "Rivercess",
+        "en": "Rivercess",
+        "slug": "rivercess-lr14"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR14",
+        "level": 1,
+        "name": {
+          "local": "Rivercess",
+          "en": "Rivercess",
+          "slug": "rivercess-lr14"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "5.804",
+      "lon": "-9.306"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR1301",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Chedepo",
+      "en": "Chedepo",
+      "slug": "chedepo-lr1301"
+    },
+    "code": {
+      "id": "LR1301",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR13",
+      "level": 1,
+      "name": {
+        "local": "River Gee",
+        "en": "River Gee",
+        "slug": "river-gee-lr13"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR13",
+        "level": 1,
+        "name": {
+          "local": "River Gee",
+          "en": "River Gee",
+          "slug": "river-gee-lr13"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "5.46",
+      "lon": "-8.055"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR0501",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Commonwealth",
+      "en": "Commonwealth",
+      "slug": "commonwealth-lr0501"
+    },
+    "code": {
+      "id": "LR0501",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR05",
+      "level": 1,
+      "name": {
+        "local": "Grand Cape Mount",
+        "en": "Grand Cape Mount",
+        "slug": "grand-cape-mount-lr05"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR05",
+        "level": 1,
+        "name": {
+          "local": "Grand Cape Mount",
+          "en": "Grand Cape Mount",
+          "slug": "grand-cape-mount-lr05"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "6.805",
+      "lon": "-11.282"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR1102",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Commonwealth 1",
+      "en": "Commonwealth 1",
+      "slug": "commonwealth-1-lr1102"
+    },
+    "code": {
+      "id": "LR1102",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR11",
+      "level": 1,
+      "name": {
+        "local": "Montserrado",
+        "en": "Montserrado",
+        "slug": "montserrado-lr11"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR11",
+        "level": 1,
+        "name": {
+          "local": "Montserrado",
+          "en": "Montserrado",
+          "slug": "montserrado-lr11"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "6.392",
+      "lon": "-10.653"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR0401",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Commonwealth 2",
+      "en": "Commonwealth 2",
+      "slug": "commonwealth-2-lr0401"
+    },
+    "code": {
+      "id": "LR0401",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR04",
+      "level": 1,
+      "name": {
+        "local": "Grand Bassa",
+        "en": "Grand Bassa",
+        "slug": "grand-bassa-lr04"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR04",
+        "level": 1,
+        "name": {
+          "local": "Grand Bassa",
+          "en": "Grand Bassa",
+          "slug": "grand-bassa-lr04"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "5.879",
+      "lon": "-10.041"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR0402",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "District #1",
+      "en": "District #1",
+      "slug": "district-1-lr0402"
+    },
+    "code": {
+      "id": "LR0402",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR04",
+      "level": 1,
+      "name": {
+        "local": "Grand Bassa",
+        "en": "Grand Bassa",
+        "slug": "grand-bassa-lr04"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR04",
+        "level": 1,
+        "name": {
+          "local": "Grand Bassa",
+          "en": "Grand Bassa",
+          "slug": "grand-bassa-lr04"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "6.237",
+      "lon": "-10.146"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR0403",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "District #2",
+      "en": "District #2",
+      "slug": "district-2-lr0403"
+    },
+    "code": {
+      "id": "LR0403",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR04",
+      "level": 1,
+      "name": {
+        "local": "Grand Bassa",
+        "en": "Grand Bassa",
+        "slug": "grand-bassa-lr04"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR04",
+        "level": 1,
+        "name": {
+          "local": "Grand Bassa",
+          "en": "Grand Bassa",
+          "slug": "grand-bassa-lr04"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "6.418",
+      "lon": "-9.863"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR0404",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "District #3",
+      "en": "District #3",
+      "slug": "district-3-lr0404"
+    },
+    "code": {
+      "id": "LR0404",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR04",
+      "level": 1,
+      "name": {
+        "local": "Grand Bassa",
+        "en": "Grand Bassa",
+        "slug": "grand-bassa-lr04"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR04",
+        "level": 1,
+        "name": {
+          "local": "Grand Bassa",
+          "en": "Grand Bassa",
+          "slug": "grand-bassa-lr04"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "6.318",
+      "lon": "-9.593"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR0405",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "District #4",
+      "en": "District #4",
+      "slug": "district-4-lr0405"
+    },
+    "code": {
+      "id": "LR0405",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR04",
+      "level": 1,
+      "name": {
+        "local": "Grand Bassa",
+        "en": "Grand Bassa",
+        "slug": "grand-bassa-lr04"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR04",
+        "level": 1,
+        "name": {
+          "local": "Grand Bassa",
+          "en": "Grand Bassa",
+          "slug": "grand-bassa-lr04"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "5.903",
+      "lon": "-9.734"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR1203",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Doe",
+      "en": "Doe",
+      "slug": "doe-lr1203"
+    },
+    "code": {
+      "id": "LR1203",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR12",
+      "level": 1,
+      "name": {
+        "local": "Nimba",
+        "en": "Nimba",
+        "slug": "nimba-lr12"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR12",
+        "level": 1,
+        "name": {
+          "local": "Nimba",
+          "en": "Nimba",
+          "slug": "nimba-lr12"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "6.605",
+      "lon": "-8.845"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR1403",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Doedain",
+      "en": "Doedain",
+      "slug": "doedain-lr1403"
+    },
+    "code": {
+      "id": "LR1403",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR14",
+      "level": 1,
+      "name": {
+        "local": "Rivercess",
+        "en": "Rivercess",
+        "slug": "rivercess-lr14"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR14",
+        "level": 1,
+        "name": {
+          "local": "Rivercess",
+          "en": "Rivercess",
+          "slug": "rivercess-lr14"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "6.285",
+      "lon": "-9.249"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR0705",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Dorbor",
+      "en": "Dorbor",
+      "slug": "dorbor-lr0705"
+    },
+    "code": {
+      "id": "LR0705",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR07",
+      "level": 1,
+      "name": {
+        "local": "Grand Kru",
+        "en": "Grand Kru",
+        "slug": "grand-kru-lr07"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR07",
+        "level": 1,
+        "name": {
+          "local": "Grand Kru",
+          "en": "Grand Kru",
+          "slug": "grand-kru-lr07"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "4.991",
+      "lon": "-8.27"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR0101",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Dowein",
+      "en": "Dowein",
+      "slug": "dowein-lr0101"
+    },
+    "code": {
+      "id": "LR0101",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR01",
+      "level": 1,
+      "name": {
+        "local": "Bomi",
+        "en": "Bomi",
+        "slug": "bomi-lr01"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR01",
+        "level": 1,
+        "name": {
+          "local": "Bomi",
+          "en": "Bomi",
+          "slug": "bomi-lr01"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "6.566",
+      "lon": "-10.95"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR1504",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Dugbe River",
+      "en": "Dugbe River",
+      "slug": "dugbe-river-lr1504"
+    },
+    "code": {
+      "id": "LR1504",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR15",
+      "level": 1,
+      "name": {
+        "local": "Sinoe",
+        "en": "Sinoe",
+        "slug": "sinoe-lr15"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR15",
+        "level": 1,
+        "name": {
+          "local": "Sinoe",
+          "en": "Sinoe",
+          "slug": "sinoe-lr15"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "4.981",
+      "lon": "-8.677"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR0706",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Dweh",
+      "en": "Dweh",
+      "slug": "dweh-lr0706"
+    },
+    "code": {
+      "id": "LR0706",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR07",
+      "level": 1,
+      "name": {
+        "local": "Grand Kru",
+        "en": "Grand Kru",
+        "slug": "grand-kru-lr07"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR07",
+        "level": 1,
+        "name": {
+          "local": "Grand Kru",
+          "en": "Grand Kru",
+          "slug": "grand-kru-lr07"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "5.073",
+      "lon": "-8.065"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR0707",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Felo-Jekwi",
+      "en": "Felo-Jekwi",
+      "slug": "felo-jekwi-lr0707"
+    },
+    "code": {
+      "id": "LR0707",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR07",
+      "level": 1,
+      "name": {
+        "local": "Grand Kru",
+        "en": "Grand Kru",
+        "slug": "grand-kru-lr07"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR07",
+        "level": 1,
+        "name": {
+          "local": "Grand Kru",
+          "en": "Grand Kru",
+          "slug": "grand-kru-lr07"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "4.727",
+      "lon": "-8.365"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR1404",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Fen River",
+      "en": "Fen River",
+      "slug": "fen-river-lr1404"
+    },
+    "code": {
+      "id": "LR1404",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR14",
+      "level": 1,
+      "name": {
+        "local": "Rivercess",
+        "en": "Rivercess",
+        "slug": "rivercess-lr14"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR14",
+        "level": 1,
+        "name": {
+          "local": "Rivercess",
+          "en": "Rivercess",
+          "slug": "rivercess-lr14"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "5.605",
+      "lon": "-9.652"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR0708",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Fenetoe",
+      "en": "Fenetoe",
+      "slug": "fenetoe-lr0708"
+    },
+    "code": {
+      "id": "LR0708",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR07",
+      "level": 1,
+      "name": {
+        "local": "Grand Kru",
+        "en": "Grand Kru",
+        "slug": "grand-kru-lr07"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR07",
+        "level": 1,
+        "name": {
+          "local": "Grand Kru",
+          "en": "Grand Kru",
+          "slug": "grand-kru-lr07"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "4.909",
+      "lon": "-8.366"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR0901",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Firestone",
+      "en": "Firestone",
+      "slug": "firestone-lr0901"
+    },
+    "code": {
+      "id": "LR0901",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR09",
+      "level": 1,
+      "name": {
+        "local": "Margibi",
+        "en": "Margibi",
+        "slug": "margibi-lr09"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR09",
+        "level": 1,
+        "name": {
+          "local": "Margibi",
+          "en": "Margibi",
+          "slug": "margibi-lr09"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "6.374",
+      "lon": "-10.336"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR0709",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Forpoh",
+      "en": "Forpoh",
+      "slug": "forpoh-lr0709"
+    },
+    "code": {
+      "id": "LR0709",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR07",
+      "level": 1,
+      "name": {
+        "local": "Grand Kru",
+        "en": "Grand Kru",
+        "slug": "grand-kru-lr07"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR07",
+        "level": 1,
+        "name": {
+          "local": "Grand Kru",
+          "en": "Grand Kru",
+          "slug": "grand-kru-lr07"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "5.109",
+      "lon": "-8.236"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR0801",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Foya",
+      "en": "Foya",
+      "slug": "foya-lr0801"
+    },
+    "code": {
+      "id": "LR0801",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR08",
+      "level": 1,
+      "name": {
+        "local": "Lofa",
+        "en": "Lofa",
+        "slug": "lofa-lr08"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR08",
+        "level": 1,
+        "name": {
+          "local": "Lofa",
+          "en": "Lofa",
+          "slug": "lofa-lr08"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "8.341",
+      "lon": "-10.229"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR0202",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Fuamah",
+      "en": "Fuamah",
+      "slug": "fuamah-lr0202"
+    },
+    "code": {
+      "id": "LR0202",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR02",
+      "level": 1,
+      "name": {
+        "local": "Bong",
+        "en": "Bong",
+        "slug": "bong-lr02"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR02",
+        "level": 1,
+        "name": {
+          "local": "Bong",
+          "en": "Bong",
+          "slug": "bong-lr02"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "6.961",
+      "lon": "-10.277"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR1204",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Garr-Bain",
+      "en": "Garr-Bain",
+      "slug": "garr-bain-lr1204"
+    },
+    "code": {
+      "id": "LR1204",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR12",
+      "level": 1,
+      "name": {
+        "local": "Nimba",
+        "en": "Nimba",
+        "slug": "nimba-lr12"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR12",
+        "level": 1,
+        "name": {
+          "local": "Nimba",
+          "en": "Nimba",
+          "slug": "nimba-lr12"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "7.219",
+      "lon": "-8.915"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR0710",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Garraway",
+      "en": "Garraway",
+      "slug": "garraway-lr0710"
+    },
+    "code": {
+      "id": "LR0710",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR07",
+      "level": 1,
+      "name": {
+        "local": "Grand Kru",
+        "en": "Grand Kru",
+        "slug": "grand-kru-lr07"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR07",
+        "level": 1,
+        "name": {
+          "local": "Grand Kru",
+          "en": "Grand Kru",
+          "slug": "grand-kru-lr07"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "4.551",
+      "lon": "-7.915"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR0502",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Garwula",
+      "en": "Garwula",
+      "slug": "garwula-lr0502"
+    },
+    "code": {
+      "id": "LR0502",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR05",
+      "level": 1,
+      "name": {
+        "local": "Grand Cape Mount",
+        "en": "Grand Cape Mount",
+        "slug": "grand-cape-mount-lr05"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR05",
+        "level": 1,
+        "name": {
+          "local": "Grand Cape Mount",
+          "en": "Grand Cape Mount",
+          "slug": "grand-cape-mount-lr05"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "6.774",
+      "lon": "-11.102"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR0603",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Gbao",
+      "en": "Gbao",
+      "slug": "gbao-lr0603"
+    },
+    "code": {
+      "id": "LR0603",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR06",
+      "level": 1,
+      "name": {
+        "local": "Grand Gedeh",
+        "en": "Grand Gedeh",
+        "slug": "grand-gedeh-lr06"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR06",
+        "level": 1,
+        "name": {
+          "local": "Grand Gedeh",
+          "en": "Grand Gedeh",
+          "slug": "grand-gedeh-lr06"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "6.068",
+      "lon": "-8.496"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR0304",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Gbarma",
+      "en": "Gbarma",
+      "slug": "gbarma-lr0304"
+    },
+    "code": {
+      "id": "LR0304",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR03",
+      "level": 1,
+      "name": {
+        "local": "Gbarpolu",
+        "en": "Gbarpolu",
+        "slug": "gbarpolu-lr03"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR03",
+        "level": 1,
+        "name": {
+          "local": "Gbarpolu",
+          "en": "Gbarpolu",
+          "slug": "gbarpolu-lr03"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "7.196",
+      "lon": "-10.63"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR1302",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Gbeapo",
+      "en": "Gbeapo",
+      "slug": "gbeapo-lr1302"
+    },
+    "code": {
+      "id": "LR1302",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR13",
+      "level": 1,
+      "name": {
+        "local": "River Gee",
+        "en": "River Gee",
+        "slug": "river-gee-lr13"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR13",
+        "level": 1,
+        "name": {
+          "local": "River Gee",
+          "en": "River Gee",
+          "slug": "river-gee-lr13"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "5.249",
+      "lon": "-7.971"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR1205",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Gbehlay-Geh",
+      "en": "Gbehlay-Geh",
+      "slug": "gbehlay-geh-lr1205"
+    },
+    "code": {
+      "id": "LR1205",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR12",
+      "level": 1,
+      "name": {
+        "local": "Nimba",
+        "en": "Nimba",
+        "slug": "nimba-lr12"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR12",
+        "level": 1,
+        "name": {
+          "local": "Nimba",
+          "en": "Nimba",
+          "slug": "nimba-lr12"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "7.361",
+      "lon": "-8.481"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR1206",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Gbi & Doru",
+      "en": "Gbi & Doru",
+      "slug": "gbi-doru-lr1206"
+    },
+    "code": {
+      "id": "LR1206",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR12",
+      "level": 1,
+      "name": {
+        "local": "Nimba",
+        "en": "Nimba",
+        "slug": "nimba-lr12"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR12",
+        "level": 1,
+        "name": {
+          "local": "Nimba",
+          "en": "Nimba",
+          "slug": "nimba-lr12"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "6.128",
+      "lon": "-8.975"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR0604",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Gboe-Ploe",
+      "en": "Gboe-Ploe",
+      "slug": "gboe-ploe-lr0604"
+    },
+    "code": {
+      "id": "LR0604",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR06",
+      "level": 1,
+      "name": {
+        "local": "Grand Gedeh",
+        "en": "Grand Gedeh",
+        "slug": "grand-gedeh-lr06"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR06",
+        "level": 1,
+        "name": {
+          "local": "Grand Gedeh",
+          "en": "Grand Gedeh",
+          "slug": "grand-gedeh-lr06"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "6.021",
+      "lon": "-8.797"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR1207",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Gbor",
+      "en": "Gbor",
+      "slug": "gbor-lr1207"
+    },
+    "code": {
+      "id": "LR1207",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR12",
+      "level": 1,
+      "name": {
+        "local": "Nimba",
+        "en": "Nimba",
+        "slug": "nimba-lr12"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR12",
+        "level": 1,
+        "name": {
+          "local": "Nimba",
+          "en": "Nimba",
+          "slug": "nimba-lr12"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "7.096",
+      "lon": "-8.717"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR0711",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Gee",
+      "en": "Gee",
+      "slug": "gee-lr0711"
+    },
+    "code": {
+      "id": "LR0711",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR07",
+      "level": 1,
+      "name": {
+        "local": "Grand Kru",
+        "en": "Grand Kru",
+        "slug": "grand-kru-lr07"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR07",
+        "level": 1,
+        "name": {
+          "local": "Grand Kru",
+          "en": "Grand Kru",
+          "slug": "grand-kru-lr07"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "4.936",
+      "lon": "-8.158"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR0902",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Gibi",
+      "en": "Gibi",
+      "slug": "gibi-lr0902"
+    },
+    "code": {
+      "id": "LR0902",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR09",
+      "level": 1,
+      "name": {
+        "local": "Margibi",
+        "en": "Margibi",
+        "slug": "margibi-lr09"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR09",
+        "level": 1,
+        "name": {
+          "local": "Margibi",
+          "en": "Margibi",
+          "slug": "margibi-lr09"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "6.564",
+      "lon": "-10.02"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR1303",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Glaro",
+      "en": "Glaro",
+      "slug": "glaro-lr1303"
+    },
+    "code": {
+      "id": "LR1303",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR13",
+      "level": 1,
+      "name": {
+        "local": "River Gee",
+        "en": "River Gee",
+        "slug": "river-gee-lr13"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR13",
+        "level": 1,
+        "name": {
+          "local": "River Gee",
+          "en": "River Gee",
+          "slug": "river-gee-lr13"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "5.39",
+      "lon": "-7.563"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR0605",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Glio-Twarbo",
+      "en": "Glio-Twarbo",
+      "slug": "glio-twarbo-lr0605"
+    },
+    "code": {
+      "id": "LR0605",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR06",
+      "level": 1,
+      "name": {
+        "local": "Grand Gedeh",
+        "en": "Grand Gedeh",
+        "slug": "grand-gedeh-lr06"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR06",
+        "level": 1,
+        "name": {
+          "local": "Grand Gedeh",
+          "en": "Grand Gedeh",
+          "slug": "grand-gedeh-lr06"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "5.71",
+      "lon": "-7.604"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR0503",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Golakonneh",
+      "en": "Golakonneh",
+      "slug": "golakonneh-lr0503"
+    },
+    "code": {
+      "id": "LR0503",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR05",
+      "level": 1,
+      "name": {
+        "local": "Grand Cape Mount",
+        "en": "Grand Cape Mount",
+        "slug": "grand-cape-mount-lr05"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR05",
+        "level": 1,
+        "name": {
+          "local": "Grand Cape Mount",
+          "en": "Grand Cape Mount",
+          "slug": "grand-cape-mount-lr05"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "7.106",
+      "lon": "-10.988"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR0305",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Gounwolaila",
+      "en": "Gounwolaila",
+      "slug": "gounwolaila-lr0305"
+    },
+    "code": {
+      "id": "LR0305",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR03",
+      "level": 1,
+      "name": {
+        "local": "Gbarpolu",
+        "en": "Gbarpolu",
+        "slug": "gbarpolu-lr03"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR03",
+        "level": 1,
+        "name": {
+          "local": "Gbarpolu",
+          "en": "Gbarpolu",
+          "slug": "gbarpolu-lr03"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "7.206",
+      "lon": "-9.964"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR0712",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Grand Cess Wedabo",
+      "en": "Grand Cess Wedabo",
+      "slug": "grand-cess-wedabo-lr0712"
+    },
+    "code": {
+      "id": "LR0712",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR07",
+      "level": 1,
+      "name": {
+        "local": "Grand Kru",
+        "en": "Grand Kru",
+        "slug": "grand-kru-lr07"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR07",
+        "level": 1,
+        "name": {
+          "local": "Grand Kru",
+          "en": "Grand Kru",
+          "slug": "grand-kru-lr07"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "4.634",
+      "lon": "-8.08"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR1103",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Greater Monrovia",
+      "en": "Greater Monrovia",
+      "slug": "greater-monrovia-lr1103"
+    },
+    "code": {
+      "id": "LR1103",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR11",
+      "level": 1,
+      "name": {
+        "local": "Montserrado",
+        "en": "Montserrado",
+        "slug": "montserrado-lr11"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR11",
+        "level": 1,
+        "name": {
+          "local": "Montserrado",
+          "en": "Montserrado",
+          "slug": "montserrado-lr11"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "6.319",
+      "lon": "-10.699"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR1505",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Greenville",
+      "en": "Greenville",
+      "slug": "greenville-lr1505"
+    },
+    "code": {
+      "id": "LR1505",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR15",
+      "level": 1,
+      "name": {
+        "local": "Sinoe",
+        "en": "Sinoe",
+        "slug": "sinoe-lr15"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR15",
+        "level": 1,
+        "name": {
+          "local": "Sinoe",
+          "en": "Sinoe",
+          "slug": "sinoe-lr15"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "5.046",
+      "lon": "-9.042"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR1001",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Gwelekpoken",
+      "en": "Gwelekpoken",
+      "slug": "gwelekpoken-lr1001"
+    },
+    "code": {
+      "id": "LR1001",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR10",
+      "level": 1,
+      "name": {
+        "local": "Maryland",
+        "en": "Maryland",
+        "slug": "maryland-lr10"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR10",
+        "level": 1,
+        "name": {
+          "local": "Maryland",
+          "en": "Maryland",
+          "slug": "maryland-lr10"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "4.962",
+      "lon": "-7.932"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR1002",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Harper",
+      "en": "Harper",
+      "slug": "harper-lr1002"
+    },
+    "code": {
+      "id": "LR1002",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR10",
+      "level": 1,
+      "name": {
+        "local": "Maryland",
+        "en": "Maryland",
+        "slug": "maryland-lr10"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR10",
+        "level": 1,
+        "name": {
+          "local": "Maryland",
+          "en": "Maryland",
+          "slug": "maryland-lr10"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "4.427",
+      "lon": "-7.687"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR1506",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Jaedae",
+      "en": "Jaedae",
+      "slug": "jaedae-lr1506"
+    },
+    "code": {
+      "id": "LR1506",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR15",
+      "level": 1,
+      "name": {
+        "local": "Sinoe",
+        "en": "Sinoe",
+        "slug": "sinoe-lr15"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR15",
+        "level": 1,
+        "name": {
+          "local": "Sinoe",
+          "en": "Sinoe",
+          "slug": "sinoe-lr15"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "5.086",
+      "lon": "-8.522"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR1507",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Jeadepo",
+      "en": "Jeadepo",
+      "slug": "jeadepo-lr1507"
+    },
+    "code": {
+      "id": "LR1507",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR15",
+      "level": 1,
+      "name": {
+        "local": "Sinoe",
+        "en": "Sinoe",
+        "slug": "sinoe-lr15"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR15",
+        "level": 1,
+        "name": {
+          "local": "Sinoe",
+          "en": "Sinoe",
+          "slug": "sinoe-lr15"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "5.369",
+      "lon": "-8.374"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR1405",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Jo River",
+      "en": "Jo River",
+      "slug": "jo-river-lr1405"
+    },
+    "code": {
+      "id": "LR1405",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR14",
+      "level": 1,
+      "name": {
+        "local": "Rivercess",
+        "en": "Rivercess",
+        "slug": "rivercess-lr14"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR14",
+        "level": 1,
+        "name": {
+          "local": "Rivercess",
+          "en": "Rivercess",
+          "slug": "rivercess-lr14"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "6.035",
+      "lon": "-9.462"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR0203",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Jorquelleh",
+      "en": "Jorquelleh",
+      "slug": "jorquelleh-lr0203"
+    },
+    "code": {
+      "id": "LR0203",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR02",
+      "level": 1,
+      "name": {
+        "local": "Bong",
+        "en": "Bong",
+        "slug": "bong-lr02"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR02",
+        "level": 1,
+        "name": {
+          "local": "Bong",
+          "en": "Bong",
+          "slug": "bong-lr02"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "6.899",
+      "lon": "-9.431"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR1508",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Juarzon",
+      "en": "Juarzon",
+      "slug": "juarzon-lr1508"
+    },
+    "code": {
+      "id": "LR1508",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR15",
+      "level": 1,
+      "name": {
+        "local": "Sinoe",
+        "en": "Sinoe",
+        "slug": "sinoe-lr15"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR15",
+        "level": 1,
+        "name": {
+          "local": "Sinoe",
+          "en": "Sinoe",
+          "slug": "sinoe-lr15"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "5.312",
+      "lon": "-8.92"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR0903",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Kakata",
+      "en": "Kakata",
+      "slug": "kakata-lr0903"
+    },
+    "code": {
+      "id": "LR0903",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR09",
+      "level": 1,
+      "name": {
+        "local": "Margibi",
+        "en": "Margibi",
+        "slug": "margibi-lr09"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR09",
+        "level": 1,
+        "name": {
+          "local": "Margibi",
+          "en": "Margibi",
+          "slug": "margibi-lr09"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "6.691",
+      "lon": "-10.254"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR1304",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Karforh",
+      "en": "Karforh",
+      "slug": "karforh-lr1304"
+    },
+    "code": {
+      "id": "LR1304",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR13",
+      "level": 1,
+      "name": {
+        "local": "River Gee",
+        "en": "River Gee",
+        "slug": "river-gee-lr13"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR13",
+        "level": 1,
+        "name": {
+          "local": "River Gee",
+          "en": "River Gee",
+          "slug": "river-gee-lr13"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "5.282",
+      "lon": "-8.139"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR1003",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Karluway #1",
+      "en": "Karluway #1",
+      "slug": "karluway-1-lr1003"
+    },
+    "code": {
+      "id": "LR1003",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR10",
+      "level": 1,
+      "name": {
+        "local": "Maryland",
+        "en": "Maryland",
+        "slug": "maryland-lr10"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR10",
+        "level": 1,
+        "name": {
+          "local": "Maryland",
+          "en": "Maryland",
+          "slug": "maryland-lr10"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "4.792",
+      "lon": "-7.75"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR1004",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Karluway #2",
+      "en": "Karluway #2",
+      "slug": "karluway-2-lr1004"
+    },
+    "code": {
+      "id": "LR1004",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR10",
+      "level": 1,
+      "name": {
+        "local": "Maryland",
+        "en": "Maryland",
+        "slug": "maryland-lr10"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR10",
+        "level": 1,
+        "name": {
+          "local": "Maryland",
+          "en": "Maryland",
+          "slug": "maryland-lr10"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "4.692",
+      "lon": "-7.68"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR0102",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Klay",
+      "en": "Klay",
+      "slug": "klay-lr0102"
+    },
+    "code": {
+      "id": "LR0102",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR01",
+      "level": 1,
+      "name": {
+        "local": "Bomi",
+        "en": "Bomi",
+        "slug": "bomi-lr01"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR01",
+        "level": 1,
+        "name": {
+          "local": "Bomi",
+          "en": "Bomi",
+          "slug": "bomi-lr01"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "6.706",
+      "lon": "-10.813"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR0204",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Kokoyah",
+      "en": "Kokoyah",
+      "slug": "kokoyah-lr0204"
+    },
+    "code": {
+      "id": "LR0204",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR02",
+      "level": 1,
+      "name": {
+        "local": "Bong",
+        "en": "Bong",
+        "slug": "bong-lr02"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR02",
+        "level": 1,
+        "name": {
+          "local": "Bong",
+          "en": "Bong",
+          "slug": "bong-lr02"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "6.517",
+      "lon": "-9.551"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR0802",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Kolahun",
+      "en": "Kolahun",
+      "slug": "kolahun-lr0802"
+    },
+    "code": {
+      "id": "LR0802",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR08",
+      "level": 1,
+      "name": {
+        "local": "Lofa",
+        "en": "Lofa",
+        "slug": "lofa-lr08"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR08",
+        "level": 1,
+        "name": {
+          "local": "Lofa",
+          "en": "Lofa",
+          "slug": "lofa-lr08"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "8.111",
+      "lon": "-10.231"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR0306",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Kongba",
+      "en": "Kongba",
+      "slug": "kongba-lr0306"
+    },
+    "code": {
+      "id": "LR0306",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR03",
+      "level": 1,
+      "name": {
+        "local": "Gbarpolu",
+        "en": "Gbarpolu",
+        "slug": "gbarpolu-lr03"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR03",
+        "level": 1,
+        "name": {
+          "local": "Gbarpolu",
+          "en": "Gbarpolu",
+          "slug": "gbarpolu-lr03"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "7.674",
+      "lon": "-10.477"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR0606",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Konobo",
+      "en": "Konobo",
+      "slug": "konobo-lr0606"
+    },
+    "code": {
+      "id": "LR0606",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR06",
+      "level": 1,
+      "name": {
+        "local": "Grand Gedeh",
+        "en": "Grand Gedeh",
+        "slug": "grand-gedeh-lr06"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR06",
+        "level": 1,
+        "name": {
+          "local": "Grand Gedeh",
+          "en": "Grand Gedeh",
+          "slug": "grand-gedeh-lr06"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "5.832",
+      "lon": "-7.86"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR0205",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Kpaai",
+      "en": "Kpaai",
+      "slug": "kpaai-lr0205"
+    },
+    "code": {
+      "id": "LR0205",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR02",
+      "level": 1,
+      "name": {
+        "local": "Bong",
+        "en": "Bong",
+        "slug": "bong-lr02"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR02",
+        "level": 1,
+        "name": {
+          "local": "Bong",
+          "en": "Bong",
+          "slug": "bong-lr02"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "6.934",
+      "lon": "-9.252"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR1208",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Kparblee",
+      "en": "Kparblee",
+      "slug": "kparblee-lr1208"
+    },
+    "code": {
+      "id": "LR1208",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR12",
+      "level": 1,
+      "name": {
+        "local": "Nimba",
+        "en": "Nimba",
+        "slug": "nimba-lr12"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR12",
+        "level": 1,
+        "name": {
+          "local": "Nimba",
+          "en": "Nimba",
+          "slug": "nimba-lr12"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "6.645",
+      "lon": "-8.52"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR1509",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Kpayan",
+      "en": "Kpayan",
+      "slug": "kpayan-lr1509"
+    },
+    "code": {
+      "id": "LR1509",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR15",
+      "level": 1,
+      "name": {
+        "local": "Sinoe",
+        "en": "Sinoe",
+        "slug": "sinoe-lr15"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR15",
+        "level": 1,
+        "name": {
+          "local": "Sinoe",
+          "en": "Sinoe",
+          "slug": "sinoe-lr15"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "5.105",
+      "lon": "-8.85"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR0713",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Kpi",
+      "en": "Kpi",
+      "slug": "kpi-lr0713"
+    },
+    "code": {
+      "id": "LR0713",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR07",
+      "level": 1,
+      "name": {
+        "local": "Grand Kru",
+        "en": "Grand Kru",
+        "slug": "grand-kru-lr07"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR07",
+        "level": 1,
+        "name": {
+          "local": "Grand Kru",
+          "en": "Grand Kru",
+          "slug": "grand-kru-lr07"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "4.966",
+      "lon": "-8.086"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR1510",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Kulu Shaw Boe",
+      "en": "Kulu Shaw Boe",
+      "slug": "kulu-shaw-boe-lr1510"
+    },
+    "code": {
+      "id": "LR1510",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR15",
+      "level": 1,
+      "name": {
+        "local": "Sinoe",
+        "en": "Sinoe",
+        "slug": "sinoe-lr15"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR15",
+        "level": 1,
+        "name": {
+          "local": "Sinoe",
+          "en": "Sinoe",
+          "slug": "sinoe-lr15"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "5.563",
+      "lon": "-8.974"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR1209",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Leewehpea-Mahn",
+      "en": "Leewehpea-Mahn",
+      "slug": "leewehpea-mahn-lr1209"
+    },
+    "code": {
+      "id": "LR1209",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR12",
+      "level": 1,
+      "name": {
+        "local": "Nimba",
+        "en": "Nimba",
+        "slug": "nimba-lr12"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR12",
+        "level": 1,
+        "name": {
+          "local": "Nimba",
+          "en": "Nimba",
+          "slug": "nimba-lr12"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "7.043",
+      "lon": "-8.905"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR0714",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Lower Jloh",
+      "en": "Lower Jloh",
+      "slug": "lower-jloh-lr0714"
+    },
+    "code": {
+      "id": "LR0714",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR07",
+      "level": 1,
+      "name": {
+        "local": "Grand Kru",
+        "en": "Grand Kru",
+        "slug": "grand-kru-lr07"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR07",
+        "level": 1,
+        "name": {
+          "local": "Grand Kru",
+          "en": "Grand Kru",
+          "slug": "grand-kru-lr07"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "4.874",
+      "lon": "-8.563"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR0904",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Mambah Kaba",
+      "en": "Mambah Kaba",
+      "slug": "mambah-kaba-lr0904"
+    },
+    "code": {
+      "id": "LR0904",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR09",
+      "level": 1,
+      "name": {
+        "local": "Margibi",
+        "en": "Margibi",
+        "slug": "margibi-lr09"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR09",
+        "level": 1,
+        "name": {
+          "local": "Margibi",
+          "en": "Margibi",
+          "slug": "margibi-lr09"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "6.257",
+      "lon": "-10.504"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR1210",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Meinpea-Mahn",
+      "en": "Meinpea-Mahn",
+      "slug": "meinpea-mahn-lr1210"
+    },
+    "code": {
+      "id": "LR1210",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR12",
+      "level": 1,
+      "name": {
+        "local": "Nimba",
+        "en": "Nimba",
+        "slug": "nimba-lr12"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR12",
+        "level": 1,
+        "name": {
+          "local": "Nimba",
+          "en": "Nimba",
+          "slug": "nimba-lr12"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "7.008",
+      "lon": "-9.068"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR1305",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Nanee",
+      "en": "Nanee",
+      "slug": "nanee-lr1305"
+    },
+    "code": {
+      "id": "LR1305",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR13",
+      "level": 1,
+      "name": {
+        "local": "River Gee",
+        "en": "River Gee",
+        "slug": "river-gee-lr13"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR13",
+        "level": 1,
+        "name": {
+          "local": "River Gee",
+          "en": "River Gee",
+          "slug": "river-gee-lr13"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "5.155",
+      "lon": "-8.132"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR0406",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Neekreen",
+      "en": "Neekreen",
+      "slug": "neekreen-lr0406"
+    },
+    "code": {
+      "id": "LR0406",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR04",
+      "level": 1,
+      "name": {
+        "local": "Grand Bassa",
+        "en": "Grand Bassa",
+        "slug": "grand-bassa-lr04"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR04",
+        "level": 1,
+        "name": {
+          "local": "Grand Bassa",
+          "en": "Grand Bassa",
+          "slug": "grand-bassa-lr04"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "5.928",
+      "lon": "-9.942"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR1406",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Norwein",
+      "en": "Norwein",
+      "slug": "norwein-lr1406"
+    },
+    "code": {
+      "id": "LR1406",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR14",
+      "level": 1,
+      "name": {
+        "local": "Rivercess",
+        "en": "Rivercess",
+        "slug": "rivercess-lr14"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR14",
+        "level": 1,
+        "name": {
+          "local": "Rivercess",
+          "en": "Rivercess",
+          "slug": "rivercess-lr14"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "5.841",
+      "lon": "-9.588"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR0715",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Nrokwia-Wesldow",
+      "en": "Nrokwia-Wesldow",
+      "slug": "nrokwia-wesldow-lr0715"
+    },
+    "code": {
+      "id": "LR0715",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR07",
+      "level": 1,
+      "name": {
+        "local": "Grand Kru",
+        "en": "Grand Kru",
+        "slug": "grand-kru-lr07"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR07",
+        "level": 1,
+        "name": {
+          "local": "Grand Kru",
+          "en": "Grand Kru",
+          "slug": "grand-kru-lr07"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "4.821",
+      "lon": "-8.327"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR1306",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Nyenawliken",
+      "en": "Nyenawliken",
+      "slug": "nyenawliken-lr1306"
+    },
+    "code": {
+      "id": "LR1306",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR13",
+      "level": 1,
+      "name": {
+        "local": "River Gee",
+        "en": "River Gee",
+        "slug": "river-gee-lr13"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR13",
+        "level": 1,
+        "name": {
+          "local": "River Gee",
+          "en": "River Gee",
+          "slug": "river-gee-lr13"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "5.129",
+      "lon": "-7.983"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR1307",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Nyenebo",
+      "en": "Nyenebo",
+      "slug": "nyenebo-lr1307"
+    },
+    "code": {
+      "id": "LR1307",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR13",
+      "level": 1,
+      "name": {
+        "local": "River Gee",
+        "en": "River Gee",
+        "slug": "river-gee-lr13"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR13",
+        "level": 1,
+        "name": {
+          "local": "River Gee",
+          "en": "River Gee",
+          "slug": "river-gee-lr13"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "4.899",
+      "lon": "-7.721"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR1005",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Nyorken",
+      "en": "Nyorken",
+      "slug": "nyorken-lr1005"
+    },
+    "code": {
+      "id": "LR1005",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR10",
+      "level": 1,
+      "name": {
+        "local": "Maryland",
+        "en": "Maryland",
+        "slug": "maryland-lr10"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR10",
+        "level": 1,
+        "name": {
+          "local": "Maryland",
+          "en": "Maryland",
+          "slug": "maryland-lr10"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "5.001",
+      "lon": "-7.867"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR0407",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Owensgrove",
+      "en": "Owensgrove",
+      "slug": "owensgrove-lr0407"
+    },
+    "code": {
+      "id": "LR0407",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR04",
+      "level": 1,
+      "name": {
+        "local": "Grand Bassa",
+        "en": "Grand Bassa",
+        "slug": "grand-bassa-lr04"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR04",
+        "level": 1,
+        "name": {
+          "local": "Grand Bassa",
+          "en": "Grand Bassa",
+          "slug": "grand-bassa-lr04"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "6.194",
+      "lon": "-10.273"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR0206",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Panta",
+      "en": "Panta",
+      "slug": "panta-lr0206"
+    },
+    "code": {
+      "id": "LR0206",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR02",
+      "level": 1,
+      "name": {
+        "local": "Bong",
+        "en": "Bong",
+        "slug": "bong-lr02"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR02",
+        "level": 1,
+        "name": {
+          "local": "Bong",
+          "en": "Bong",
+          "slug": "bong-lr02"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "7.219",
+      "lon": "-9.178"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR1511",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Plahn Nyarn",
+      "en": "Plahn Nyarn",
+      "slug": "plahn-nyarn-lr1511"
+    },
+    "code": {
+      "id": "LR1511",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR15",
+      "level": 1,
+      "name": {
+        "local": "Sinoe",
+        "en": "Sinoe",
+        "slug": "sinoe-lr15"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR15",
+        "level": 1,
+        "name": {
+          "local": "Sinoe",
+          "en": "Sinoe",
+          "slug": "sinoe-lr15"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "5.323",
+      "lon": "-9.035"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR1006",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Pleebo/Sodoken",
+      "en": "Pleebo/Sodoken",
+      "slug": "pleebosodoken-lr1006"
+    },
+    "code": {
+      "id": "LR1006",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR10",
+      "level": 1,
+      "name": {
+        "local": "Maryland",
+        "en": "Maryland",
+        "slug": "maryland-lr10"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR10",
+        "level": 1,
+        "name": {
+          "local": "Maryland",
+          "en": "Maryland",
+          "slug": "maryland-lr10"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "4.551",
+      "lon": "-7.682"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR0504",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Porkpa",
+      "en": "Porkpa",
+      "slug": "porkpa-lr0504"
+    },
+    "code": {
+      "id": "LR0504",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR05",
+      "level": 1,
+      "name": {
+        "local": "Grand Cape Mount",
+        "en": "Grand Cape Mount",
+        "slug": "grand-cape-mount-lr05"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR05",
+        "level": 1,
+        "name": {
+          "local": "Grand Cape Mount",
+          "en": "Grand Cape Mount",
+          "slug": "grand-cape-mount-lr05"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "7.305",
+      "lon": "-11.042"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR1308",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Potupo",
+      "en": "Potupo",
+      "slug": "potupo-lr1308"
+    },
+    "code": {
+      "id": "LR1308",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR13",
+      "level": 1,
+      "name": {
+        "local": "River Gee",
+        "en": "River Gee",
+        "slug": "river-gee-lr13"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR13",
+        "level": 1,
+        "name": {
+          "local": "River Gee",
+          "en": "River Gee",
+          "slug": "river-gee-lr13"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "5.336",
+      "lon": "-7.818"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR0607",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Putu",
+      "en": "Putu",
+      "slug": "putu-lr0607"
+    },
+    "code": {
+      "id": "LR0607",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR06",
+      "level": 1,
+      "name": {
+        "local": "Grand Gedeh",
+        "en": "Grand Gedeh",
+        "slug": "grand-gedeh-lr06"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR06",
+        "level": 1,
+        "name": {
+          "local": "Grand Gedeh",
+          "en": "Grand Gedeh",
+          "slug": "grand-gedeh-lr06"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "5.686",
+      "lon": "-8.21"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR1512",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Pynes Town",
+      "en": "Pynes Town",
+      "slug": "pynes-town-lr1512"
+    },
+    "code": {
+      "id": "LR1512",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR15",
+      "level": 1,
+      "name": {
+        "local": "Sinoe",
+        "en": "Sinoe",
+        "slug": "sinoe-lr15"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR15",
+        "level": 1,
+        "name": {
+          "local": "Sinoe",
+          "en": "Sinoe",
+          "slug": "sinoe-lr15"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "5.569",
+      "lon": "-8.569"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR0803",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Quardu Boundi",
+      "en": "Quardu Boundi",
+      "slug": "quardu-boundi-lr0803"
+    },
+    "code": {
+      "id": "LR0803",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR08",
+      "level": 1,
+      "name": {
+        "local": "Lofa",
+        "en": "Lofa",
+        "slug": "lofa-lr08"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR08",
+        "level": 1,
+        "name": {
+          "local": "Lofa",
+          "en": "Lofa",
+          "slug": "lofa-lr08"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "8.376",
+      "lon": "-9.614"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR0207",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Salala",
+      "en": "Salala",
+      "slug": "salala-lr0207"
+    },
+    "code": {
+      "id": "LR0207",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR02",
+      "level": 1,
+      "name": {
+        "local": "Bong",
+        "en": "Bong",
+        "slug": "bong-lr02"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR02",
+        "level": 1,
+        "name": {
+          "local": "Bong",
+          "en": "Bong",
+          "slug": "bong-lr02"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "6.777",
+      "lon": "-9.965"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR0804",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Salayea",
+      "en": "Salayea",
+      "slug": "salayea-lr0804"
+    },
+    "code": {
+      "id": "LR0804",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR08",
+      "level": 1,
+      "name": {
+        "local": "Lofa",
+        "en": "Lofa",
+        "slug": "lofa-lr08"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR08",
+        "level": 1,
+        "name": {
+          "local": "Lofa",
+          "en": "Lofa",
+          "slug": "lofa-lr08"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "7.471",
+      "lon": "-9.559"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR1407",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Sam Gbalor",
+      "en": "Sam Gbalor",
+      "slug": "sam-gbalor-lr1407"
+    },
+    "code": {
+      "id": "LR1407",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR14",
+      "level": 1,
+      "name": {
+        "local": "Rivercess",
+        "en": "Rivercess",
+        "slug": "rivercess-lr14"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR14",
+        "level": 1,
+        "name": {
+          "local": "Rivercess",
+          "en": "Rivercess",
+          "slug": "rivercess-lr14"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "5.383",
+      "lon": "-9.411"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR1211",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Sanniquellie Mahn",
+      "en": "Sanniquellie Mahn",
+      "slug": "sanniquellie-mahn-lr1211"
+    },
+    "code": {
+      "id": "LR1211",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR12",
+      "level": 1,
+      "name": {
+        "local": "Nimba",
+        "en": "Nimba",
+        "slug": "nimba-lr12"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR12",
+        "level": 1,
+        "name": {
+          "local": "Nimba",
+          "en": "Nimba",
+          "slug": "nimba-lr12"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "7.382",
+      "lon": "-8.709"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR0208",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Sanoyeah",
+      "en": "Sanoyeah",
+      "slug": "sanoyeah-lr0208"
+    },
+    "code": {
+      "id": "LR0208",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR02",
+      "level": 1,
+      "name": {
+        "local": "Bong",
+        "en": "Bong",
+        "slug": "bong-lr02"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR02",
+        "level": 1,
+        "name": {
+          "local": "Bong",
+          "en": "Bong",
+          "slug": "bong-lr02"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "7.035",
+      "lon": "-9.916"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR1513",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Sanquin Dist #1",
+      "en": "Sanquin Dist #1",
+      "slug": "sanquin-dist-1-lr1513"
+    },
+    "code": {
+      "id": "LR1513",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR15",
+      "level": 1,
+      "name": {
+        "local": "Sinoe",
+        "en": "Sinoe",
+        "slug": "sinoe-lr15"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR15",
+        "level": 1,
+        "name": {
+          "local": "Sinoe",
+          "en": "Sinoe",
+          "slug": "sinoe-lr15"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "5.482",
+      "lon": "-9.225"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR1515",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Sanquin Dist #2",
+      "en": "Sanquin Dist #2",
+      "slug": "sanquin-dist-2-lr1515"
+    },
+    "code": {
+      "id": "LR1515",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR15",
+      "level": 1,
+      "name": {
+        "local": "Sinoe",
+        "en": "Sinoe",
+        "slug": "sinoe-lr15"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR15",
+        "level": 1,
+        "name": {
+          "local": "Sinoe",
+          "en": "Sinoe",
+          "slug": "sinoe-lr15"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "5.211",
+      "lon": "-9.172"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR1514",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Sanquin Dist #3",
+      "en": "Sanquin Dist #3",
+      "slug": "sanquin-dist-3-lr1514"
+    },
+    "code": {
+      "id": "LR1514",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR15",
+      "level": 1,
+      "name": {
+        "local": "Sinoe",
+        "en": "Sinoe",
+        "slug": "sinoe-lr15"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR15",
+        "level": 1,
+        "name": {
+          "local": "Sinoe",
+          "en": "Sinoe",
+          "slug": "sinoe-lr15"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "5.279",
+      "lon": "-9.326"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR1309",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Sarbo",
+      "en": "Sarbo",
+      "slug": "sarbo-lr1309"
+    },
+    "code": {
+      "id": "LR1309",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR13",
+      "level": 1,
+      "name": {
+        "local": "River Gee",
+        "en": "River Gee",
+        "slug": "river-gee-lr13"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR13",
+        "level": 1,
+        "name": {
+          "local": "River Gee",
+          "en": "River Gee",
+          "slug": "river-gee-lr13"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "5.169",
+      "lon": "-7.635"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR1516",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Seekon",
+      "en": "Seekon",
+      "slug": "seekon-lr1516"
+    },
+    "code": {
+      "id": "LR1516",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR15",
+      "level": 1,
+      "name": {
+        "local": "Sinoe",
+        "en": "Sinoe",
+        "slug": "sinoe-lr15"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR15",
+        "level": 1,
+        "name": {
+          "local": "Sinoe",
+          "en": "Sinoe",
+          "slug": "sinoe-lr15"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "5.635",
+      "lon": "-8.703"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR0103",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Senjeh",
+      "en": "Senjeh",
+      "slug": "senjeh-lr0103"
+    },
+    "code": {
+      "id": "LR0103",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR01",
+      "level": 1,
+      "name": {
+        "local": "Bomi",
+        "en": "Bomi",
+        "slug": "bomi-lr01"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR01",
+        "level": 1,
+        "name": {
+          "local": "Bomi",
+          "en": "Bomi",
+          "slug": "bomi-lr01"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "6.838",
+      "lon": "-10.891"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR0408",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "St. John River City",
+      "en": "St. John River City",
+      "slug": "st-john-river-city-lr0408"
+    },
+    "code": {
+      "id": "LR0408",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR04",
+      "level": 1,
+      "name": {
+        "local": "Grand Bassa",
+        "en": "Grand Bassa",
+        "slug": "grand-bassa-lr04"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR04",
+        "level": 1,
+        "name": {
+          "local": "Grand Bassa",
+          "en": "Grand Bassa",
+          "slug": "grand-bassa-lr04"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "6.04",
+      "lon": "-10.03"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR1104",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "St. Paul River",
+      "en": "St. Paul River",
+      "slug": "st-paul-river-lr1104"
+    },
+    "code": {
+      "id": "LR1104",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR11",
+      "level": 1,
+      "name": {
+        "local": "Montserrado",
+        "en": "Montserrado",
+        "slug": "montserrado-lr11"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR11",
+        "level": 1,
+        "name": {
+          "local": "Montserrado",
+          "en": "Montserrado",
+          "slug": "montserrado-lr11"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "6.5",
+      "lon": "-10.737"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR0209",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Suakoko",
+      "en": "Suakoko",
+      "slug": "suakoko-lr0209"
+    },
+    "code": {
+      "id": "LR0209",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR02",
+      "level": 1,
+      "name": {
+        "local": "Bong",
+        "en": "Bong",
+        "slug": "bong-lr02"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR02",
+        "level": 1,
+        "name": {
+          "local": "Bong",
+          "en": "Bong",
+          "slug": "bong-lr02"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "7.069",
+      "lon": "-9.622"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR0104",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Suehn Mecca",
+      "en": "Suehn Mecca",
+      "slug": "suehn-mecca-lr0104"
+    },
+    "code": {
+      "id": "LR0104",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR01",
+      "level": 1,
+      "name": {
+        "local": "Bomi",
+        "en": "Bomi",
+        "slug": "bomi-lr01"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR01",
+        "level": 1,
+        "name": {
+          "local": "Bomi",
+          "en": "Bomi",
+          "slug": "bomi-lr01"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "6.717",
+      "lon": "-10.654"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR0608",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Tchien",
+      "en": "Tchien",
+      "slug": "tchien-lr0608"
+    },
+    "code": {
+      "id": "LR0608",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR06",
+      "level": 1,
+      "name": {
+        "local": "Grand Gedeh",
+        "en": "Grand Gedeh",
+        "slug": "grand-gedeh-lr06"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR06",
+        "level": 1,
+        "name": {
+          "local": "Grand Gedeh",
+          "en": "Grand Gedeh",
+          "slug": "grand-gedeh-lr06"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "6.012",
+      "lon": "-8.104"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR0505",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Tewor",
+      "en": "Tewor",
+      "slug": "tewor-lr0505"
+    },
+    "code": {
+      "id": "LR0505",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR05",
+      "level": 1,
+      "name": {
+        "local": "Grand Cape Mount",
+        "en": "Grand Cape Mount",
+        "slug": "grand-cape-mount-lr05"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR05",
+        "level": 1,
+        "name": {
+          "local": "Grand Cape Mount",
+          "en": "Grand Cape Mount",
+          "slug": "grand-cape-mount-lr05"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "6.942",
+      "lon": "-11.351"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR1105",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Todee",
+      "en": "Todee",
+      "slug": "todee-lr1105"
+    },
+    "code": {
+      "id": "LR1105",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR11",
+      "level": 1,
+      "name": {
+        "local": "Montserrado",
+        "en": "Montserrado",
+        "slug": "montserrado-lr11"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR11",
+        "level": 1,
+        "name": {
+          "local": "Montserrado",
+          "en": "Montserrado",
+          "slug": "montserrado-lr11"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "6.632",
+      "lon": "-10.52"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR0716",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Trenbo",
+      "en": "Trenbo",
+      "slug": "trenbo-lr0716"
+    },
+    "code": {
+      "id": "LR0716",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR07",
+      "level": 1,
+      "name": {
+        "local": "Grand Kru",
+        "en": "Grand Kru",
+        "slug": "grand-kru-lr07"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR07",
+        "level": 1,
+        "name": {
+          "local": "Grand Kru",
+          "en": "Grand Kru",
+          "slug": "grand-kru-lr07"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "4.704",
+      "lon": "-7.875"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR0210",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Tukpahblee",
+      "en": "Tukpahblee",
+      "slug": "tukpahblee-lr0210"
+    },
+    "code": {
+      "id": "LR0210",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR02",
+      "level": 1,
+      "name": {
+        "local": "Bong",
+        "en": "Bong",
+        "slug": "bong-lr02"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR02",
+        "level": 1,
+        "name": {
+          "local": "Bong",
+          "en": "Bong",
+          "slug": "bong-lr02"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "6.619",
+      "lon": "-9.427"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR1310",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Tuobo",
+      "en": "Tuobo",
+      "slug": "tuobo-lr1310"
+    },
+    "code": {
+      "id": "LR1310",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR13",
+      "level": 1,
+      "name": {
+        "local": "River Gee",
+        "en": "River Gee",
+        "slug": "river-gee-lr13"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR13",
+        "level": 1,
+        "name": {
+          "local": "River Gee",
+          "en": "River Gee",
+          "slug": "river-gee-lr13"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "5.018",
+      "lon": "-7.695"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR1212",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Twan River",
+      "en": "Twan River",
+      "slug": "twan-river-lr1212"
+    },
+    "code": {
+      "id": "LR1212",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR12",
+      "level": 1,
+      "name": {
+        "local": "Nimba",
+        "en": "Nimba",
+        "slug": "nimba-lr12"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR12",
+        "level": 1,
+        "name": {
+          "local": "Nimba",
+          "en": "Nimba",
+          "slug": "nimba-lr12"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "7.089",
+      "lon": "-8.436"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR0717",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Upper Jloh",
+      "en": "Upper Jloh",
+      "slug": "upper-jloh-lr0717"
+    },
+    "code": {
+      "id": "LR0717",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR07",
+      "level": 1,
+      "name": {
+        "local": "Grand Kru",
+        "en": "Grand Kru",
+        "slug": "grand-kru-lr07"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR07",
+        "level": 1,
+        "name": {
+          "local": "Grand Kru",
+          "en": "Grand Kru",
+          "slug": "grand-kru-lr07"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "4.828",
+      "lon": "-8.458"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR0805",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Vahun",
+      "en": "Vahun",
+      "slug": "vahun-lr0805"
+    },
+    "code": {
+      "id": "LR0805",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR08",
+      "level": 1,
+      "name": {
+        "local": "Lofa",
+        "en": "Lofa",
+        "slug": "lofa-lr08"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR08",
+        "level": 1,
+        "name": {
+          "local": "Lofa",
+          "en": "Lofa",
+          "slug": "lofa-lr08"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "8.039",
+      "lon": "-10.493"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR0806",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Voinjama",
+      "en": "Voinjama",
+      "slug": "voinjama-lr0806"
+    },
+    "code": {
+      "id": "LR0806",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR08",
+      "level": 1,
+      "name": {
+        "local": "Lofa",
+        "en": "Lofa",
+        "slug": "lofa-lr08"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR08",
+        "level": 1,
+        "name": {
+          "local": "Lofa",
+          "en": "Lofa",
+          "slug": "lofa-lr08"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "8.245",
+      "lon": "-9.809"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR1517",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Wedjah",
+      "en": "Wedjah",
+      "slug": "wedjah-lr1517"
+    },
+    "code": {
+      "id": "LR1517",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR15",
+      "level": 1,
+      "name": {
+        "local": "Sinoe",
+        "en": "Sinoe",
+        "slug": "sinoe-lr15"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR15",
+        "level": 1,
+        "name": {
+          "local": "Sinoe",
+          "en": "Sinoe",
+          "slug": "sinoe-lr15"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "5.293",
+      "lon": "-8.793"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR1213",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Wee-Gbehyi-Mahn",
+      "en": "Wee-Gbehyi-Mahn",
+      "slug": "wee-gbehyi-mahn-lr1213"
+    },
+    "code": {
+      "id": "LR1213",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR12",
+      "level": 1,
+      "name": {
+        "local": "Nimba",
+        "en": "Nimba",
+        "slug": "nimba-lr12"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR12",
+        "level": 1,
+        "name": {
+          "local": "Nimba",
+          "en": "Nimba",
+          "slug": "nimba-lr12"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "6.906",
+      "lon": "-8.864"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR1007",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Whojah",
+      "en": "Whojah",
+      "slug": "whojah-lr1007"
+    },
+    "code": {
+      "id": "LR1007",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR10",
+      "level": 1,
+      "name": {
+        "local": "Maryland",
+        "en": "Maryland",
+        "slug": "maryland-lr10"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR10",
+        "level": 1,
+        "name": {
+          "local": "Maryland",
+          "en": "Maryland",
+          "slug": "maryland-lr10"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "4.945",
+      "lon": "-8.016"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR0718",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Wlogba",
+      "en": "Wlogba",
+      "slug": "wlogba-lr0718"
+    },
+    "code": {
+      "id": "LR0718",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR07",
+      "level": 1,
+      "name": {
+        "local": "Grand Kru",
+        "en": "Grand Kru",
+        "slug": "grand-kru-lr07"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR07",
+        "level": 1,
+        "name": {
+          "local": "Grand Kru",
+          "en": "Grand Kru",
+          "slug": "grand-kru-lr07"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "5.086",
+      "lon": "-8.172"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR1214",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Yarmein",
+      "en": "Yarmein",
+      "slug": "yarmein-lr1214"
+    },
+    "code": {
+      "id": "LR1214",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR12",
+      "level": 1,
+      "name": {
+        "local": "Nimba",
+        "en": "Nimba",
+        "slug": "nimba-lr12"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR12",
+        "level": 1,
+        "name": {
+          "local": "Nimba",
+          "en": "Nimba",
+          "slug": "nimba-lr12"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "7.523",
+      "lon": "-8.615"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR1215",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Yarpea Mahn",
+      "en": "Yarpea Mahn",
+      "slug": "yarpea-mahn-lr1215"
+    },
+    "code": {
+      "id": "LR1215",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR12",
+      "level": 1,
+      "name": {
+        "local": "Nimba",
+        "en": "Nimba",
+        "slug": "nimba-lr12"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR12",
+        "level": 1,
+        "name": {
+          "local": "Nimba",
+          "en": "Nimba",
+          "slug": "nimba-lr12"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "7.237",
+      "lon": "-8.687"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR1216",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Yarwein Mehnsonnoh",
+      "en": "Yarwein Mehnsonnoh",
+      "slug": "yarwein-mehnsonnoh-lr1216"
+    },
+    "code": {
+      "id": "LR1216",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR12",
+      "level": 1,
+      "name": {
+        "local": "Nimba",
+        "en": "Nimba",
+        "slug": "nimba-lr12"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR12",
+        "level": 1,
+        "name": {
+          "local": "Nimba",
+          "en": "Nimba",
+          "slug": "nimba-lr12"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "6.594",
+      "lon": "-9.087"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR0211",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Yeallequelleh",
+      "en": "Yeallequelleh",
+      "slug": "yeallequelleh-lr0211"
+    },
+    "code": {
+      "id": "LR0211",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR02",
+      "level": 1,
+      "name": {
+        "local": "Bong",
+        "en": "Bong",
+        "slug": "bong-lr02"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR02",
+        "level": 1,
+        "name": {
+          "local": "Bong",
+          "en": "Bong",
+          "slug": "bong-lr02"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "6.817",
+      "lon": "-9.668"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR1408",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Zarflahn",
+      "en": "Zarflahn",
+      "slug": "zarflahn-lr1408"
+    },
+    "code": {
+      "id": "LR1408",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR14",
+      "level": 1,
+      "name": {
+        "local": "Rivercess",
+        "en": "Rivercess",
+        "slug": "rivercess-lr14"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR14",
+        "level": 1,
+        "name": {
+          "local": "Rivercess",
+          "en": "Rivercess",
+          "slug": "rivercess-lr14"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "5.556",
+      "lon": "-9.549"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR1217",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Zoe-Gbao",
+      "en": "Zoe-Gbao",
+      "slug": "zoe-gbao-lr1217"
+    },
+    "code": {
+      "id": "LR1217",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR12",
+      "level": 1,
+      "name": {
+        "local": "Nimba",
+        "en": "Nimba",
+        "slug": "nimba-lr12"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR12",
+        "level": 1,
+        "name": {
+          "local": "Nimba",
+          "en": "Nimba",
+          "slug": "nimba-lr12"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "6.999",
+      "lon": "-8.703"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR0807",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Zorzor",
+      "en": "Zorzor",
+      "slug": "zorzor-lr0807"
+    },
+    "code": {
+      "id": "LR0807",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR08",
+      "level": 1,
+      "name": {
+        "local": "Lofa",
+        "en": "Lofa",
+        "slug": "lofa-lr08"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR08",
+        "level": 1,
+        "name": {
+          "local": "Lofa",
+          "en": "Lofa",
+          "slug": "lofa-lr08"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "7.916",
+      "lon": "-9.685"
+    },
+    "metadata": {},
+    "source": {}
+  },
+  {
+    "id": "LR0212",
+    "level": 2,
+    "level_name": {
+      "local": "District",
+      "en": "District"
+    },
+    "name": {
+      "local": "Zota",
+      "en": "Zota",
+      "slug": "zota-lr0212"
+    },
+    "code": {
+      "id": "LR0212",
+      "iso": null
+    },
+    "parent": {
+      "id": "LR02",
+      "level": 1,
+      "name": {
+        "local": "Bong",
+        "en": "Bong",
+        "slug": "bong-lr02"
+      }
+    },
+    "ancestors": [
+      {
+        "id": "LR02",
+        "level": 1,
+        "name": {
+          "local": "Bong",
+          "en": "Bong",
+          "slug": "bong-lr02"
+        }
+      }
+    ],
+    "children_count": {},
+    "zip_codes": [],
+    "geo": {
+      "lat": "7.271",
+      "lon": "-9.451"
+    },
+    "metadata": {},
+    "source": {}
+  }
+]

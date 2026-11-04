@@ -109,3 +109,101 @@ const photoInput = document.getElementById("photo");
             alert("Please wait for photo compression to finish.");
         }
     });
+
+
+// AGRIDOC LIBERIA LOCATION DROPDOWNS
+(() => {
+    const countySelect = document.getElementById("county");
+    const districtSelect = document.getElementById("district");
+
+    if (!countySelect || !districtSelect) return;
+
+    function normalizeCounty(name) {
+        const value = String(name || "").trim().toLowerCase();
+
+        if (value === "rivercess" || value === "river cess") {
+            return "river cess";
+        }
+
+        return value;
+    }
+
+    function setDistrictPlaceholder(message) {
+        districtSelect.replaceChildren(new Option(message, ""));
+        districtSelect.disabled = true;
+    }
+
+    countySelect.disabled = true;
+    setDistrictPlaceholder("Select a county first");
+
+    fetch("/static/data/liberia-districts.json")
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Location data request failed: HTTP ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(districts => {
+            const counties = new Map();
+
+            districts.forEach(district => {
+                const countyName = district.parent?.name?.en;
+                if (!countyName) return;
+
+                const key = normalizeCounty(countyName);
+                if (!counties.has(key)) {
+                    counties.set(
+                        key,
+                        key === "river cess" ? "River Cess" : countyName
+                    );
+                }
+            });
+
+            [...counties.values()]
+                .sort((a, b) => a.localeCompare(b))
+                .forEach(county => {
+                    countySelect.add(new Option(county, county));
+                });
+
+            countySelect.disabled = false;
+
+            countySelect.addEventListener("change", () => {
+                const selectedCounty = countySelect.value;
+
+                districtSelect.replaceChildren(
+                    new Option(
+                        selectedCounty ? "Select district" : "Select a county first",
+                        ""
+                    )
+                );
+
+                districtSelect.disabled = true;
+
+                if (!selectedCounty) return;
+
+                const matchingDistricts = districts
+                    .filter(district =>
+                        normalizeCounty(district.parent?.name?.en) ===
+                        normalizeCounty(selectedCounty)
+                    )
+                    .map(district => district.name?.en)
+                    .filter(Boolean)
+                    .sort((a, b) => a.localeCompare(b));
+
+                matchingDistricts.forEach(name => {
+                    districtSelect.add(new Option(name, name));
+                });
+
+                districtSelect.disabled = matchingDistricts.length === 0;
+            });
+        })
+        .catch(error => {
+            console.error("Could not load county and district options:", error);
+
+            countySelect.replaceChildren(
+                new Option("Location data unavailable", "")
+            );
+            countySelect.disabled = true;
+            setDistrictPlaceholder("Districts unavailable");
+        });
+})();

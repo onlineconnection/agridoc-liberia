@@ -24,3 +24,8 @@ venv/
 # Editor and template backups
 *.backup
 *.photo-backup
+
+# Additional local files and backups
+.ven
+*.backup*
+*.pre-*backup

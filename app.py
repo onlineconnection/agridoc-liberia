@@ -119,6 +119,135 @@ def service_worker():
     return response
 
 
+def normalize_liberian_phone(phone):
+    """Convert valid Liberian phone numbers to local 10-digit format."""
+    import re
+
+    digits = re.sub(r"\D", "", phone or "")
+
+    if len(digits) == 12 and digits.startswith("231"):
+        return "0" + digits[3:]
+
+    if len(digits) == 10 and digits.startswith("0"):
+        return digits
+
+    return None
+
+
+def find_registered_farmer_by_phone(phone):
+    """Find exactly one registered farmer using their normalized phone."""
+    local_phone = normalize_liberian_phone(phone)
+    if not local_phone:
+        return "invalid", None
+
+    headers = service_headers()
+    if not headers:
+        return "unavailable", None
+
+    try:
+        response = requests.get(
+            f"{SUPABASE_URL}/rest/v1/farmers",
+            headers=headers,
+            params={
+                "phone_number": f"eq.{local_phone}",
+                "is_archived": "eq.false",
+                "select": "id,county,district,community",
+                "limit": 2,
+            },
+            timeout=10,
+        )
+
+        if response.status_code != 200:
+            return "unavailable", None
+
+        farmers = response.json()
+
+        if len(farmers) == 0:
+            return "not_found", None
+
+        if len(farmers) > 1:
+            return "ambiguous", None
+
+        return "found", farmers[0]
+
+    except (requests.exceptions.RequestException, ValueError, KeyError):
+        return "unavailable", None
+
+
+@app.route("/ussd", methods=["POST"])
+def ussd_callback():
+    """Receive USSD requests from Africa's Talking."""
+    phone_number = (request.form.get("phoneNumber") or "").strip()
+
+    if not phone_number:
+        message = "END Unable to identify your phone number."
+    else:
+        status, farmer = find_registered_farmer_by_phone(phone_number)
+
+        if status == "found":
+            text = (request.form.get("text") or "").strip()
+
+            if text == "":
+                message = (
+                    "CON Welcome to AgriDoc Liberia\n"
+                    "1. Submit farm information\n"
+                    "2. Report a farming problem\n"
+                    "3. Request agricultural assistance\n"
+                    "4. Check my submissions\n"
+                    "5. Agricultural information\n"
+                    "6. Update contact information\n"
+                    "0. Exit"
+                )
+
+            elif text == "1":
+                message = (
+                    "CON What crops are you growing?\n"
+                    "Example: Rice, Cassava, Maize"
+                )
+
+            elif text.startswith("1*"):
+                crops = text[2:].strip()
+
+                if not crops:
+                    message = (
+                        "CON Please enter the crops you are growing.\n"
+                        "Example: Rice, Cassava, Maize"
+                    )
+                elif len(crops) > 200:
+                    message = "END Your crop list is too long. Please try again with a shorter list."
+                elif create_farmer_crop_report(farmer, crop_type=crops):
+                    message = (
+                        "END Thank you. Your crop information has been submitted "
+                        "and is awaiting verification."
+                    )
+                else:
+                    message = "END We could not save your information. Please try again later."
+
+            elif text == "0":
+                message = "END Thank you for using AgriDoc Liberia."
+
+            elif text in {"2", "3", "4", "5", "6"}:
+                message = "END This service is being prepared. Please try again later."
+
+            else:
+                message = "END Invalid selection. Please try again."
+
+        elif status == "not_found":
+            message = "END This phone number is not registered with AgriDoc. Please contact a Field Officer."
+        elif status == "ambiguous":
+            message = "END We could not verify your registration. Please contact an AgriDoc administrator."
+        elif status == "invalid":
+            message = "END Invalid phone number format."
+        else:
+            message = "END AgriDoc is temporarily unavailable. Please try again later."
+
+    return message, 200, {
+        "Content-Type": "text/plain; charset=utf-8"
+    }
+
+csrf.exempt(ussd_callback)
+
+
 @app.route("/")
 def index():
     return render_template("index.html")
@@ -182,43 +311,30 @@ def logout():
 @role_required("admin", login_endpoint="admin_login")
 def admin_dashboard():
     h = service_headers()
-    stats = fetch_farmer_stats() if h else None
-    report_stats = fetch_agricultural_report_stats() if h else None
     county_stats = fetch_county_farmer_stats() if h else None
-    search_term = request.args.get("search", "")
-    page = int(request.args.get("page", 1))
-    per_page = 20
-    
-    farmers = []
-    total_count = 0
-    total_pages = 1
-    if h:
-        if search_term:
-            total_count = count_farmers_search(search_term)
-        else:
-            # Get total when no search - make a separate count query
-            total_count = count_farmers_search(None)
-        
-        total_pages = max(1, (total_count + per_page - 1) // per_page)
-        # Clamp page to valid range
-        page = max(1, min(page, total_pages))
-        
-        farmers = fetch_farmer_records(page=page, search_term=search_term if search_term else None, per_page=per_page)
-    
+    district_stats = fetch_district_farmer_stats() if h else None
+
     return render_template(
-        "admin/dashboard.html",
+        "admin/farmer_map.html",
         user=session.get("user"),
-        farmers=farmers,
-        stats=stats,
-        report_stats=report_stats,
         county_stats=county_stats,
-        search_term=search_term,
-        page=page,
-        total_pages=total_pages,
-        total_count=total_count,
-        per_page=per_page,
+        district_stats=district_stats,
     )
 
+
+@app.route("/admin/farmer-map")
+@role_required("admin", login_endpoint="admin_login")
+def admin_farmer_map():
+    h = service_headers()
+    county_stats = fetch_county_farmer_stats() if h else None
+    district_stats = fetch_district_farmer_stats() if h else None
+
+    return render_template(
+        "admin/farmer_map.html",
+        user=session.get("user"),
+        county_stats=county_stats,
+        district_stats=district_stats,
+    )
 
 
 @app.route("/admin/archived-farmers")
@@ -665,6 +781,37 @@ def service_headers():
     return {"apikey": key, "Authorization": f"Bearer {key}", "Content-Type": "application/json"}
 
 
+def create_farmer_crop_report(farmer, crop_type, farm_size=None, farm_size_unit=None, activity=None):
+    """Save a farmer's USSD crop report using their registered location."""
+    headers = service_headers()
+    if not headers:
+        return False
+
+    payload = {
+        "farmer_id": farmer["id"],
+        "crop_type": crop_type,
+        "farm_size": farm_size,
+        "farm_size_unit": farm_size_unit,
+        "activity": activity or None,
+        "county": farmer["county"],
+        "district": farmer["district"],
+        "community": farmer["community"],
+        "status": "pending",
+        "source": "ussd",
+    }
+
+    try:
+        response = requests.post(
+            f"{SUPABASE_URL}/rest/v1/farmer_crop_reports",
+            headers={**headers, "Prefer": "return=minimal"},
+            json=payload,
+            timeout=10,
+        )
+        return response.status_code == 201
+    except requests.exceptions.RequestException:
+        return False
+
+
 def fetch_farmer_stats():
     """Fetch farmer registration statistics from Supabase.
     
@@ -754,6 +901,75 @@ def fetch_county_farmer_stats():
         }
         for county in LIBERIA_COUNTIES
     ]
+
+
+
+def fetch_district_farmer_stats():
+    """Count registered farmers by county and district."""
+    h = service_headers()
+    if not h:
+        return None
+
+    counts = {}
+    offset = 0
+    page_size = 1000
+
+    try:
+        while True:
+            resp = requests.get(
+                f"{SUPABASE_URL}/rest/v1/farmers",
+                headers=h,
+                params={
+                    "select": "county,district",
+                    "limit": page_size,
+                    "offset": offset,
+                    "order": "id.asc",
+                },
+                timeout=15,
+            )
+
+            if resp.status_code != 200:
+                app.logger.error(
+                    "District statistics request failed: HTTP %s",
+                    resp.status_code,
+                )
+                return None
+
+            records = resp.json()
+
+            for record in records:
+                county = (record.get("county") or "").strip()
+                district = (record.get("district") or "").strip()
+
+                if not county or not district:
+                    continue
+
+                if county.casefold() == "rivercess":
+                    county = "River Cess"
+
+                key = (county.casefold(), district.casefold())
+
+                if key not in counts:
+                    counts[key] = {
+                        "county": county,
+                        "district": district,
+                        "farmer_count": 0,
+                    }
+
+                counts[key]["farmer_count"] += 1
+
+            if len(records) < page_size:
+                break
+
+            offset += page_size
+
+    except (requests.exceptions.RequestException, ValueError):
+        app.logger.exception(
+            "Could not calculate district farmer statistics"
+        )
+        return None
+
+    return list(counts.values())
 
 
 def fetch_farmer_records(
