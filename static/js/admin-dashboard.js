@@ -39,21 +39,39 @@
 (() => {
     const mapElement = document.getElementById("liberia-farmer-map");
     const statsElement = document.getElementById("county-stats-data");
-    const districtStatsElement = document.getElementById("district-stats-data");
     const detailsElement = document.getElementById("county-details");
+    const detailsToggleButton = document.getElementById("toggle-county-details");
 
-    if (!mapElement || !statsElement || !districtStatsElement ||
-        !detailsElement || !window.L) {
+    if (detailsToggleButton) {
+        detailsToggleButton.addEventListener("click", () => {
+            detailsElement.hidden = !detailsElement.hidden;
+
+            const detailsVisible = !detailsElement.hidden;
+
+            detailsToggleButton.textContent = detailsVisible
+                ? "Hide County Details"
+                : "Show County Details";
+
+            detailsToggleButton.setAttribute(
+                "aria-expanded",
+                String(detailsVisible)
+            );
+        });
+    }
+
+
+    // Skip map initialization on pages that do not contain the map.
+    if (!mapElement) return;
+
+    if (!statsElement || !detailsElement || !window.L) {
         console.error("Liberia map could not initialize: required elements or Leaflet are missing.");
         return;
     }
 
     let countyStats;
-    let districtStats;
 
     try {
         countyStats = JSON.parse(statsElement.textContent || "[]") || [];
-        districtStats = JSON.parse(districtStatsElement.textContent || "[]") || [];
     } catch (error) {
         console.error("Could not read map statistics:", error);
         return;
@@ -69,19 +87,8 @@
         return normalized.replace(/\s+/g, " ");
     }
 
-    function districtKey(county, district) {
-        return `${normalizeName(county)}|${normalizeName(district)}`;
-    }
-
     const statsByCounty = new Map(
         countyStats.map(item => [normalizeName(item.county), item])
-    );
-
-    const statsByDistrict = new Map(
-        districtStats.map(item => [
-            districtKey(item.county, item.district),
-            Number(item.farmer_count) || 0
-        ])
     );
 
     let currentMapMode = "standard";
@@ -115,13 +122,87 @@
         scrollWheelZoom: false
     });
 
+    const baseLayers = {
+        street: L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+            maxZoom: 19
+        }),
+        satellite: L.tileLayer(
+            "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+            {
+                attribution: 'Sources: Esri, Maxar, Earthstar Geographics, and the GIS User Community',
+                maxZoom: 19
+            }
+        )
+    };
+
+    const transportationOverlay = L.tileLayer(
+        "https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Transportation/MapServer/tile/{z}/{y}/{x}",
+        {
+            attribution: 'Transportation data: Esri, HERE, Garmin, OpenStreetMap contributors, and the GIS User Community',
+            maxZoom: 19,
+            opacity: 0.95
+        }
+    );
+
+    let activeBaseLayer = baseLayers.street;
+    activeBaseLayer.addTo(map);
+
+    const basemapSelect = document.getElementById("map-basemap");
+
+    basemapSelect.addEventListener("change", () => {
+        const selectedBasemap = basemapSelect.value;
+
+        map.removeLayer(activeBaseLayer);
+        if (map.hasLayer(transportationOverlay)) {
+            map.removeLayer(transportationOverlay);
+        }
+
+        activeBaseLayer = selectedBasemap === "street"
+            ? baseLayers.street
+            : baseLayers.satellite;
+
+        activeBaseLayer.addTo(map);
+
+        if (selectedBasemap === "hybrid") {
+            transportationOverlay.addTo(map);
+        }
+
+        map.invalidateSize();
+    });
+
     const mapViewport = document.getElementById("map-viewport");
     const fullscreenButton = document.getElementById("map-fullscreen");
     const modeButtons = document.querySelectorAll("[data-map-mode]");
+    const countyOverlayButton = document.getElementById("toggle-county-overlay");
 
     let selectedLayer = null;
     let countyLayer = null;
-    let districtDataPromise = null;
+    let countyOverlayVisible = true;
+
+    if (countyOverlayButton) {
+        countyOverlayButton.addEventListener("click", () => {
+            countyOverlayVisible = !countyOverlayVisible;
+
+            if (countyLayer) {
+                if (countyOverlayVisible) {
+                    countyLayer.addTo(map);
+                } else {
+                    map.removeLayer(countyLayer);
+                }
+            }
+
+            countyOverlayButton.textContent = countyOverlayVisible
+                ? "County Overlay: ON"
+                : "County Overlay: OFF";
+
+            countyOverlayButton.classList.toggle("active", countyOverlayVisible);
+            countyOverlayButton.setAttribute(
+                "aria-pressed",
+                String(countyOverlayVisible)
+            );
+        });
+    }
 
     document.getElementById("map-zoom-in").addEventListener("click", () => {
         map.zoomIn();
@@ -174,8 +255,6 @@
         });
     });
 
-    const districtLayer = L.layerGroup().addTo(map);
-
     function showCountyDetails(name) {
         const stats = getCountyStats(name);
 
@@ -192,97 +271,9 @@
 
         const instruction = document.createElement("p");
         instruction.textContent =
-            "District markers show farmer registrations by district. Select a marker for details.";
+            "Select a county in the directory or on the map to view its registration summary.";
 
         detailsElement.replaceChildren(heading, count, percentage, instruction);
-    }
-
-    function showDistrictDetails(county, district, count) {
-        const heading = document.createElement("h3");
-        heading.textContent = `${district}, ${county}`;
-
-        const paragraph = document.createElement("p");
-        paragraph.textContent =
-            `Registered farmers in this district: ${count.toLocaleString()}`;
-
-        detailsElement.replaceChildren(heading, paragraph);
-    }
-
-    function loadDistrictsForCounty(countyName) {
-        districtLayer.clearLayers();
-        showCountyDetails(countyName);
-
-        if (!districtDataPromise) {
-            districtDataPromise = fetch("/static/data/liberia-districts.json")
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error(`District data request failed: HTTP ${response.status}`);
-                    }
-                    return response.json();
-                });
-        }
-
-        districtDataPromise
-            .then(districts => {
-                const matchingDistricts = districts.filter(district =>
-                    normalizeName(district.parent?.name?.en) ===
-                    normalizeName(countyName)
-                );
-
-                const markers = [];
-
-                matchingDistricts.forEach(district => {
-                    const districtName =
-                        district.name?.en || district.name?.local;
-
-                    const lat = Number(district.geo?.lat);
-                    const lon = Number(district.geo?.lon);
-
-                    if (!districtName || !Number.isFinite(lat) ||
-                        !Number.isFinite(lon)) {
-                        return;
-                    }
-
-                    const count = statsByDistrict.get(
-                        districtKey(countyName, districtName)
-                    ) || 0;
-
-                    const marker = L.circleMarker([lat, lon], {
-                        radius: 7,
-                        color: "#ffffff",
-                        weight: 2,
-                        fillColor: "#194b35",
-                        fillOpacity: 0.95
-                    });
-
-                    marker.bindPopup(
-                        `<strong>${districtName}</strong><br>` +
-                        `Registered farmers: ${count.toLocaleString()}`
-                    );
-
-                    marker.on("click", () => {
-                        showDistrictDetails(countyName, districtName, count);
-                    });
-
-                    marker.addTo(districtLayer);
-                    markers.push(marker);
-                });
-
-                if (markers.length === 0) {
-                    const message = document.createElement("p");
-                    message.textContent =
-                        "No district coordinates were found for this county.";
-                    detailsElement.appendChild(message);
-                }
-            })
-            .catch(error => {
-                console.error("Could not load district markers:", error);
-
-                const message = document.createElement("p");
-                message.textContent =
-                    "District information could not be loaded. Please try again.";
-                detailsElement.appendChild(message);
-            });
     }
 
     function selectCounty(countyName, targetLayer = null) {
@@ -320,7 +311,6 @@
             maxZoom: 8
         });
 
-        loadDistrictsForCounty(countyName);
     }
 
     function renderCountyDirectory(features) {
@@ -371,14 +361,32 @@
         });
     }
 
-    fetch("/static/data/liberia-counties.geojson")
-        .then(response => {
+    Promise.all([
+        fetch("/static/data/liberia-counties.geojson").then(response => {
             if (!response.ok) {
-                throw new Error(`GeoJSON request failed: HTTP ${response.status}`);
+                throw new Error(`County GeoJSON request failed: HTTP ${response.status}`);
+            }
+            return response.json();
+        }),
+        fetch("/static/data/liberia-neighbor-mask.geojson").then(response => {
+            if (!response.ok) {
+                throw new Error(`Neighbor mask request failed: HTTP ${response.status}`);
             }
             return response.json();
         })
-        .then(geojson => {
+    ])
+        .then(([geojson, neighborMaskGeojson]) => {
+            // Cover neighboring land while keeping the ocean basemap visible.
+            L.geoJSON(neighborMaskGeojson, {
+                interactive: false,
+                style: {
+                    stroke: false,
+                    fillColor: "#edf5ef",
+                    fillOpacity: 1
+                }
+            }).addTo(map);
+
+            // Liberia's counties are drawn above the neighboring-land mask.
             countyLayer = L.geoJSON(geojson, {
                 style: feature => {
                     const name = feature.properties.name;
@@ -428,7 +436,11 @@
                         }
                     });
                 }
-            }).addTo(map);
+            });
+
+            if (countyOverlayVisible) {
+                countyLayer.addTo(map);
+            }
 
             renderCountyDirectory(geojson.features || []);
 
@@ -442,7 +454,7 @@
                 padding: [20, 20]
             });
 
-            map.setMaxBounds(liberiaBounds.pad(0.03));
+            map.setMaxBounds(liberiaBounds.pad(0.005));
             map.setMinZoom(map.getBoundsZoom(liberiaBounds));
         })
         .catch(error => {

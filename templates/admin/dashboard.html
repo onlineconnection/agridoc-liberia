@@ -712,9 +712,6 @@
             }
         }
     </style>
-    <link rel="stylesheet"
-          href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-          crossorigin="">
 </head>
 <body>
     <div class="mobile-overlay" id="mobile-overlay"></div>
@@ -733,6 +730,10 @@
             <a class="nav-link active" href="{{ url_for('admin_dashboard') }}">
                 <span class="nav-icon" aria-hidden="true">▦</span>
                 <span>Dashboard</span>
+            </a>
+            <a class="nav-link" href="{{ url_for('admin_farmer_map') }}">
+                <span class="nav-icon" aria-hidden="true">⌖</span>
+                <span>Farmer Map</span>
             </a>
             <a class="nav-link" href="#farmer-registry">
                 <span class="nav-icon" aria-hidden="true">♧</span>
@@ -837,25 +838,6 @@
                         <div class="stat-value">—</div>
                         <div class="stat-caption">Approval workflow not connected</div>
                     </article>
-                </div>
-            </section>
-
-            <section class="panel" aria-labelledby="map-heading">
-                <div class="section-heading">
-                    <div>
-                        <h2 id="map-heading">Farmer Distribution Across Liberia</h2>
-                        <p>Explore farmer registration by county.</p>
-                    </div>
-                </div>
-
-                <div id="liberia-farmer-map"
-                     role="region"
-                     aria-label="Interactive map of Liberia showing farmer registration by county"
-                     style="width:100%; min-height:420px; border-radius:12px; background:#eaf3ed;">
-                </div>
-
-                <div id="county-details" aria-live="polite" style="margin-top:16px;">
-                    <p>Select a county on the map to view its farmer registration details.</p>
                 </div>
             </section>
 
@@ -1019,14 +1001,6 @@
         </main>
     </div>
 
-    <script id="county-stats-data" type="application/json">
-        {{ county_stats | tojson }}
-    </script>
-    <script id="district-stats-data" type="application/json">
-        {{ district_stats | tojson }}
-    </script>
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-            crossorigin=""></script>
     <script src="{{ url_for('static', filename='js/admin-dashboard.js') }}" defer></script>
 </body>
 </html>

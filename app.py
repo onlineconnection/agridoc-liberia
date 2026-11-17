@@ -23,12 +23,17 @@ app.config.update(
     SECRET_KEY=SECRET_KEY,
     SESSION_COOKIE_HTTPONLY=True,
     SESSION_COOKIE_SAMESITE="Lax",
+    SESSION_COOKIE_SECURE=os.getenv("SESSION_COOKIE_SECURE", "").strip().lower()
+        in {"1", "true", "yes", "on"},
 )
 csrf = SeaSurf(app)
 
 DASHBOARDS = {
     "admin": "admin_dashboard",
     "field_officer": "field_officer_dashboard",
+    "doa": "doa_dashboard",
+    "cac": "cac_dashboard",
+    "minister": "minister_dashboard",
 }
 
 
@@ -104,8 +109,75 @@ def role_required(*roles, login_endpoint="login"):
             user = session.get("user")
             if not user:
                 return redirect(url_for(login_endpoint))
+
             if user.get("role") not in roles:
                 return redirect(url_for(login_endpoint))
+
+            # Revalidate official accounts against Supabase on every protected request.
+            # Admin and Field Officer authentication behavior remains unchanged.
+            official_roles = {"doa", "cac", "minister"}
+            if any(role in official_roles for role in roles):
+                headers = service_headers()
+                if not headers:
+                    app.logger.error(
+                        "Official access denied: Supabase service key is unavailable."
+                    )
+                    session.clear()
+                    return redirect(url_for(login_endpoint))
+
+                try:
+                    response = requests.get(
+                        f"{SUPABASE_URL}/rest/v1/profiles",
+                        headers=headers,
+                        params={
+                            "id": f"eq.{user.get('id')}",
+                            "select": "id,role,is_active,must_change_password",
+                        },
+                        timeout=10,
+                    )
+                except requests.exceptions.RequestException:
+                    app.logger.exception(
+                        "Could not revalidate official account."
+                    )
+                    session.clear()
+                    return redirect(url_for(login_endpoint))
+
+                if response.status_code != 200:
+                    app.logger.error(
+                        "Official account revalidation failed: HTTP %s",
+                        response.status_code,
+                    )
+                    session.clear()
+                    return redirect(url_for(login_endpoint))
+
+                try:
+                    profiles = response.json()
+                except ValueError:
+                    profiles = []
+
+                profile = profiles[0] if isinstance(profiles, list) and profiles else None
+
+                if (
+                    not profile
+                    or profile.get("is_active") is not True
+                    or profile.get("role") not in roles
+                ):
+                    session.clear()
+                    return redirect(url_for(login_endpoint))
+
+                # Refresh security-sensitive session values from the database.
+                user["role"] = profile["role"]
+                user["must_change_password"] = bool(
+                    profile.get("must_change_password")
+                )
+                session["user"] = user
+
+            if (
+                user.get("must_change_password")
+                and request.endpoint != "change_password"
+            ):
+                return redirect(url_for("change_password"))
+
             return f(*args, **kwargs)
         return wrapper
     return decorator
@@ -267,6 +339,8 @@ def login():
         if user:
             session.clear()
             session["user"] = user
+            if user.get("must_change_password"):
+                return redirect(url_for("change_password"))
             return redirect(url_for("field_officer_dashboard"))
     return render_template("login.html", error=error)
 
@@ -291,8 +365,188 @@ def admin_login():
         if user:
             session.clear()
             session["user"] = user
+            if user.get("must_change_password"):
+                return redirect(url_for("change_password"))
             return redirect(url_for("admin_dashboard"))
     return render_template("admin/login.html", error=error)
+
+
+def official_login(role, title, description, submit_label):
+    """Authenticate an official account and enforce its exact portal role."""
+    error = None
+
+    if request.method == "POST":
+        user, error = authenticate(
+            (request.form.get("email") or "").strip(),
+            request.form.get("password") or "",
+        )
+
+        if user and user["role"] != role:
+            user = None
+            error = f"This login page is reserved for {title} accounts."
+
+        if user:
+            session.clear()
+            session["user"] = user
+            if user.get("must_change_password"):
+                return redirect(url_for("change_password"))
+            return redirect(url_for(f"{role}_dashboard"))
+
+    return render_template(
+        "official/login.html",
+        error=error,
+        title=title,
+        description=description,
+        submit_label=submit_label,
+        login_endpoint=f"{role}_login",
+    )
+
+
+@app.route("/doa/login", methods=["GET", "POST"])
+def doa_login():
+    return official_login(
+        "doa",
+        "District Agriculture Officer",
+        "District-level agricultural monitoring and reporting",
+        "SIGN IN TO DOA PORTAL",
+    )
+
+
+@app.route("/cac/login", methods=["GET", "POST"])
+def cac_login():
+    return official_login(
+        "cac",
+        "County Agriculture Coordinator",
+        "County-level agricultural monitoring and reporting",
+        "SIGN IN TO CAC PORTAL",
+    )
+
+
+@app.route("/minister/login", methods=["GET", "POST"])
+def minister_login():
+    return official_login(
+        "minister",
+        "Minister of Agriculture",
+        "National agricultural intelligence and oversight",
+        "SIGN IN TO MINISTER PORTAL",
+    )
+
+
+@app.route("/change-password", methods=["GET", "POST"])
+def change_password():
+    """Require authenticated users to replace temporary passwords."""
+    user = session.get("user")
+    if not user:
+        return redirect(url_for("index"))
+
+    if not user.get("must_change_password"):
+        return redirect(url_for(DASHBOARDS.get(user.get("role"), "index")))
+
+    error = None
+
+    if request.method == "POST":
+        current_password = request.form.get("current_password") or ""
+        new_password = request.form.get("new_password") or ""
+        confirm_password = request.form.get("confirm_password") or ""
+
+        if len(new_password) < 12:
+            error = "Your new password must contain at least 12 characters."
+        elif new_password != confirm_password:
+            error = "The new password and confirmation do not match."
+        elif new_password == current_password:
+            error = "Your new password must be different from your temporary password."
+        elif not current_password:
+            error = "Enter your current password."
+        else:
+            try:
+                auth_response = requests.post(
+                    f"{SUPABASE_URL}/auth/v1/token",
+                    params={"grant_type": "password"},
+                    headers={"apikey": SUPABASE_KEY},
+                    json={
+                        "email": user.get("email"),
+                        "password": current_password,
+                    },
+                    timeout=10,
+                )
+
+                if auth_response.status_code != 200:
+                    error = "Your current password is incorrect."
+                else:
+                    auth_data = auth_response.json()
+                    auth_user = auth_data.get("user") or {}
+                    access_token = auth_data.get("access_token")
+
+                    if auth_user.get("id") != user.get("id") or not access_token:
+                        error = "Account verification failed. Please sign in again."
+                    else:
+                        profile = fetch_profile(user["id"], access_token)
+
+                        if not profile or not profile.get("is_active"):
+                            error = "Your account could not be verified as active."
+                        elif profile.get("role") != user.get("role"):
+                            error = "Your account permissions have changed. Please sign in again."
+                        else:
+                            password_response = requests.put(
+                                f"{SUPABASE_URL}/auth/v1/user",
+                                headers={
+                                    "apikey": SUPABASE_KEY,
+                                    "Authorization": f"Bearer {access_token}",
+                                    "Content-Type": "application/json",
+                                },
+                                json={"password": new_password},
+                                timeout=10,
+                            )
+
+                            if password_response.status_code not in (200, 204):
+                                app.logger.error(
+                                    "Supabase password update failed: HTTP %s",
+                                    password_response.status_code,
+                                )
+                                error = "Could not update your password. Please try again."
+                            else:
+                                headers = service_headers()
+
+                                if not headers:
+                                    error = (
+                                        "Your password was updated, but the profile security "
+                                        "flag could not be updated. Contact the administrator."
+                                    )
+                                else:
+                                    profile_response = requests.patch(
+                                        f"{SUPABASE_URL}/rest/v1/profiles",
+                                        headers={
+                                            **headers,
+                                            "Prefer": "return=minimal",
+                                        },
+                                        params={"id": f"eq.{user['id']}"},
+                                        json={"must_change_password": False},
+                                        timeout=10,
+                                    )
+
+                                    if profile_response.status_code not in (200, 204):
+                                        app.logger.error(
+                                            "Could not clear password-change flag: HTTP %s - %s",
+                                            profile_response.status_code,
+                                            profile_response.text[:300],
+                                        )
+                                        error = (
+                                            "Your password was updated, but your account "
+                                            "security flag could not be cleared. Please retry "
+                                            "using your new password or contact the administrator."
+                                        )
+                                    else:
+                                        session["user"]["must_change_password"] = False
+                                        flash("Your password has been changed successfully.", "ok")
+                                        return redirect(
+                                            url_for(DASHBOARDS.get(user.get("role"), "index"))
+                                        )
+
+            except requests.exceptions.RequestException:
+                app.logger.exception("Password change request failed.")
+                error = "Could not reach the authentication service. Please try again."
+
+    return render_template("official/change_password.html", error=error)
 
 
 @app.route("/admin")
@@ -302,23 +556,52 @@ def admin_root():
 
 @app.route("/logout")
 def logout():
-    was_admin = (session.get("user") or {}).get("role") == "admin"
+    role = (session.get("user") or {}).get("role")
     session.clear()
-    return redirect(url_for("admin_login" if was_admin else "index"))
+
+    login_endpoints = {
+        "admin": "admin_login",
+        "field_officer": "login",
+        "doa": "doa_login",
+        "cac": "cac_login",
+        "minister": "minister_login",
+    }
+    return redirect(url_for(login_endpoints.get(role, "index")))
 
 
 @app.route("/admin/dashboard")
 @role_required("admin", login_endpoint="admin_login")
 def admin_dashboard():
-    h = service_headers()
-    county_stats = fetch_county_farmer_stats() if h else None
-    district_stats = fetch_district_farmer_stats() if h else None
+    search_term = request.args.get("search", "").strip()
+
+    try:
+        page = max(1, int(request.args.get("page", 1)))
+    except (TypeError, ValueError):
+        page = 1
+
+    per_page = 20
+    total_count = count_farmers_search(search_term or None)
+    total_pages = max(1, (total_count + per_page - 1) // per_page)
+    page = min(page, total_pages)
+
+    farmers, error = fetch_farmer_records(
+        page=page,
+        search_term=search_term or None,
+        per_page=per_page,
+        include_error=True,
+    )
+
+    if error:
+        flash(error, "error")
 
     return render_template(
-        "admin/farmer_map.html",
+        "admin/dashboard.html",
         user=session.get("user"),
-        county_stats=county_stats,
-        district_stats=district_stats,
+        farmers=farmers,
+        search_term=search_term,
+        page=page,
+        total_pages=total_pages,
+        report_stats=fetch_agricultural_report_stats(),
     )
 
 
@@ -327,13 +610,11 @@ def admin_dashboard():
 def admin_farmer_map():
     h = service_headers()
     county_stats = fetch_county_farmer_stats() if h else None
-    district_stats = fetch_district_farmer_stats() if h else None
 
     return render_template(
         "admin/farmer_map.html",
         user=session.get("user"),
         county_stats=county_stats,
-        district_stats=district_stats,
     )
 
 
@@ -1140,6 +1421,395 @@ def fetch_agricultural_report_stats():
     except (requests.exceptions.RequestException, ValueError):
         app.logger.exception("Error fetching agricultural report statistics")
         return None
+
+
+def official_normalize_location(value):
+    """Normalize geographic labels without changing stored records."""
+    import re
+
+    value = re.sub(r"[^a-z0-9]", "", (value or "").casefold())
+    if value == "rivercess":
+        return "rivercess"
+    return value
+
+
+def official_fetch_all(table, columns, filters=None):
+    """Read every page from Supabase; return (rows, error)."""
+    headers = service_headers()
+    if not headers:
+        return None, "Database service key is not configured."
+
+    rows = []
+    offset = 0
+    page_size = 1000
+
+    while True:
+        params = {
+            "select": columns,
+            "limit": page_size,
+            "offset": offset,
+            "order": "id.asc",
+        }
+        if filters:
+            params.update(filters)
+
+        try:
+            response = requests.get(
+                f"{SUPABASE_URL}/rest/v1/{table}",
+                headers=headers,
+                params=params,
+                timeout=20,
+            )
+        except requests.exceptions.RequestException:
+            app.logger.exception("Official dashboard query failed for %s", table)
+            return None, f"Could not connect while loading {table}."
+
+        if response.status_code != 200:
+            app.logger.error(
+                "Official dashboard query failed for %s: HTTP %s - %s",
+                table,
+                response.status_code,
+                response.text[:300],
+            )
+            return None, f"Could not load {table}. Check database configuration."
+
+        try:
+            batch = response.json()
+        except ValueError:
+            return None, f"Invalid response received while loading {table}."
+
+        if not isinstance(batch, list):
+            return None, f"Unexpected database response while loading {table}."
+
+        rows.extend(batch)
+
+        if len(batch) < page_size:
+            break
+
+        offset += page_size
+
+    return rows, None
+
+
+def official_get_assignments(user_id, role):
+    """Load geographic assignments. Never grant access on lookup failure."""
+    if role == "minister":
+        return list(LIBERIA_COUNTIES), None
+
+    table = (
+        "official_district_assignments"
+        if role == "doa"
+        else "official_county_assignments"
+    )
+    columns = "county,district" if role == "doa" else "county"
+
+    rows, error = official_fetch_all(
+        table,
+        columns,
+        {"profile_id": f"eq.{user_id}"},
+    )
+
+    if error:
+        app.logger.error("Could not load %s assignments: %s", role, error)
+        return None, (
+            "Geographic assignments are unavailable. The administrator must "
+            "configure the official assignment tables before this portal can "
+            "display records."
+        )
+
+    if role == "doa":
+        assignments = []
+        seen = set()
+
+        for row in rows:
+            county = (row.get("county") or "").strip()
+            district = (row.get("district") or "").strip()
+            key = (
+                official_normalize_location(county),
+                official_normalize_location(district),
+            )
+            if county and district and key not in seen:
+                assignments.append({
+                    "county": county,
+                    "district": district,
+                })
+                seen.add(key)
+
+        return assignments, None
+
+    counties = []
+    seen = set()
+
+    for row in rows:
+        county = (row.get("county") or "").strip()
+        key = official_normalize_location(county)
+        if county and key not in seen:
+            counties.append(county)
+            seen.add(key)
+
+    return counties, None
+
+
+def official_record_in_scope(record, role, assignments):
+    """Apply geographic authorization on the server."""
+    county = official_normalize_location(record.get("county"))
+    district = official_normalize_location(record.get("district"))
+
+    if role == "minister":
+        return True
+
+    if role == "cac":
+        allowed = {
+            official_normalize_location(item)
+            for item in assignments
+        }
+        return county in allowed
+
+    allowed = {
+        (
+            official_normalize_location(item["county"]),
+            official_normalize_location(item["district"]),
+        )
+        for item in assignments
+    }
+    return (county, district) in allowed
+
+
+def official_build_dashboard_stats(farmers, crops, reports, scope_names, role=None):
+    """Build concise, data-backed dashboard metrics."""
+    county_counts = {}
+    district_counts = {}
+    crop_counts = {}
+    report_type_counts = {}
+    report_status_counts = {}
+    crop_status_counts = {}
+
+    # DOA scope labels are district/county pairs, not county names.
+    # Its county totals should therefore come from actual farmer records.
+    if role != "doa":
+        for county in scope_names:
+            county_counts[county] = 0
+
+    for farmer in farmers:
+        county = (farmer.get("county") or "Unspecified").strip()
+        district = (farmer.get("district") or "Unspecified").strip()
+
+        county_counts[county] = county_counts.get(county, 0) + 1
+        key = (county, district)
+        district_counts[key] = district_counts.get(key, 0) + 1
+
+    for crop in crops:
+        name = (crop.get("crop_type") or "Unspecified").strip()
+        crop_counts[name] = crop_counts.get(name, 0) + 1
+        status = crop.get("status") or "unknown"
+        crop_status_counts[status] = crop_status_counts.get(status, 0) + 1
+
+    for report in reports:
+        report_type = report.get("report_type") or "other"
+        report_type_counts[report_type] = (
+            report_type_counts.get(report_type, 0) + 1
+        )
+        status = report.get("status") or "unknown"
+        report_status_counts[status] = (
+            report_status_counts.get(status, 0) + 1
+        )
+
+    county_stats = [
+        {"county": county, "farmer_count": count}
+        for county, count in sorted(
+            county_counts.items(),
+            key=lambda item: item[1],
+            reverse=True,
+        )
+    ]
+
+    district_stats = [
+        {
+            "county": county,
+            "district": district,
+            "farmer_count": count,
+        }
+        for (county, district), count in sorted(
+            district_counts.items(),
+            key=lambda item: item[1],
+            reverse=True,
+        )
+    ]
+
+    crop_stats = [
+        {"crop_type": name, "count": count}
+        for name, count in sorted(
+            crop_counts.items(),
+            key=lambda item: item[1],
+            reverse=True,
+        )
+    ]
+
+    report_type_stats = [
+        {"report_type": name, "count": count}
+        for name, count in sorted(
+            report_type_counts.items(),
+            key=lambda item: item[1],
+            reverse=True,
+        )
+    ]
+
+    return {
+        "county_stats": county_stats,
+        "district_stats": district_stats,
+        "crop_stats": crop_stats,
+        "report_type_stats": report_type_stats,
+        "crop_status_stats": crop_status_counts,
+        "report_status_stats": report_status_counts,
+        "total_farmers": len(farmers),
+        "total_crops": len(crops),
+        "total_reports": len(reports),
+        "pending_crops": crop_status_counts.get("pending", 0),
+        "pending_reports": report_status_counts.get("pending", 0),
+        "under_review_reports": report_status_counts.get("under_review", 0),
+        "verified_reports": report_status_counts.get("verified", 0),
+    }
+
+
+def fetch_official_dashboard_data(user):
+    """Load role-scoped intelligence data for an official dashboard."""
+    role = user["role"]
+
+    assignments, assignment_error = official_get_assignments(
+        user["id"],
+        role,
+    )
+
+    base = {
+        "role": role,
+        "scope_names": [],
+        "scope_label": "",
+        "farmers": [],
+        "crops": [],
+        "reports": [],
+        "county_stats": [],
+        "district_stats": [],
+        "crop_stats": [],
+        "report_type_stats": [],
+        "crop_status_stats": {},
+        "report_status_stats": {},
+        "total_farmers": 0,
+        "total_crops": 0,
+        "total_reports": 0,
+        "pending_crops": 0,
+        "pending_reports": 0,
+        "under_review_reports": 0,
+        "verified_reports": 0,
+        "empty_assignment": False,
+        "data_error": assignment_error,
+    }
+
+    if assignment_error:
+        return base
+
+    if role != "minister" and not assignments:
+        base["empty_assignment"] = True
+        return base
+
+    if role == "doa":
+        scope_names = [
+            f'{item["district"]}, {item["county"]}'
+            for item in assignments
+        ]
+        scope_label = "Assigned districts"
+    elif role == "cac":
+        scope_names = assignments
+        scope_label = "Assigned counties"
+    else:
+        scope_names = list(LIBERIA_COUNTIES)
+        scope_label = "Nationwide"
+
+    base["scope_names"] = scope_names
+    base["scope_label"] = scope_label
+
+    farmers, error = official_fetch_all(
+        "farmers",
+        "id,farmer_id,full_name,county,district,community,created_at,is_archived",
+        {"is_archived": "eq.false"},
+    )
+    if error:
+        base["data_error"] = error
+        return base
+
+    crops, error = official_fetch_all(
+        "farmer_crop_reports",
+        "id,farmer_id,crop_type,farm_size,farm_size_unit,activity,"
+        "county,district,community,status,source,created_at",
+    )
+    if error:
+        base["data_error"] = error
+        return base
+
+    reports, error = official_fetch_all(
+        "agricultural_reports",
+        "id,farmer_id,report_type,county,district,community,crop_type,"
+        "description,severity,status,created_at",
+    )
+    if error:
+        base["data_error"] = error
+        return base
+
+    farmers = [
+        row for row in farmers
+        if official_record_in_scope(row, role, assignments)
+    ]
+    crops = [
+        row for row in crops
+        if official_record_in_scope(row, role, assignments)
+    ]
+    reports = [
+        row for row in reports
+        if official_record_in_scope(row, role, assignments)
+    ]
+
+    stats = official_build_dashboard_stats(
+        farmers,
+        crops,
+        reports,
+        scope_names,
+        role=role,
+    )
+
+    base.update(stats)
+    base["farmers"] = farmers
+    base["crops"] = crops
+    base["reports"] = reports
+
+    return base
+
+
+def render_official_dashboard(role):
+    user = session.get("user") or {}
+    data = fetch_official_dashboard_data(user)
+
+    return render_template(
+        "official/dashboard.html",
+        user=user,
+        data=data,
+    )
+
+
+@app.route("/doa/dashboard")
+@role_required("doa", login_endpoint="doa_login")
+def doa_dashboard():
+    return render_official_dashboard("doa")
+
+
+@app.route("/cac/dashboard")
+@role_required("cac", login_endpoint="cac_login")
+def cac_dashboard():
+    return render_official_dashboard("cac")
+
+
+@app.route("/minister/dashboard")
+@role_required("minister", login_endpoint="minister_login")
+def minister_dashboard():
+    return render_official_dashboard("minister")
 
 
 @app.route("/admin/officers", methods=["GET", "POST"])

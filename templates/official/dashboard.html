@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AgriDoc Liberia | Official Intelligence Portal</title>
+<style>
+:root {
+    --green:#123f32;
+    --green2:#1c6049;
+    --lime:#b8d9a7;
+    --ink:#182820;
+    --muted:#718078;
+    --line:#e3eae5;
+    --surface:#ffffff;
+    --canvas:#f3f6f3;
+    --red:#a83d36;
+    --amber:#94651b;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--canvas);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+button,input{font:inherit}
+.topbar{background:var(--green);color:white;padding:17px 4.5%;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{display:flex;align-items:center;gap:12px}
+.brand-mark{width:39px;height:39px;border-radius:11px;background:var(--lime);color:var(--green);display:grid;place-items:center;font-weight:900;font-size:18px}
+.brand-name{font-size:15px;font-weight:850;letter-spacing:.04em}
+.brand-sub{font-size:10px;color:#c4d8ce;letter-spacing:.14em;margin-top:3px}
+.user-area{display:flex;align-items:center;gap:14px;font-size:12px;color:#e0ece5}
+.user-role{padding:7px 10px;border:1px solid #527566;border-radius:7px;text-transform:uppercase;letter-spacing:.08em;font-size:10px;font-weight:800}
+.logout{color:white;text-decoration:none;border:1px solid #527566;border-radius:7px;padding:8px 12px;font-weight:700}
+main{max-width:1500px;margin:auto;padding:35px 4.5% 65px}
+.eyebrow{font-size:10px;font-weight:900;letter-spacing:.17em;color:var(--green2);text-transform:uppercase}
+.heading-row{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;margin:9px 0 25px}
+h1{font-size:clamp(27px,4vw,39px);letter-spacing:-.045em;margin:0;color:#183b2d}
+.subtitle{color:var(--muted);font-size:13px;margin-top:8px}
+.scope-pill{border:1px solid #d7e3da;background:white;border-radius:9px;padding:10px 13px;font-size:11px;font-weight:800;color:var(--green);white-space:nowrap}
+.notice{padding:14px 16px;border-radius:10px;margin:16px 0;font-size:13px;line-height:1.5}
+.notice.error{background:#fff0ee;border:1px solid #f0d0cb;color:#8d302a}
+.notice.warning{background:#fff8e9;border:1px solid #eddfbd;color:#795416}
+.section-heading{font-size:12px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;color:#52645a;margin:27px 0 13px}
+.card-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}
+.portal-card{position:relative;text-align:left;background:white;border:1px solid var(--line);border-radius:13px;padding:21px;min-height:155px;cursor:pointer;transition:transform .18s,border-color .18s,box-shadow .18s;color:inherit}
+.portal-card:hover{transform:translateY(-3px);border-color:#8eb69d;box-shadow:0 12px 28px #183b2d12}
+.card-top{display:flex;justify-content:space-between;align-items:center}
+.card-icon{width:37px;height:37px;border-radius:10px;background:#edf4ee;color:var(--green);display:grid;place-items:center;font-size:18px;font-weight:900}
+.card-arrow{font-size:20px;color:#8a9b90}
+.card-title{font-size:16px;font-weight:850;margin-top:18px}
+.card-description{font-size:11px;color:var(--muted);margin-top:5px;line-height:1.5}
+.card-metric{font-size:25px;font-weight:900;letter-spacing:-.04em;margin-top:12px;color:var(--green)}
+.card-metric small{font-size:10px;color:var(--muted);font-weight:700;letter-spacing:0}
+.workspace{display:none}
+.workspace.active{display:block}
+.workspace-header{display:flex;align-items:center;justify-content:space-between;gap:15px;margin-bottom:20px}
+.workspace-title{font-size:25px;font-weight:900;letter-spacing:-.035em;color:var(--green)}
+.back-button{border:1px solid #d5e0d8;background:white;color:var(--green);padding:10px 14px;border-radius:8px;font-size:12px;font-weight:800;cursor:pointer}
+.metric-row{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:18px}
+.metric{background:white;border:1px solid var(--line);border-radius:10px;padding:16px}
+.metric-label{font-size:10px;color:var(--muted);font-weight:800;text-transform:uppercase;letter-spacing:.09em}
+.metric-value{font-size:25px;font-weight:900;color:var(--green);margin-top:8px}
+.panel{background:white;border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-top:15px}
+.panel-head{padding:16px 18px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:12px}
+.panel-title{font-size:13px;font-weight:850}
+.search{border:1px solid #dce5df;border-radius:8px;padding:9px 11px;min-width:210px;max-width:100%;font-size:12px;outline:none}
+.search:focus{border-color:var(--green2)}
+.table-wrap{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:12px;text-align:left}
+th{background:#f7f9f7;color:#718078;text-transform:uppercase;letter-spacing:.07em;font-size:9px;font-weight:900}
+th,td{padding:12px 15px;border-bottom:1px solid #edf1ed;white-space:nowrap}
+td{color:#34463b}
+tbody tr:last-child td{border-bottom:0}
+.status{display:inline-block;padding:5px 8px;border-radius:20px;background:#f0f3f0;font-size:10px;font-weight:800;text-transform:capitalize}
+.status.pending{background:#fff5df;color:#94651b}
+.status.verified{background:#e7f4e9;color:#24633b}
+.status.dismissed{background:#fae9e7;color:#9a3933}
+.status.under_review{background:#eaf0fb;color:#365b91}
+.empty{padding:30px;text-align:center;color:var(--muted);font-size:12px}
+.geo-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;padding:17px}
+.geo-item{border:1px solid var(--line);border-radius:9px;padding:13px;font-size:12px;font-weight:750}
+.geo-item span{display:block;color:var(--muted);font-size:10px;font-weight:500;margin-top:5px}
+.bar-list{padding:18px}
+.bar-row{display:grid;grid-template-columns:minmax(100px,180px) 1fr 50px;align-items:center;gap:12px;margin:13px 0;font-size:11px}
+.bar-track{height:9px;background:#edf2ee;border-radius:20px;overflow:hidden}
+.bar-fill{height:100%;background:var(--green2);border-radius:20px}
+.disabled-card{opacity:.72;cursor:default}
+.footer{margin-top:40px;border-top:1px solid var(--line);padding-top:17px;color:#849188;font-size:10px;display:flex;justify-content:space-between;gap:12px}
+@media(max-width:900px){.card-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.metric-row{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){main{padding:25px 4% 45px}.topbar{padding:13px 4%}.brand-sub{display:none}.user-area{gap:7px}.user-email{display:none}.heading-row{align-items:flex-start;flex-direction:column}.card-grid{grid-template-columns:1fr}.portal-card{min-height:130px}.metric-row{grid-template-columns:repeat(2,minmax(0,1fr))}.geo-list{grid-template-columns:repeat(2,minmax(0,1fr))}.workspace-header{align-items:flex-start}.workspace-title{font-size:21px}.search{min-width:130px;width:100%}.panel-head{align-items:flex-start;flex-direction:column}.footer{flex-direction:column}}
+</style>
+</head>
+<body>
+<header class="topbar">
+    <div class="brand">
+        <div class="brand-mark">A</div>
+        <div>
+            <div class="brand-name">AGRIDOC LIBERIA</div>
+            <div class="brand-sub">AGRICULTURAL INTELLIGENCE SYSTEM</div>
+        </div>
+    </div>
+    <div class="user-area">
+        <span class="user-email">{{ user.email|default('Official user')|e }}</span>
+        <span class="user-role">{{ user.role|upper|e }}</span>
+        <a class="logout" href="{{ url_for('logout') }}">Sign out</a>
+    </div>
+</header>
+
+<main>
+    <div id="home-view">
+        <div class="eyebrow">Ministry of Agriculture · Intelligence Workspace</div>
+        <div class="heading-row">
+            <div>
+                <h1>
+                    {% if data.role == 'doa' %}District Intelligence
+                    {% elif data.role == 'cac' %}County Intelligence
+                    {% else %}National Intelligence{% endif %}
+                </h1>
+                <div class="subtitle">
+                    {% if data.role == 'doa' %}District-level agricultural monitoring and oversight
+                    {% elif data.role == 'cac' %}County-level agricultural monitoring and oversight
+                    {% else %}National agricultural monitoring and strategic oversight{% endif %}
+                </div>
+            </div>
+            <div class="scope-pill">{{ data.scope_label|default('Geographic scope')|e }}</div>
+        </div>
+
+        {% if data.data_error %}
+        <div class="notice error">{{ data.data_error|e }}</div>
+        {% elif data.empty_assignment %}
+        <div class="notice warning">
+            No geographic assignments are configured for this account. Contact the administrator to receive access to your districts or counties.
+        </div>
+        {% endif %}
+
+        <div class="section-heading">Intelligence modules</div>
+        <div class="card-grid">
+            <button class="portal-card" data-open="farmers">
+                <div class="card-top"><span class="card-icon">F</span><span class="card-arrow">↗</span></div>
+                <div class="card-title">Farmer Intelligence</div>
+                <div class="card-description">Registered farmers and geographic distribution</div>
+                <div class="card-metric">{{ data.total_farmers|default(0) }}</div>
+            </button>
+
+            <button class="portal-card" data-open="crops">
+                <div class="card-top"><span class="card-icon">C</span><span class="card-arrow">↗</span></div>
+                <div class="card-title">Crop Intelligence</div>
+                <div class="card-description">Farmer-submitted crop information and verification status</div>
+                <div class="card-metric">{{ data.total_crops|default(0) }}</div>
+            </button>
+
+            <button class="portal-card" data-open="problems">
+                <div class="card-top"><span class="card-icon">!</span><span class="card-arrow">↗</span></div>
+                <div class="card-title">Agricultural Problems</div>
+                <div class="card-description">Pest, disease, flooding, drought and other reports</div>
+                <div class="card-metric">{{ data.total_reports|default(0) }}</div>
+            </button>
+
+            <button class="portal-card" data-open="geography">
+                <div class="card-top"><span class="card-icon">G</span><span class="card-arrow">↗</span></div>
+                <div class="card-title">Geographic Intelligence</div>
+                <div class="card-description">Assigned areas and farmer distribution by location</div>
+                <div class="card-metric">{{ data.scope_names|length }}</div>
+            </button>
+
+            <button class="portal-card" data-open="analytics">
+                <div class="card-top"><span class="card-icon">↗</span><span class="card-arrow">↗</span></div>
+                <div class="card-title">Performance & Analytics</div>
+                <div class="card-description">Key indicators, reporting activity and crop patterns</div>
+                <div class="card-metric">{{ data.pending_crops|default(0) + data.pending_reports|default(0) }} <small>pending</small></div>
+            </button>
+
+            <button class="portal-card" data-open="assistance">
+                <div class="card-top"><span class="card-icon">A</span><span class="card-arrow">↗</span></div>
+                <div class="card-title">Agricultural Assistance</div>
+                <div class="card-description">Assistance-request monitoring workspace</div>
+                <div class="card-metric" style="font-size:15px">In development</div>
+            </button>
+        </div>
+    </div>
+
+    <section class="workspace" id="view-farmers">
+        <div class="workspace-header"><div class="workspace-title">Farmer Intelligence</div><button class="back-button" data-home>← Overview</button></div>
+        <div class="metric-row">
+            <div class="metric"><div class="metric-label">Registered farmers</div><div class="metric-value">{{ data.total_farmers }}</div></div>
+            <div class="metric"><div class="metric-label">Counties represented</div><div class="metric-value">{{ data.county_stats|length }}</div></div>
+            <div class="metric"><div class="metric-label">Districts represented</div><div class="metric-value">{{ data.district_stats|length }}</div></div>
+            <div class="metric"><div class="metric-label">Access scope</div><div class="metric-value" style="font-size:15px">{{ data.scope_label }}</div></div>
+        </div>
+        <div class="panel">
+            <div class="panel-head"><div class="panel-title">Farmer registry</div><input class="search" data-filter="farmers-table" placeholder="Search farmers, ID or location"></div>
+            <div class="table-wrap"><table id="farmers-table">
+                <thead><tr><th>Farmer ID</th><th>Name</th><th>County</th><th>District</th><th>Community</th><th>Registered</th></tr></thead>
+                <tbody>
+                {% for farmer in data.farmers %}
+                <tr>
+                    <td>{{ farmer.farmer_id|default('—')|e }}</td>
+                    <td>{{ farmer.full_name|default('—')|e }}</td>
+                    <td>{{ farmer.county|default('—')|e }}</td>
+                    <td>{{ farmer.district|default('—')|e }}</td>
+                    <td>{{ farmer.community|default('—')|e }}</td>
+                    <td>{{ farmer.created_at|default('—')|e }}</td>
+                </tr>
+                {% else %}
+                <tr><td colspan="6" class="empty">No farmer records in this scope.</td></tr>
+                {% endfor %}
+                </tbody>
+            </table></div>
+        </div>
+    </section>
+
+    <section class="workspace" id="view-crops">
+        <div class="workspace-header"><div class="workspace-title">Crop Intelligence</div><button class="back-button" data-home>← Overview</button></div>
+        <div class="metric-row">
+            <div class="metric"><div class="metric-label">Crop submissions</div><div class="metric-value">{{ data.total_crops }}</div></div>
+            <div class="metric"><div class="metric-label">Awaiting verification</div><div class="metric-value">{{ data.pending_crops }}</div></div>
+            <div class="metric"><div class="metric-label">Crop types</div><div class="metric-value">{{ data.crop_stats|length }}</div></div>
+            <div class="metric"><div class="metric-label">Verified</div><div class="metric-value">{{ data.crop_status_stats.get('verified', 0) }}</div></div>
+        </div>
+        <div class="panel">
+            <div class="panel-head"><div class="panel-title">Crop submissions</div><input class="search" data-filter="crops-table" placeholder="Search crop or location"></div>
+            <div class="table-wrap"><table id="crops-table">
+                <thead><tr><th>Crop</th><th>County</th><th>District</th><th>Community</th><th>Activity</th><th>Farm size</th><th>Source</th><th>Status</th><th>Date</th></tr></thead>
+                <tbody>
+                {% for crop in data.crops %}
+                <tr>
+                    <td>{{ crop.crop_type|default('—')|e }}</td>
+                    <td>{{ crop.county|default('—')|e }}</td>
+                    <td>{{ crop.district|default('—')|e }}</td>
+                    <td>{{ crop.community|default('—')|e }}</td>
+                    <td>{{ crop.activity|default('Not specified')|e }}</td>
+                    <td>{% if crop.farm_size %}{{ crop.farm_size }} {{ crop.farm_size_unit|default('')|e }}{% else %}—{% endif %}</td>
+                    <td>{{ crop.source|default('—')|e }}</td>
+                    <td><span class="status {{ crop.status|default('')|e }}">{{ crop.status|default('Unknown')|replace('_',' ')|e }}</span></td>
+                    <td>{{ crop.created_at|default('—')|e }}</td>
+                </tr>
+                {% else %}
+                <tr><td colspan="9" class="empty">No crop submissions in this scope.</td></tr>
+                {% endfor %}
+                </tbody>
+            </table></div>
+        </div>
+    </section>
+
+    <section class="workspace" id="view-problems">
+        <div class="workspace-header"><div class="workspace-title">Agricultural Problems</div><button class="back-button" data-home>← Overview</button></div>
+        <div class="metric-row">
+            <div class="metric"><div class="metric-label">Total reports</div><div class="metric-value">{{ data.total_reports }}</div></div>
+            <div class="metric"><div class="metric-label">Pending</div><div class="metric-value">{{ data.pending_reports }}</div></div>
+            <div class="metric"><div class="metric-label">Under review</div><div class="metric-value">{{ data.under_review_reports }}</div></div>
+            <div class="metric"><div class="metric-label">Verified</div><div class="metric-value">{{ data.verified_reports }}</div></div>
+        </div>
+        <div class="panel">
+            <div class="panel-head"><div class="panel-title">Problem reports</div><input class="search" data-filter="problems-table" placeholder="Search type, severity or location"></div>
+            <div class="table-wrap"><table id="problems-table">
+                <thead><tr><th>Type</th><th>County</th><th>District</th><th>Community</th><th>Crop</th><th>Severity</th><th>Description</th><th>Status</th><th>Date</th></tr></thead>
+                <tbody>
+                {% for report in data.reports %}
+                <tr>
+                    <td>{{ report.report_type|default('—')|replace('_',' ')|title|e }}</td>
+                    <td>{{ report.county|default('—')|e }}</td>
+                    <td>{{ report.district|default('—')|e }}</td>
+                    <td>{{ report.community|default('—')|e }}</td>
+                    <td>{{ report.crop_type|default('—')|e }}</td>
+                    <td>{{ report.severity|default('Not specified')|title|e }}</td>
+                    <td title="{{ report.description|default('')|e }}">{{ report.description|default('—')|truncate(75)|e }}</td>
+                    <td><span class="status {{ report.status|default('')|e }}">{{ report.status|default('Unknown')|replace('_',' ')|e }}</span></td>
+                    <td>{{ report.created_at|default('—')|e }}</td>
+                </tr>
+                {% else %}
+                <tr><td colspan="9" class="empty">No agricultural problem reports in this scope.</td></tr>
+                {% endfor %}
+                </tbody>
+            </table></div>
+        </div>
+    </section>
+
+    <section class="workspace" id="view-geography">
+        <div class="workspace-header"><div class="workspace-title">Geographic Intelligence</div><button class="back-button" data-home>← Overview</button></div>
+        <div class="panel">
+            <div class="panel-head"><div class="panel-title">{{ data.scope_label }} · Authorized coverage</div></div>
+            <div class="geo-list">
+                {% for area in data.scope_names %}
+                <div class="geo-item">{{ area|e }}<span>Authorized geographic coverage</span></div>
+                {% else %}
+                <div class="empty">No assigned geographic areas are available.</div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="panel">
+            <div class="panel-head"><div class="panel-title">Farmer distribution by district</div></div>
+            <div class="table-wrap"><table>
+                <thead><tr><th>County</th><th>District</th><th>Registered farmers</th></tr></thead>
+                <tbody>
+                {% for item in data.district_stats %}
+                <tr><td>{{ item.county|e }}</td><td>{{ item.district|e }}</td><td>{{ item.farmer_count }}</td></tr>
+                {% else %}
+                <tr><td colspan="3" class="empty">No geographic farmer data available.</td></tr>
+                {% endfor %}
+                </tbody>
+            </table></div>
+        </div>
+        <div class="notice warning">Interactive Liberia map and geographic drill-down will be integrated as the next stage.</div>
+    </section>
+
+    <section class="workspace" id="view-analytics">
+        <div class="workspace-header"><div class="workspace-title">Performance & Analytics</div><button class="back-button" data-home>← Overview</button></div>
+        <div class="metric-row">
+            <div class="metric"><div class="metric-label">Farmers</div><div class="metric-value">{{ data.total_farmers }}</div></div>
+            <div class="metric"><div class="metric-label">Crop submissions</div><div class="metric-value">{{ data.total_crops }}</div></div>
+            <div class="metric"><div class="metric-label">Problem reports</div><div class="metric-value">{{ data.total_reports }}</div></div>
+            <div class="metric"><div class="metric-label">Awaiting attention</div><div class="metric-value">{{ data.pending_crops + data.pending_reports }}</div></div>
+        </div>
+        <div class="panel">
+            <div class="panel-head"><div class="panel-title">Reported crops</div></div>
+            <div class="bar-list">
+                {% for item in data.crop_stats %}
+                <div class="bar-row">
+                    <span>{{ item.crop_type|e }}</span>
+                    <div class="bar-track"><div class="bar-fill" style="width:{{ (item.count * 100 / data.total_crops) if data.total_crops else 0 }}%"></div></div>
+                    <strong>{{ item.count }}</strong>
+                </div>
+                {% else %}
+                <div class="empty">No crop data available for analysis.</div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="panel">
+            <div class="panel-head"><div class="panel-title">Agricultural problem categories</div></div>
+            <div class="bar-list">
+                {% for item in data.report_type_stats %}
+                <div class="bar-row">
+                    <span>{{ item.report_type|replace('_',' ')|title|e }}</span>
+                    <div class="bar-track"><div class="bar-fill" style="width:{{ (item.count * 100 / data.total_reports) if data.total_reports else 0 }}%"></div></div>
+                    <strong>{{ item.count }}</strong>
+                </div>
+                {% else %}
+                <div class="empty">No problem-report data available for analysis.</div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="notice warning">These indicators summarize currently available records. Historical trend analysis requires additional time-series data.</div>
+    </section>
+
+    <section class="workspace" id="view-assistance">
+        <div class="workspace-header"><div class="workspace-title">Agricultural Assistance</div><button class="back-button" data-home>← Overview</button></div>
+        <div class="notice warning">
+            Assistance-request tracking is not yet connected to a database module. No assistance totals or request records are being displayed until the submission workflow and database table are implemented.
+        </div>
+    </section>
+
+    <footer class="footer">
+        <span>AGRIDOC LIBERIA · MINISTRY OF AGRICULTURE</span>
+        <span>READ-ONLY OFFICIAL INTELLIGENCE PORTAL</span>
+    </footer>
+</main>
+
+<script>
+(() => {
+    const home = document.getElementById("home-view");
+    const workspaces = document.querySelectorAll(".workspace");
+
+    function showHome() {
+        home.style.display = "";
+        workspaces.forEach(view => view.classList.remove("active"));
+        window.scrollTo({top: 0, behavior: "smooth"});
+    }
+
+    function showWorkspace(name) {
+        const target = document.getElementById("view-" + name);
+        if (!target) return;
+        home.style.display = "none";
+        workspaces.forEach(view => view.classList.remove("active"));
+        target.classList.add("active");
+        window.scrollTo({top: 0, behavior: "smooth"});
+    }
+
+    document.querySelectorAll("[data-open]").forEach(button => {
+        button.addEventListener("click", () => showWorkspace(button.dataset.open));
+    });
+
+    document.querySelectorAll("[data-home]").forEach(button => {
+        button.addEventListener("click", showHome);
+    });
+
+    document.querySelectorAll("[data-filter]").forEach(input => {
+        input.addEventListener("input", () => {
+            const table = document.getElementById(input.dataset.filter);
+            if (!table) return;
+            const query = input.value.toLocaleLowerCase();
+            table.querySelectorAll("tbody tr").forEach(row => {
+                row.style.display = row.innerText.toLocaleLowerCase().includes(query) ? "" : "none";
+            });
+        });
+    });
+})();
+</script>
+</body>
+</html>

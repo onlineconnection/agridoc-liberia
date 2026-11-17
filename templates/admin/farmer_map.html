@@ -767,6 +767,41 @@
             transform: translateY(-1px);
         }
 
+        .map-basemap-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #52645a;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: .5px;
+            text-transform: uppercase;
+        }
+
+        .map-basemap-label select {
+            min-width: 175px;
+            font-family: inherit;
+            text-transform: none;
+            outline: none;
+        }
+
+        .map-basemap-label select:focus-visible {
+            border-color: #194b35;
+            box-shadow: 0 0 0 3px rgba(25, 75, 53, .12);
+        }
+
+        @media (max-width: 600px) {
+            .map-basemap-label {
+                flex: 1 1 100%;
+                justify-content: space-between;
+            }
+
+            .map-basemap-label select {
+                flex: 1;
+                min-width: 0;
+            }
+        }
+
         .map-control.active {
             border-color: #194b35;
             background: #194b35;
@@ -959,43 +994,15 @@
             </span>
         </a>
 
-        <div class="nav-section">Main menu</div>
-        <nav class="sidebar-nav" aria-label="Main navigation">
-            <a class="nav-link active" href="{{ url_for('admin_farmer_map') }}">
+        <div class="nav-section">Workspace</div>
+        <nav class="sidebar-nav" aria-label="Workspace navigation">
+            <a class="nav-link" href="{{ url_for('admin_dashboard') }}">
                 <span class="nav-icon" aria-hidden="true">▦</span>
-                <span>Dashboard</span>
+                <span>Administrative Dashboard</span>
             </a>
-            <a class="nav-link" href="#farmer-registry">
-                <span class="nav-icon" aria-hidden="true">♧</span>
-                <span>Farmers</span>
-            </a>
-            <a class="nav-link" href="{{ url_for('admin_archived_farmers') }}">
-                <span class="nav-icon" aria-hidden="true">▣</span>
-                <span>Archived Farmers</span>
-            </a>
-            <a class="nav-link" href="{{ url_for('admin_officers') }}">
-                <span class="nav-icon" aria-hidden="true">♙</span>
-                <span>Field Agents</span>
-            </a>
-            <a class="nav-link" href="{{ url_for('admin_aid_requests') }}">
-                <span class="nav-icon" aria-hidden="true">▤</span>
-                <span>Aid Requests</span>
-            </a>
-            <a class="nav-link" href="#complaints">
-                <span class="nav-icon" aria-hidden="true">⚑</span>
-                <span>Complaints</span>
-            </a>
-        </nav>
-
-        <div class="nav-section">Analysis & reports</div>
-        <nav class="sidebar-nav" aria-label="Analysis navigation">
-            <a class="nav-link" href="{{ url_for('admin_farm_performance') }}">
-                <span class="nav-icon" aria-hidden="true">♧</span>
-                <span>Farm Performance</span>
-            </a>
-            <a class="nav-link" href="#reports">
-                <span class="nav-icon" aria-hidden="true">▤</span>
-                <span>Reports & Export</span>
+            <a class="nav-link active" href="{{ url_for('admin_farmer_map') }}">
+                <span class="nav-icon" aria-hidden="true">⌖</span>
+                <span>Farmer Map</span>
             </a>
         </nav>
 
@@ -1082,6 +1089,12 @@
                                 data-map-mode="density" aria-pressed="false">
                             Farmer Density
                         </button>
+                        <button type="button"
+                                class="map-control active"
+                                id="toggle-county-overlay"
+                                aria-pressed="true">
+                            County Overlay: ON
+                        </button>
                         <button type="button" class="map-control"
                                 disabled title="Available when crop data is integrated">
                             Crop Distribution
@@ -1107,11 +1120,30 @@
                                 id="map-zoom-in" aria-label="Zoom in">+</button>
                         <button type="button" class="map-control"
                                 id="map-zoom-out" aria-label="Zoom out">−</button>
+                        <label class="map-basemap-label" for="map-basemap">
+                            <span>Basemap</span>
+                            <select id="map-basemap" class="map-control"
+                                    aria-label="Choose map background">
+                                <option value="street">Street Map</option>
+                                <option value="satellite">Satellite</option>
+                                <option value="hybrid">Satellite + Roads</option>
+                            </select>
+                        </label>
                         <button type="button" class="map-control map-fullscreen"
                                 id="map-fullscreen">Fullscreen</button>
                     </div>
                         </div>
                     </div>
+                </div>
+
+                <div style="display:flex;justify-content:flex-end;margin-top:14px;">
+                    <button type="button"
+                            class="map-control"
+                            id="toggle-county-details"
+                            aria-controls="county-details"
+                            aria-expanded="true">
+                        Hide County Details
+                    </button>
                 </div>
 
                 <div id="county-details" aria-live="polite" style="margin-top:16px;">
@@ -1135,9 +1167,6 @@
 
     <script id="county-stats-data" type="application/json">
         {{ county_stats | tojson }}
-    </script>
-    <script id="district-stats-data" type="application/json">
-        {{ district_stats | tojson }}
     </script>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
             crossorigin=""></script>
